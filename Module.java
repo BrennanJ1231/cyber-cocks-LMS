@@ -8,6 +8,12 @@ public class Module {
     protected ArrayList<Assignment> test;
     protected double completion;
     protected ArrayList<Comment> comments;
+    /**
+     * Constructor for the Module Class
+     * @param title Module title
+     * @param description Describes what the module does
+     * @param material Materials in the module
+     */
     public Module(String title, String description, ArrayList<Material> material) {
 
     }
