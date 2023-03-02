@@ -11,7 +11,9 @@
             "birthday":"November 9th, 2003",
             "students":[],
             "coursesCreated":0,
-            "listOfCourses":[]
+            "createdCourses":[],
+            "currentCourse":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}],
+            "courseProgress":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a","Progress":50}]
 
         },
         {
@@ -25,7 +27,9 @@
             "birthday":"October 28th, 1987",
             "students":[{"UUID":"89253f65-4606-4f10-93a1-0a5bc9966247"},{"UUID":"49dc811c-5931-488c-a043-63aaa451da82"}],
             "coursesCreated":0,
-            "listOfCourses":[]
+            "createdCourses":[],
+            "currentCourse":[],
+            "courseProgress":[]
         },
         {
             "UUID":"49dc811c-5931-488c-a043-63aaa451da82",
@@ -38,7 +42,9 @@
             "birthday":"June 2nd, 2001",
             "students":[],
             "coursesCreated":0,
-            "listOfCourses":[]
+            "createdCourses":[],
+            "currentCourse":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}],
+            "courseProgress":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a","Progress":50}]
         },
         {
             "UUID":"b36a740a-e73d-4b30-b97e-240385905183",
@@ -51,7 +57,9 @@
             "birthday":"April 28th, 1999",
             "students":[],
             "coursesCreated":1,
-            "listOfCourses":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}]
+            "createdCourses":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}],
+            "currentCourse":[],
+            "courseProgress":[]
         }
     ]
 ]
