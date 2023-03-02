@@ -1,7 +1,7 @@
 [
     [
         {
-            "UUID":1,
+            "UUID":"89253f65-4606-4f10-93a1-0a5bc9966247",
             "type":"Registered User",
             "userName":"",
             "firstName":"Robert",
@@ -15,7 +15,7 @@
 
         },
         {
-            "UUID":2,
+            "UUID":"7a83d1c3-6df7-41c6-9b99-46b194a479d2",
             "type":"Admin",
             "userName": "",
             "firstName":"John",
@@ -23,12 +23,12 @@
             "password":"",
             "email":"jfrank87@email.sc.edu",
             "birthday":"October 28th, 1987",
-            "students":[{"UUID":1}],
+            "students":[{"UUID":"89253f65-4606-4f10-93a1-0a5bc9966247"},{"UUID":"49dc811c-5931-488c-a043-63aaa451da82"}],
             "coursesCreated":0,
             "listOfCourses":[]
         },
         {
-            "UUID":3,
+            "UUID":"49dc811c-5931-488c-a043-63aaa451da82",
             "type":"Registered User",
             "userName":"",
             "firstName":"Silivia",
@@ -41,7 +41,7 @@
             "listOfCourses":[]
         },
         {
-            "UUID":4,
+            "UUID":"b36a740a-e73d-4b30-b97e-240385905183",
             "type":"Author",
             "userName":"",
             "firstName":"Ashley",
