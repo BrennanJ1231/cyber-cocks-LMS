@@ -1,44 +1,57 @@
 [
     [
         {
-            "UUid":1,
+            "UUID":1,
             "type":"Registered User",
             "userName":"",
             "firstName":"Robert",
             "lastName":"Portis",
             "password":"",
             "email":"RobPortis@email.sc.edu",
-            "birthday":"November 9th, 2003"
+            "birthday":"November 9th, 2003",
+            "students":[],
+            "coursesCreated":0,
+            "listOfCourses":[]
+
         },
         {
-            "UUid":2,
+            "UUID":2,
             "type":"Admin",
             "userName": "",
             "firstName":"John",
             "lastName":"Frankfurt",
             "password":"",
             "email":"jfrank87@email.sc.edu",
-            "birthday":"October 28th, 1987"
+            "birthday":"October 28th, 1987",
+            "students":[{"UUID":1}],
+            "coursesCreated":0,
+            "listOfCourses":[]
         },
         {
-            "UUid":3,
+            "UUID":3,
             "type":"Registered User",
             "userName":"",
             "firstName":"Silivia",
             "lastName":"Watworth",
             "password":"",
             "email":"silverWat@email.sc.edu",
-            "birthday":"June 2nd, 2001"
+            "birthday":"June 2nd, 2001",
+            "students":[],
+            "coursesCreated":0,
+            "listOfCourses":[]
         },
         {
-            "UUid":4,
+            "UUID":4,
             "type":"Author",
             "userName":"",
             "firstName":"Ashley",
             "lastName":"Baker",
             "password":"",
             "email":"BakerBaker@gmail.com",
-            "birthday":"April 28th, 1999"
+            "birthday":"April 28th, 1999",
+            "students":[],
+            "coursesCreated":1,
+            "listOfCourses":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}]
         }
     ]
 ]
