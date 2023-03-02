@@ -1,3 +1,40 @@
 [
-    
+    [
+        {
+            "UUid":1,
+            "type":"Registered User",
+            "firstName":"Robert",
+            "lastName":"Portis",
+            "password":"",
+            "email":"RobPortis@email.sc.edu",
+            "birthday":"November 9th, 2003"
+        },
+        {
+            "UUid":2,
+            "type":"Admin",
+            "firstName":"John",
+            "lastName":"Frankfurt",
+            "password":"",
+            "email":"jfrank87@email.sc.edu",
+            "birthday":"October 28th, 1987"
+        },
+        {
+            "UUid":3,
+            "type":"Registered User",
+            "firstName":"Silivia",
+            "lastName":"Watworth",
+            "password":"",
+            "email":"silverWat@email.sc.edu",
+            "birthday":"June 2nd, 2001"
+        },
+        {
+            "UUid":4,
+            "type":"Author",
+            "firstName":"Ashley",
+            "lastName":"Baker",
+            "password":"",
+            "email":"BakerBaker@gmail.com",
+            "birthday":"April 28th, 1999"
+        }
+    ]
 ]
