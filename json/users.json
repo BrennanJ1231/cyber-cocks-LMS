@@ -1,5 +1,5 @@
 [
-    [
+    
         {
             "UUID":"89253f65-4606-4f10-93a1-0a5bc9966247",
             "type":"Registered User",
@@ -8,8 +8,7 @@
             "lastName":"Portis",
             "password":"",
             "email":"RobPortis@email.sc.edu",
-            "birthday":"November 9th, 2003",
-            "students":[],
+            "birthday":"11/9/2003",
             "coursesCreated":0,
             "createdCourses":[],
             "currentCourse":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}],
@@ -61,5 +60,4 @@
             "currentCourse":[],
             "courseProgress":[]
         }
-    ]
 ]
