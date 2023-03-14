@@ -1,12 +1,32 @@
 import java.io.*;
 import java.util.*;
-
-import javax.security.auth.Subject;
-
 import org.json.simple.*;
 import org.json.simple.parser.*;
 public class DataLoader {
-    public static void main(String[] args) {
+    private static ArrayList<Course> courseList = new ArrayList<Course>();
+    private static ArrayList<User> userList = new ArrayList<User>();
+    public void LoadUsers() {
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader("./json/users.json"));
+            JSONArray users = (JSONArray)obj;
+            Iterator iterator = users.iterator();
+            int i = 0;
+            while(iterator.hasNext()) {
+                JSONObject user = (JSONObject)users.get(i);
+                String uuid = (String)user.get("UUID");
+                String type = (String)user.get("type");
+                String username = (String)user.get("username");
+                String firstName = (String)user.get("firstName");
+                String lastname = (String) user.get("lastName");
+                String password = (String)user.get("password");
+                String email = (String) user.get("email");
+                String birthday = (String)user.get("birthday");
+                
+            }
+        }
+    }
+    public void loadCourses() {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader("./json/courses.json"));
@@ -14,13 +34,14 @@ public class DataLoader {
             JSONObject course = (JSONObject)courses.get(0);
             String uuid = (String)course.get("UUID");
             String name = (String)course.get("name");
-            String lang = (String)course.get("language");
+            Language lang = Language.valueOf((String)course.get("language"));
             String description = (String)course.get("description");
             JSONArray modules = (JSONArray)course.get("modules");
             Iterator iterator = modules.iterator();
+            Course newCourse = new Course(name, null, description, lang);
             while(iterator.hasNext()) {
                 JSONObject module = (JSONObject)modules.get(0);
-                getModules(module);
+                newCourse.addModule(getModules(module));
                 iterator.next();
             }
             JSONArray comments = (JSONArray)course.get("comments");
@@ -30,14 +51,12 @@ public class DataLoader {
                 getComments(comment);
                 iterator.next();
             }
-            Double rating = Double.parseDouble(course.get("rating").toString());
-            
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void getModules(JSONObject module) {
+    public Module getModules(JSONObject module) {
         String title = (String)module.get("title");
         String description = (String)module.get("description");
         JSONArray materials = (JSONArray)module.get("material");
@@ -54,13 +73,15 @@ public class DataLoader {
             getAssignments(assignment);
             iterator.next();
         }
+        return 
     }
-    public static void getMaterial(JSONObject material) {
+    public Material getMaterial(JSONObject material) {
         String name = (String)material.get("name");
         String content = (String)material.get("content");
+        return new Material
     }
 
-    public static void getAssignments(JSONObject assignment) {
+    public Assignment getAssignments(JSONObject assignment) {
         String name = (String)assignment.get("name");
         String type = (String)assignment.get("type");
         JSONArray questions = (JSONArray) assignment.get("questions");
@@ -72,12 +93,12 @@ public class DataLoader {
         }
     }
 
-    public static void getQuestions(JSONObject question) {
+    public static Question getQuestions(JSONObject question) {
         String name = (String) question.get("name");
         ArrayList<String> choices = (ArrayList<String>)question.get("choices");
         String correctAnswer = (String)question.get("correctAnswer");
     }
-    public static void getComments(JSONObject comment) {
+    public static Comment getComments(JSONObject comment) {
         String author = (String) comment.get("author");
         String content = (String)comment.get("content");
         Date date = (Date) comment.get("date");
