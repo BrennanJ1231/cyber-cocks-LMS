@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Course {
     protected String name;
@@ -10,16 +10,26 @@ public class Course {
     protected double rating;
     protected double completion;
     protected boolean registered;
+    protected UUID uuid;
     public Course(String name, Author author, String description, Language language) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.language = language;
     }
-    public void addModule() {
+    public Course(String name, String description, Language language){
 
     }
-    public void removeModule() {
+    public void addModules(ArrayList<Module> modules) {
+
+    }
+    public void addModule(Module module) {
+
+    }
+    public void removeModule(Module modul) {
+
+    }
+    public void addComments(ArrayList<Comment> comments) {
 
     }
 }

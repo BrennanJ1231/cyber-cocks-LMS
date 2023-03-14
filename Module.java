@@ -14,7 +14,7 @@ public class Module {
      * @param description Describes what the module does
      * @param material Materials in the module
      */
-    public Module(String title, String description, ArrayList<Material> material) {
+    public Module(String title, String description, ArrayList<InstructiveMaterial> material) {
 
     }
     public void addAssignment(Assignment assignment, Type type) {
@@ -25,5 +25,8 @@ public class Module {
             quizzes.add(assignment);
         }
         return;
+    }
+    public void addAssignments(ArrayList<Assignment> assignments) {
+        
     }
 }

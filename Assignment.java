@@ -12,6 +12,9 @@ public class Assignment {
     public void addQuestion(Question question) {
         
     }
+    public void addQuestions(ArrayList<Question> questions) {
+
+    }
     public void removeQuestion(Question question) {
     
     }
