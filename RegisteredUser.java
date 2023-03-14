@@ -5,8 +5,11 @@ public class RegisteredUser extends User {
     protected ArrayList <Course> currentCourse;
     protected ArrayList <Progress> courseProgress;
 
-    public RegisteredUser(String username, String name, String email, int age){
-
+    public RegisteredUser(String username, String firstName, String lastName, String email ){
+        this.username = username;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
     }
 
     public void addFavorite(){
