@@ -1,24 +1,25 @@
 import java.util.ArrayList;
-
+// We need to reference People.java
 public class UserList {
     
-    private ArrayList <User> User;
-    private static UserList userList;
+    private static UserList UserList = null;
+    private static ArrayList <User> userList = new ArrayList<User>();
 
-    private UserList() {}
+    private UserList() {
+        userList = DataLoader.LoadUsers();
+    }
 
     public static UserList getInstance() {
-		if (userList == null) {
-			System.out.println("Creating a chocolate boiler");
-			userList = new UserList();
+		if (UserList == null) {
+			UserList = new UserList();
 		}
-		return userList;
+		return UserList;
 	}
     public void addUser(User user){
 
     }
-    public void getAll(Users){
-
+    public ArrayList<User> getAll(){
+        return userList;
     }
     public void deleteUser(User user){
 

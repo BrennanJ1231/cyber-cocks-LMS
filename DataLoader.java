@@ -4,8 +4,8 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 public class DataLoader {
     private  static ArrayList<Course> courseList;
-    private  ArrayList<User> userList;
-    public ArrayList<User> LoadUsers() {
+    private static ArrayList<User> userList;
+    public static ArrayList<User> LoadUsers() {
         userList = new ArrayList<User>();
         JSONParser parser = new JSONParser();
         try {
@@ -71,7 +71,7 @@ public class DataLoader {
         }
         return userList;
     }
-    public ArrayList<Course> loadCourses() {
+    public static ArrayList<Course> loadCourses() {
         courseList = new ArrayList<Course>();
         ArrayList<Module> moduleList = new ArrayList<Module>();
         ArrayList<Comment> commentList = new ArrayList<Comment>();

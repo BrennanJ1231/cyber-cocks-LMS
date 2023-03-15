@@ -15,4 +15,8 @@ public class User {
         this.email = email;
         this.birthday = birthday;
     }
+    public String getUserID() {
+        return this.userID;
+    }
+    
 }
