@@ -24,7 +24,7 @@ public class CourseApplication {
     }
 
     public User createUserAccount(int userId,String type, String firstName, String lastName,String username, String password, String email, Date birthday)  {
-        User user = new User(username, type firstName, lastName, password, email, birthday);
+        User user = new User(userId, type, firstName, lastName, username, password, email, birthday);
         this.userList.addUser(user);
         return user;
     }
