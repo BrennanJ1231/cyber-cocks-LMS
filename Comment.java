@@ -1,17 +1,20 @@
-import java.sql.Date;
+import java.util.*;
 
 import java.util.*;
 public class Comment {
-    protected User author;
+    protected UUID author;
     protected String content;
-    protected Date date;
+    protected Calendar date;
     protected ArrayList<Comment> comments;
-    public Comment(User author, String content, Date date) {
+    public Comment(UUID author, String content, Calendar date) {
         this.author = author;
         this.content = content;
         this.date = date;
     }
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+    public void addComments(ArrayList<Comment> comments) {
+
     }
 }
