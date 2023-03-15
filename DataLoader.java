@@ -118,7 +118,7 @@ public class DataLoader {
         return courseList;
     }
 
-    public Module getModules(JSONObject module) {
+    public static Module getModules(JSONObject module) {
         ArrayList<InstructiveMaterial> materialList = new ArrayList<InstructiveMaterial>();
         ArrayList<Assignment> assignmentList = new ArrayList<Assignment>();
         String title = (String)module.get("title");
@@ -146,13 +146,13 @@ public class DataLoader {
         return newModule;
       
     }
-    public InstructiveMaterial getMaterial(JSONObject material) {
+    public static InstructiveMaterial getMaterial(JSONObject material) {
         String name = (String)material.get("name");
         String content = (String)material.get("content");
         return new InstructiveMaterial(name, content);
     }
 
-    public Assignment getAssignments(JSONObject assignment) {
+    public static Assignment getAssignments(JSONObject assignment) {
         ArrayList<Question> questionList = new ArrayList<Question>();
         String name = (String)assignment.get("name");
         Type type = Type.valueOf((String)assignment.get("type"));
@@ -197,9 +197,9 @@ public class DataLoader {
         return newComment;
     }
     public static void main(String[] args) {
-        DataLoader load = new DataLoader();
-        load.loadCourses();
-        load.LoadUsers();
+        DataLoader.loadCourses();
+        DataLoader.LoadUsers();
+       
     }
 }
    
