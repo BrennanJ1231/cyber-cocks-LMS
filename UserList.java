@@ -3,23 +3,23 @@ import java.util.ArrayList;
 public class UserList {
     
     private static UserList UserList = null;
-    private static ArrayList <RegisteredUser> RegisteredUserList = new ArrayList<>();
+    private static ArrayList <User> userList = new ArrayList<>();
 
     private UserList() {
-        userList = DataLoader.LoadUsers();
+        UserList = DataLoader.LoadUsers();
     }
 
     public static UserList getInstance() {
-		if (RegisteredUserList == null) {
-			RegisteredUserList = new UserList();
+		if (UserList == null) {
+			UserList = new UserList();
 		}
 		return UserList;
 	}
     public void addUser(User user){
 
     }
-    public ArrayList<RegisteredUser> getRegisteredUsers(){
-        return RegisteredUserList;
+    public ArrayList<User> getAll(){
+        return userList;
     }
     public void deleteUser(User user){
 

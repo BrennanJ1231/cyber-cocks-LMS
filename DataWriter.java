@@ -29,14 +29,36 @@ public class DataWriter {
 	
 	public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
-		userDetails.put("UUID",user.userID);
-        userDetails.put("type","Registered User");
-        userDetails.put("userName",user.username);
-        userDetails.put("firstName",user.firstName);
-        userDetails.put("lastName",user.lastName);
-        userDetails.put("password",user.password);
-        userDetails.put("email",user.email);
-        userDetails.put("birthday",user.birthday);
+        if(user instanceof RegisteredUser) {
+            userDetails.put("UUID",user.userID);
+            userDetails.put("type","Registered User");
+            userDetails.put("userName",user.username);
+            userDetails.put("firstName",user.firstName);
+            userDetails.put("lastName",user.lastName);
+            userDetails.put("password",user.password);
+            userDetails.put("email",user.email);
+            userDetails.put("birthday",user.birthday);
+        }
+        if(user instanceof Admin) {
+            userDetails.put("UUID",user.userID);
+            userDetails.put("type","Admin");
+            userDetails.put("userName",user.username);
+            userDetails.put("firstName",user.firstName);
+            userDetails.put("lastName",user.lastName);
+            userDetails.put("password",user.password);
+            userDetails.put("email",user.email);
+            userDetails.put("birthday",user.birthday);
+        }
+        if(user instanceof Author) {
+            userDetails.put("UUID",user.userID);
+            userDetails.put("type","Author");
+            userDetails.put("userName",user.username);
+            userDetails.put("firstName",user.firstName);
+            userDetails.put("lastName",user.lastName);
+            userDetails.put("password",user.password);
+            userDetails.put("email",user.email);
+            userDetails.put("birthday",user.birthday);
+        }
         return userDetails;
 	}
 }
