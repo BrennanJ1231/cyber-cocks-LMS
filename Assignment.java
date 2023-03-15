@@ -19,7 +19,7 @@ public class Assignment {
     
     }
     public double calculateGrade() {
-
+        //TODO return a double 
     }
 
 }

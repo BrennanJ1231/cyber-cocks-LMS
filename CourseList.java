@@ -9,7 +9,6 @@ public class CourseList {
 
     public static CourseList getInstance() {
 		if (courseList == null) {
-			System.out.println("Creating a chocolate boiler");
 			courseList = new CourseList();
 		}
 		return courseList;
@@ -18,7 +17,7 @@ public class CourseList {
     public void addCourse(Course course){
 
     }
-    public void getAll(courses){
+    public void getAll(Course courses){
 
     }
     public void deleteCourse(Course course){
