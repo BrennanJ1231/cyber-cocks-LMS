@@ -9,7 +9,6 @@ public class CourseList {
 
     public static CourseList getInstance() {
 		if (courseList == null) {
-			System.out.println("Creating a chocolate boiler");
 			courseList = new CourseList();
 		}
 		return courseList;
