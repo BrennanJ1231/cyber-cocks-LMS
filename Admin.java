@@ -14,7 +14,7 @@ public Admin(String username, String firstName, String lastName, String email, S
         
 }
 
-public assignCourse(Course course){
+public void assignCourse(Course course){
 
 }
 

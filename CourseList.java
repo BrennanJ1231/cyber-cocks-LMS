@@ -17,7 +17,7 @@ public class CourseList {
     public void addCourse(Course course){
 
     }
-    public void getAll(courses){
+    public void getAll(Course courses){
 
     }
     public void deleteCourse(Course course){
