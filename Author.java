@@ -5,11 +5,8 @@ public class Author extends User{
     protected int coursesCreated;
     protected ArrayList<Course> listOfCourses;
 
-    public Author(String username, String name, String email) {
-        super(username, name, name, name, email );
-    }
-    public Author(String username, String firstName, String lastName, String password, String email, Calendar birthday, int coursesCreated, ArrayList<Course> listOfCourses) {
-        super(username, firstName, lastName, password, email, birthday);
+    public Author(String type, String username, String firstName, String lastName, String password, String email, Calendar birthday, int coursesCreated, ArrayList<Course> listOfCourses) {
+        super(type,firstName, lastName, email, birthday,username,password);
         this.coursesCreated = coursesCreated;
         this.listOfCourses = listOfCourses;
     }
