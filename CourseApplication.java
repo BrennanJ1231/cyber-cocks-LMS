@@ -1,7 +1,8 @@
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class CourseApplication {
+
+public class CourseApplication{
     private CourseList courselist;
     private UserList userList;
     private CurrentCourse course;
@@ -57,3 +58,4 @@ public class CourseApplication {
     public double reviewCourse (Course course) {
         return 0;
     }
+}
