@@ -1,5 +1,5 @@
 [
-    [
+    
         {
             "UUID":"89253f65-4606-4f10-93a1-0a5bc9966247",
             "type":"Registered User",
@@ -8,8 +8,7 @@
             "lastName":"Portis",
             "password":"",
             "email":"RobPortis@email.sc.edu",
-            "birthday":"November 9th, 2003",
-            "students":[],
+            "birthday":"11/9/2003",
             "coursesCreated":0,
             "createdCourses":[],
             "currentCourse":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}],
@@ -24,7 +23,7 @@
             "lastName":"Frankfurt",
             "password":"",
             "email":"jfrank87@email.sc.edu",
-            "birthday":"October 28th, 1987",
+            "birthday":"10/28/1987",
             "students":[{"UUID":"89253f65-4606-4f10-93a1-0a5bc9966247"},{"UUID":"49dc811c-5931-488c-a043-63aaa451da82"}],
             "coursesCreated":0,
             "createdCourses":[],
@@ -39,7 +38,7 @@
             "lastName":"Watworth",
             "password":"",
             "email":"silverWat@email.sc.edu",
-            "birthday":"June 2nd, 2001",
+            "birthday":"6/2/2007",
             "students":[],
             "coursesCreated":0,
             "createdCourses":[],
@@ -54,12 +53,11 @@
             "lastName":"Baker",
             "password":"",
             "email":"BakerBaker@gmail.com",
-            "birthday":"April 28th, 1999",
+            "birthday":"4/28/1999",
             "students":[],
             "coursesCreated":1,
             "createdCourses":[{"UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a"}],
             "currentCourse":[],
             "courseProgress":[]
         }
-    ]
 ]

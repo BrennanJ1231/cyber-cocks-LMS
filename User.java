@@ -6,8 +6,8 @@ public class User {
     protected String lastName;
     protected String password;
     protected String email;
-    protected Date birthday;
-    public User(String username, String firstName, String lastName, String password, String email, Date birthday) {
+    protected Calendar birthday;
+    public User(String username, String firstName, String lastName, String password, String email, Calendar birthday) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

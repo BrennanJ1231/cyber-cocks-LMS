@@ -2,7 +2,7 @@
     {
         "UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a",
         "name":"intro to python",
-        "language":"python",
+        "language":"PYTHON",
         "description":"python introduction",
         "modules":[
             {
@@ -17,7 +17,7 @@
                 "assignment":[
                     {
                         "name":"for loops",
-                        "type":"quiz",
+                        "type":"QUIZ",
                         "questions":[
                             {
                                 "name":"what is a for loop",
@@ -31,9 +31,9 @@
         ],
         "comments":[
             {
-                "author":"john",
+                "author":"89253f65-4606-4f10-93a1-0a5bc9966247",
                 "content":"fun",
-                "datePosted":{"month":1, "day":2, "year":2022},
+                "datePosted":"11/09/2022",
                 "comments":[]
 
             }
