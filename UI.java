@@ -2,11 +2,19 @@ import java.util.Scanner;
 
 // Log in and register
 public class UI {
-    public static void main () { 
+    public static void main () {
+        run();
+    }
+
+/**
+ * RegisterUser contains the dialog for the User to register their acct
+ */
+    public static void run() {
         System.out.println("Welcome to CyberCock's school of coding");
         System.out.println("Please enter [1] to Login or enter [2] to Register");
         Scanner keyboard = new Scanner(System.in);
         int choice = keyboard.nextInt();
+        String type;
         if (choice == 1) {
             ReturningUser();
         }else if(choice == 2) {
@@ -25,10 +33,6 @@ public class UI {
          // Figure out the type and then display their options
 
     }
-}
-/**
- * RegisterUser contains the dialog for the User to register their acct
- */
 public static void RegisterUser() {
     Scanner keyboard = new Scanner(System.in);
     System.out.println("Welcome to the school of coding! It is time to register a new Account!");
@@ -51,48 +55,48 @@ public static void RegisterUser() {
     } 
     }   while(valid);
     System.out.println("Please enter your First Name");
-    String firstName = keyboard.next();
+    String firstName = keyboard.nextLine();
     System.out.println("Please enter your Last Name");
-    String lastName = keyboard.next();
+    String lastName = keyboard.nextLine();
     System.out.println("Please enter your Email");
-    String email = keyboard.next();
+    String email = keyboard.nextLine();
     System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-    String birthday = keyboard.next();
+    String birthday = keyboard.nextLine();
     System.out.println("Please enter your Desired Username");
-    String username = keyboard.next();
+    String username = keyboard.nextLine();
     System.out.println("Please enter your Password");
-    String password = keyboard.next();
-    createUserAccount(type,firstName,lastName,email, birthday, username, password);
+    String password = keyboard.nextLine();
+    CourseApplication.createUserAccount(type,firstName,lastName,email, birthday, username, password);
 }
 
 /**
  * login contains the dialog and checks if the User is in the User list. If so should login
  */
-public static void ReturningUser() {
+public boolean ReturningUser() {
     Scanner keyboard = new Scanner(System.in);
     System.out.println("Welcome Back!");
     System.out.println("Please enter your username");
-    String username = keyboard.next();
+    String username = keyboard.nextLine();
     System.out.println("Please enter your password");
-    String password = keyboard.next();
-    login(username,password);
+    String password = keyboard.nextLine();
+    CourseApplication.login(username,password);
 }
 
-public static void adminDialog() {
-    Scanner keyboard = new Scanner(System.in);
-    System.out.println("You are an admin");
-    System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
-    int choice = keyboard.nextInt();
-    if ( choice == 1 ) {
-        System.out.println("Please enter the course details of the one you would like to assign");
-    } else if( choice == 2 ) {
-        System.out.println("Please enter the course details so we can find your course");
-    } else if ( choice == 3 ) {
-        System.out.println("Please enter the course details of the one you would like to take");
+    public static void adminDialog() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You are an admin");
+        System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
+        int choice = keyboard.nextInt();
+        if ( choice == 1 ) {
+            System.out.println("Please enter the course details of the one you would like to assign");
+        } else if( choice == 2 ) {
+            System.out.println("Please enter the course details so we can find your course");
+        } else if ( choice == 3 ) {
+            System.out.println("Please enter the course details of the one you would like to take");
         findCourses()
     }
 }
-
+}
 //find course
 
 //
