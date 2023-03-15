@@ -25,8 +25,8 @@ public class CourseApplication {
         return this.findUser(keyword);
     }
 
-    public User createUserAccount(int userId,String type, String firstName, String lastName,String username, String password, String email, Date birthday)  {
-        User user = new User(userId, type, firstName, lastName, username, password, email, birthday);
+    public User createUserAccount(String type, String firstName, String lastName, String email, String birthday, String username, String password)  {
+        User user = new User(type, firstName, lastName,  email, birthday, username, password);
         this.userList.addUser(user);
         return user;
     }

@@ -19,7 +19,18 @@ public static void RegisterUser() {
     System.out.println("Welcome to the school of coding! It is time to register a new Account!");
     System.out.println("=======================================================================");
     // Copy this line for same length
-    System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to make an admin");
+    System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+    int choice =  keyboard.nextInt();
+    String type ="";
+    if (choice == 1) {
+        type = "Author";
+    } else if (choice ==2) {
+        type = "User";
+    } else if (choice == 3) {
+        type = "Admin";
+    }else {
+        System.out.println("Invalid input");
+    }
     System.out.println("Please enter your First Name");
     String firstName = keyboard.next();
     System.out.println("Please enter your Last Name");
