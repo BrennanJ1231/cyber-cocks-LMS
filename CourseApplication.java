@@ -23,11 +23,12 @@ public class CourseApplication {
         return this.findUser(keyword);
     }
 
-    public User createAccount(int userId, String firstName, String lastName,String username, String password, String email, Date birthday)  {
-        User user = new User(username, firstName, lastName, password, email, null);
+    public User createUserAccount(int userId,String type, String firstName, String lastName,String username, String password, String email, Date birthday)  {
+        User user = new User(username, type firstName, lastName, password, email, birthday);
         this.userList.addUser(user);
         return user;
     }
+    
     public Boolean login(String username, String password) {
         User user = this.userList.findUser(username);
         if (user != null && user.getPassword == password) {
@@ -37,12 +38,18 @@ public class CourseApplication {
             return false;
         }
     }
-    public ArrayList<Course>getFavCourses() {
-        return this.getFavCourses();
+    public ArrayList<Course>getFavoriteCourses() {
+        return this.getFavoriteCourses();
     }
 
     public ArrayList<Course>getMyCourses() {
         return this.getMyCourses();
     }
 
-    public Boolean addCourse
+    public Course addCourse(String title) {
+
+    }
+    public Course editCourse(Course course, String title) {
+        return
+    }
+    public 
