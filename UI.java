@@ -11,7 +11,19 @@ public class UI {
             ReturningUser();
         }else if(choice == 2) {
             RegisterUser();
+        } else {
+            System.out.println("Invalid Choice");
+            break;
         }
+        // Login or register dialog
+
+        System.out.println("Welcome " /*Have this be the users first name*/  "!");
+        System.out.println("=======================================================================");
+        if (type == "Admin") {
+            adminDialog();
+        }
+         // Figure out the type and then display their options
+
     }
 }
 /**
@@ -66,6 +78,20 @@ public static void ReturningUser() {
     login(username,password);
 }
 
+public static void adminDialog() {
+    Scanner keyboard = new Scanner(System.in);
+    System.out.println("You are an admin");
+    System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
+    int choice = keyboard.nextInt();
+    if ( choice == 1 ) {
+        System.out.println("Please enter the course details of the one you would like to assign");
+    } else if( choice == 2 ) {
+        System.out.println("Please enter the course details so we can find your course");
+    } else if ( choice == 3 ) {
+        System.out.println("Please enter the course details of the one you would like to take");
+        findCourses()
+    }
+}
 
 //find course
 
