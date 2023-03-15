@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class UserList {
     
     private static UserList UserList = null;
-    private static ArrayList <User> userList = new ArrayList<>();
+    private static ArrayList <User> userList = new ArrayList<User>();
 
     private UserList() {
-        UserList = DataLoader.LoadUsers();
+        userList = DataLoader.LoadUsers();
     }
 
     public static UserList getInstance() {
