@@ -10,7 +10,9 @@ public class CourseApplication {
     /**
      * Constructor for the CourseApplication class. creates course list and user list
      */
-    public CourseApplication() {
+    
+    
+     public CourseApplication() {
         this.courselist = new CourseList();
         this.userList = new UserList();
     }
@@ -52,4 +54,6 @@ public class CourseApplication {
     public Course editCourse(Course course, String title) {
         return
     }
-    public 
+    public double reviewCourse (Course course) {
+        return 0;
+    }
