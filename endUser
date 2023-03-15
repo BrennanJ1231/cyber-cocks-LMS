@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+
+public class EndUser {
+	private static EndUser endUser = null;
+	private static ArrayList<User> userList = new ArrayList<>();
+	
+	private EndUser() {
+		userList = DataLoader.loadUser();
+	}
+	
+	public static EndUser getInstance() {
+		if(endUser == null) {
+			endUser = new endUser();
+		}
+		
+		return endUser;
+	}
+	
+	public ArrayList<User> getEndUser() {
+		return userList;
+	}
+	
+	public void addUser(String username, String firstName, String lastName, String password, String email, Date birthday) {
+		userList.add(new User(username, firstName, lastName, password, email, birthday));
+	}
+
+	public void logout(){
+		DataWriter.saveEndUser();
+	}
+}
