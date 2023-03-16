@@ -32,6 +32,7 @@ public class CourseApplication{
         return user;
     }
     
+    
     public Boolean login(String username, String password) {
         User user = this.userList.findUser(username);
         if (user != null && user.getPassword == password) {
