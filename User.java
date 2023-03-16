@@ -7,13 +7,13 @@ public class User {
     protected String password;
     protected String email;
     protected Calendar birthday;
-    public User(String type, String firstName, String lastName, String email, Calendar birthday, String username, String password) {
+    public User(String type, String firstName, String lastName, String email, String birthday2, String username, String password) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.birthday = birthday;
+        this.birthday = birthday2;
     }
     public String getUserID() {
         return this.userID;

@@ -31,6 +31,16 @@ public class CourseApplication{
         this.userList.addUser(user);
         return user;
     }
+    public User createAdminAccount(String type, String firstName, String lastName, String email, String birthday, String username, String password){
+        User admin = new User(type, firstName, lastName, email, null, username, password);
+        this.userList.addUser(admin);
+        return admin;
+    }
+    public User createAuthorAccount(String type, String firstName, String lastName, String email, String birthday, String username, String password){
+        User author = new User(type, firstName, lastName, email, null, username, password);
+        this.userList.addUser(author);
+        return author;
+    }
     
     public Boolean login(String username, String password) {
         User user = this.userList.findUser(username);
@@ -53,9 +63,12 @@ public class CourseApplication{
 
     }
     public Course editCourse(Course course, String title) {
-        return
+        return 
     }
     public double reviewCourse (Course course) {
         return 0;
+    }
+    public String takeAssignment(Course course, String assignmentName){
+
     }
 }
