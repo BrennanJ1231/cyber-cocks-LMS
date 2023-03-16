@@ -72,14 +72,15 @@ public static void RegisterUser() {
 /**
  * login contains the dialog and checks if the User is in the User list. If so should login
  */
-public boolean ReturningUser() {
+public static boolean ReturningUser() {
     Scanner keyboard = new Scanner(System.in);
     System.out.println("Welcome Back!");
     System.out.println("Please enter your username");
     String username = keyboard.nextLine();
     System.out.println("Please enter your password");
     String password = keyboard.nextLine();
-    CourseApplication.login(username,password);
+    boolean login = CourseApplication.login(username,password);
+    if(true)
 }
 
     public static void adminDialog() {
