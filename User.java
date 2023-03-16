@@ -1,6 +1,7 @@
 import java.util.*;
 public class User {
     protected String userID;
+    protected String type;
     protected String username;
     protected String firstName;
     protected String lastName;
@@ -18,7 +19,10 @@ public class User {
     public String getUserID() {
         return this.userID;
     }
-    public String getPassword( {
+    public String getPassword() {
         return this.password;
-    })
+    }
+    public String getType() {
+        return this.type;
+    }
 }
