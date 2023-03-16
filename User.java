@@ -15,12 +15,7 @@ public class User {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-<<<<<<< HEAD
         this.birthday = birthday2;
-=======
-        this.birthday = birthday;
-        this.type = type;
->>>>>>> de9801900693586e77db23e23a0d963794ff85f7
     }
     public String getUserID() {
         return this.userID;
