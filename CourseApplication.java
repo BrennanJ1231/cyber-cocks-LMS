@@ -1,5 +1,6 @@
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class CourseApplication{
@@ -26,7 +27,7 @@ public class CourseApplication{
         return this.findUser(keyword);
     }
 
-    public User createUserAccount(String type, String firstName, String lastName, String email, String birthday, String username, String password)  {
+    public User createUserAccount(String type, String firstName, String lastName, String email, Calendar birthday, String username, String password)  {
         User user = new User(type, firstName, lastName,  email, birthday, username, password);
         this.userList.addUser(user);
         return user;
