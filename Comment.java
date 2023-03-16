@@ -15,6 +15,7 @@ public class Comment {
         comments.add(comment);
     }
     public void addComments(ArrayList<Comment> comments) {
-
+        this.comments = comments;
     }
+    
 }

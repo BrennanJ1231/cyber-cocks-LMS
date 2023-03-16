@@ -1,6 +1,7 @@
 import java.util.*;
 public class User {
     protected String userID;
+    protected String type;
     protected String username;
     protected String type;
     protected String firstName;
