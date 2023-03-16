@@ -15,15 +15,16 @@ public class CourseList {
 		}
 		return courseList;
 	}
-
-    public void addCourse(String name, Author author, String description, Language language){
-        courses.add(new Course(name, author, description, language))
+    public void addCourse(Course course){
+        if(courses == null) 
+            return;
+        courses.add(course);
     }
     public ArrayList<Course> getAll(){
         return courses;
     }
     public void deleteCourse(Course course){
-
+        
     }
     public void save(){
 

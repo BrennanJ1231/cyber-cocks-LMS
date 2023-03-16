@@ -25,7 +25,7 @@ public class UI {
         }
         // Login or register dialog
 
-        System.out.println("Welcome " /*Have this be the users first name*/  "!");
+        System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
             adminDialog();
@@ -74,7 +74,7 @@ public class UI {
         System.out.println("Please enter your Password");
         String password = keyboard.nextLine();
         CourseApplication.createUserAccount(type,firstName,lastName,email, birthday, username, password);
-}
+        }
 
     /**
     * returning user contains the dialog and checks if the User is in the User list. If so should login
@@ -117,9 +117,17 @@ public class UI {
         System.out.println();
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
+            // Create Courses
             makeCourse();
         } else if ( choice  == 2 ) {
-            
+            // Find Courses
+            CourseApplication.getMyCourses();
+            System.out.println();
+        } else if ( choice  == 3 ) {
+            CourseApplication.editCourse();
+            // Edit Courses
+        } else {
+            System.out.println("Invalid Choice");
         }
     }
 
