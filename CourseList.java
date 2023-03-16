@@ -5,7 +5,9 @@ public class CourseList {
     private ArrayList <Course> courses;
     private static CourseList courseList;
 
-    private CourseList() {}
+    private CourseList() { 
+        courses = DataLoader.loadCourses();
+    }
 
     public static CourseList getInstance() {
 		if (courseList == null) {
@@ -14,11 +16,11 @@ public class CourseList {
 		return courseList;
 	}
 
-    public void addCourse(Course course){
-
+    public void addCourse(String name, Author author, String description, Language language){
+        courses.add(new Course(name, author, description, language))
     }
-    public void getAll(Course courses){
-
+    public ArrayList<Course> getAll(){
+        return courses;
     }
     public void deleteCourse(Course course){
 
