@@ -15,13 +15,15 @@ public class CourseList {
 	}
 
     public void addCourse(Course course){
-
+        if(courses == null) 
+            return;
+        courses.add(course);
     }
-    public void getAll(Course courses){
-
+    public ArrayList<Course> getAll(){
+        return courses;
     }
     public void deleteCourse(Course course){
-
+        
     }
     public void save(){
 

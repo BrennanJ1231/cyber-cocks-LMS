@@ -80,4 +80,37 @@ public class DataWriter {
         userDetails.put("coursesCreated", user.listOfCourses);
         return userDetails;
 	}
+
+    public static void saveCourse(String fileName) {
+        CourseList courseList = CourseList.getInstance();
+		ArrayList<User> users = courseList.getAll();
+		JSONArray jsonUsers = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< users.size(); i++) {
+            if(users.get(i).getType().equalsIgnoreCase("RegisteredUser")) {
+                RegisteredUser regUser = new RegisteredUser(users.get(i).username, users.get(i).firstName, users.get(i).lastName, users.get(i).password, users.get(i).email, users.get(i).birthday, users.get(i).currentCourses);
+                //users.get(i);
+                jsonUsers.add(getRegisteredUserJSON(regUser));
+            }
+            if(users.get(i).getType().equalsIgnoreCase("Admin")) {
+                Admin adminUser = new Admin(users.get(i).username, users.get(i).firstName, users.get(i).lastName, users.get(i).password, users.get(i).email, users.get(i).birthday, users.get(i).students);
+                jsonUsers.add(getAdminUserJSON(adminUser));
+            }
+            if(users.get(i).getType().equalsIgnoreCase("Author")) {
+                Author authorUser = new Author(users.get(i).username, users.get(i).firstName, users.get(i).lastName, users.get(i).password, users.get(i).email, users.get(i).birthday, users.get(i).currentCourses);
+                jsonUsers.add(getAuthorUserJSON(authorUser));
+            }
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter(FILE_NAME)) {
+ 
+            file.write(jsonUsers.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 }

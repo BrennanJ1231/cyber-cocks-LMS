@@ -199,6 +199,9 @@ public class DataLoader {
         newComment.addComments(commentList);
         return newComment;
     }
+    public static ArrayList<User> getAdminStudentList() {
+        
+    }
     public static void main(String[] args) {
         DataLoader.loadCourses();
         DataLoader.LoadUsers();
