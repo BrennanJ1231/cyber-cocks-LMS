@@ -11,7 +11,7 @@ public class RegisteredUser extends User {
     }
 
     public void addFavorite(){
-
+        
     }
     public void courseEnrolled(){
 
