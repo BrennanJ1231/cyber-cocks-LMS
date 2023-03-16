@@ -18,7 +18,7 @@ public class User {
     public String getUserID() {
         return this.userID;
     }
-    public String getPassword( {
+    public String getPassword() {
         return this.password;
     })
 }
