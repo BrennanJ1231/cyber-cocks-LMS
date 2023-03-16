@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 public class Author extends User{
     protected int coursesCreated;
     protected ArrayList<Course> listOfCourses;
@@ -12,5 +11,6 @@ public class Author extends User{
     }
     public void createCourse(Course course) {
         listOfCourses.add(course);
+        this.coursesCreated++;
     }
 }
