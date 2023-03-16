@@ -5,6 +5,7 @@ public class Assignment {
     protected ArrayList<Question> questions;
     protected Type type;
     protected double grade;
+    protected boolean completed;
     public Assignment(String name, Type type) {
         this.name = name;
         this.type = type;
