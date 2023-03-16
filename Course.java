@@ -11,15 +11,12 @@ public class Course {
     protected double completion;
     protected boolean registered;
     protected UUID uuid;
-    public Course(String name, Author author, String description, Language language, UUID uuid) {
+    public Course(String name, String description, Language language, UUID uuid) {
         this.name = name;
-        this.author = author;
+       
         this.description = description;
         this.language = language;
         this.uuid = uuid;
-    }
-    public Course(String name, String description, Language language, UUID uuid){
-
     }
     public void addModules(ArrayList<Module> modules) {
 
