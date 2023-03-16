@@ -5,7 +5,7 @@ public class Admin extends User {
 
 protected ArrayList <RegisteredUser> Students;
 
-public Admin(String username, String firstName, String lastName, String email, String type, Calendar birthday, String password ){
+public Admin(String type, String username, String firstName, String lastName, String email, Calendar birthday, String password ){
     super(type, firstName, lastName, email, birthday, username, password);
     this.username = username;
         this.firstName = firstName;
@@ -14,8 +14,7 @@ public Admin(String username, String firstName, String lastName, String email, S
         
 }
 
-public void assignCourse(Course course){
-
+public void assignCourse(Course course, RegisteredUser student){
+    student.registerForCourse(course);
 }
-
 }

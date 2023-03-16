@@ -17,5 +17,8 @@ public class Question {
     public void removeChoice(String choice) {
         choices.remove(choice);
     }
+    public boolean equals(Question question) {
+        return this.question.equals(question.question) && this.choices.containsAll(question.choices) && this.correctAnswer.equals(question.correctAnswer);
+    }
     
 }

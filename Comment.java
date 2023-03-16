@@ -1,6 +1,5 @@
 import java.util.*;
 
-import java.util.*;
 public class Comment {
     protected UUID author;
     protected String content;
@@ -15,6 +14,7 @@ public class Comment {
         comments.add(comment);
     }
     public void addComments(ArrayList<Comment> comments) {
-
+        this.comments = comments;
     }
+
 }

@@ -19,7 +19,7 @@ public class RegisteredUser extends User {
     public void getCourse(){
 
     }
-    public void registerForCourse(){
+    public void registerForCourse(Course course){
 
     }
     public void unregisterForCourse(){
