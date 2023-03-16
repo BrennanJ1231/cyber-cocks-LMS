@@ -42,7 +42,7 @@ public class DataLoader {
                         j++;
                         iterator2.next();
                     }
-                    userList.add(new Author("Author", username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
+                    userList.add(new Author(uuid,"Author", username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
 
                 }
                 if(type.equalsIgnoreCase("registered user")) {
@@ -61,10 +61,10 @@ public class DataLoader {
                         j++;
                         iterator2.next();
                     }
-                    userList.add(new RegisteredUser("Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
+                    userList.add(new RegisteredUser(uuid,"Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
                 }
                 if(type.equalsIgnoreCase("admin")) {
-                    userList.add(new Admin("Admin", username, firstName, lastname, password, birthday, email));
+                    userList.add(new Admin(uuid,"Admin", username, firstName, lastname, password, birthday, email));
                 }
                 i++;
                 iterator.next();
@@ -90,7 +90,7 @@ public class DataLoader {
                 String name = (String)course.get("name");
                 Language lang = Language.valueOf((String)course.get("language"));
                 String description = (String)course.get("description");
-                Course newCourse = new Course(name, description, lang);
+                Course newCourse = new Course(name, description, lang, uuid);
                 JSONArray modules = (JSONArray)course.get("modules");
                 Iterator iterator = modules.iterator();
                 int k = 0;
@@ -199,8 +199,38 @@ public class DataLoader {
         newComment.addComments(commentList);
         return newComment;
     }
-    public static ArrayList<User> getAdminStudentList() {
-        
+    public static ArrayList<User> getAdminStudentList(Admin admin) {
+        ArrayList<User> studentList = new ArrayList<User>();
+        UUID uuid = admin.uuid;
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader("./json/users.json"));
+            JSONArray users = (JSONArray)obj;
+            Iterator iterator = users.iterator();
+            int i = 0;
+            while(iterator.hasNext()) {
+                JSONObject user = (JSONObject)users.get(i);
+                if(UUID.fromString(user.get("uuid").toString()) == uuid) {
+                    JSONArray students = (JSONArray)user.get("students");
+                    Iterator iterator2 = students.iterator();
+                    int j = 0;
+                    while(iterator2.hasNext()) {
+                        JSONObject sUUID = (JSONObject)students.get(j);
+                        UUID studentUUID = UUID.fromString(sUUID.get("UUID").toString());
+                        for(int k = 0; k< courseList.size();k++) {
+                            if(userList.get(k).uuid == studentUUID) {
+                                studentList.add(userList.get(k));
+                            }
+                        }
+                        j++;
+                        iterator2.next();
+                    }
+                }
+            }
+            return studentList;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         DataLoader.loadCourses();
