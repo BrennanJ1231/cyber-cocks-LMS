@@ -30,4 +30,7 @@ public class UserList {
     public void editUser(User user){
 
     }
+    public void findUser (User user) {
+        
+    }
 }

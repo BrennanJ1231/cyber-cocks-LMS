@@ -49,6 +49,7 @@ public class UI {
         String type ="";
         do {
         System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+        System.out.println();
         int choice =  keyboard.nextInt();
         if (choice == 1) {
             type = "Author";
@@ -106,7 +107,8 @@ public class UI {
             System.out.println("Please enter the course details so we can find your course");
         } else if ( choice == 3 ) {
             System.out.println("Please enter the course details of the one you would like to take");
-        findCourses()
+            String courseChoice = keyboard.nextLine();
+            CourseApplication.findCourses(courseChoice);
         } 
     }
 
