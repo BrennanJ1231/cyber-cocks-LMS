@@ -6,9 +6,9 @@ public class UI {
         run();
     }
 
-/**
- * RegisterUser contains the dialog for the User to register their acct
- */
+    /**
+     * Run is the main dialog of the UI. It calls other methods based on Users wishes
+     */
     public static void run() {
         System.out.println("Welcome to CyberCock's school of coding");
         System.out.println("Please enter [1] to Login or enter [2] to Register");
@@ -97,7 +97,6 @@ public class UI {
      */
     public static void adminDialog() {
         Scanner keyboard = new Scanner(System.in);
-        if(User.getType() == "Admin") {
         System.out.println("You are an admin");
         System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
         int choice = keyboard.nextInt();
@@ -109,11 +108,24 @@ public class UI {
             System.out.println("Please enter the course details of the one you would like to take");
             String courseChoice = keyboard.nextLine();
             CourseApplication.findCourses(courseChoice);
-        } 
+        }
+    }
+    public static void authorDialog() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You are an author");
+        System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
+        System.out.println();
+        int choice = keyboard.nextInt();
+        if (choice == 1 )  {
+            makeCourse();
+        } else if ( choice  == 2 ) {
+            
+        }
     }
 
-    public makeCourse() {
+    public Course makeCourse() {
         Scanner keyboard = new Scanner(System.in);
+        System.out.println("You have selected to create a Course");
     }
 }   
 }
