@@ -42,7 +42,7 @@ public class DataLoader {
                         j++;
                         iterator2.next();
                     }
-                    userList.add(new Author(username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
+                    userList.add(new Author("Author", username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
 
                 }
                 if(type.equalsIgnoreCase("registered user")) {
@@ -61,7 +61,10 @@ public class DataLoader {
                         j++;
                         iterator2.next();
                     }
-                    userList.add(new RegisteredUser(username, firstName, lastname, password, email, birthday, currentCourses));
+                    userList.add(new RegisteredUser("Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
+                }
+                if(type.equalsIgnoreCase("admin")) {
+                    userList.add(new Admin("Admin", username, firstName, lastname, password, birthday, email));
                 }
                 i++;
                 iterator.next();

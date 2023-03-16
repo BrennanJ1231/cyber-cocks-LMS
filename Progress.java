@@ -20,3 +20,4 @@ public class Progress {
         }
         return completed/numAssignment;
 }
+}
