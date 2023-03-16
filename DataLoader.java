@@ -35,7 +35,7 @@ public class DataLoader {
                         JSONObject cUUID = (JSONObject)courseArray.get(j);
                         UUID courseUUID = UUID.fromString(cUUID.get("UUID").toString());
                         for(int k = 0; k< courseList.size();k++) {
-                            if(courseList.get(k).uuid == courseUUID) {
+                            if(courseList.get(k).uuid.equals(courseUUID)) {
                                 createdCourses.add(courseList.get(k));
                             }
                         }
@@ -53,8 +53,8 @@ public class DataLoader {
                     while(iterator2.hasNext()) {
                         JSONObject cUUID = (JSONObject)courseArray.get(j);
                         UUID courseUUID = UUID.fromString(cUUID.get("UUID").toString());
-                        for(int k = 0; k< courseList.size();k++) {
-                            if(courseList.get(k).uuid == courseUUID) {
+                        for(int k = 0; k < courseList.size();k++) {
+                            if(courseList.get(k).uuid.equals(courseUUID)) {
                                 currentCourses.add(courseList.get(k));
                             }
                         }
@@ -199,8 +199,8 @@ public class DataLoader {
         newComment.addComments(commentList);
         return newComment;
     }
-    public static ArrayList<User> getAdminStudentList(Admin admin) {
-        ArrayList<User> studentList = new ArrayList<User>();
+    public static ArrayList<RegisteredUser> getAdminStudentList(User admin) {
+        ArrayList<RegisteredUser> studentList = new ArrayList<RegisteredUser>();
         UUID uuid = admin.uuid;
         JSONParser parser = new JSONParser();
         try {
@@ -210,32 +210,34 @@ public class DataLoader {
             int i = 0;
             while(iterator.hasNext()) {
                 JSONObject user = (JSONObject)users.get(i);
-                if(UUID.fromString(user.get("uuid").toString()) == uuid) {
+                if(UUID.fromString(user.get("UUID").toString()).equals(uuid)) {
                     JSONArray students = (JSONArray)user.get("students");
                     Iterator iterator2 = students.iterator();
                     int j = 0;
                     while(iterator2.hasNext()) {
                         JSONObject sUUID = (JSONObject)students.get(j);
                         UUID studentUUID = UUID.fromString(sUUID.get("UUID").toString());
-                        for(int k = 0; k< courseList.size();k++) {
-                            if(userList.get(k).uuid == studentUUID) {
-                                studentList.add(userList.get(k));
+                        for(int k = 0; k< userList.size();k++) {
+                            if(userList.get(k).uuid.equals(studentUUID)) {
+                                studentList.add((RegisteredUser) (userList.get(k)));
                             }
                         }
                         j++;
                         iterator2.next();
                     }
                 }
+                i++;
+                iterator.next();
             }
             return studentList;
         } catch(Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
     public static void main(String[] args) {
-        DataLoader.loadCourses();
-        DataLoader.LoadUsers();
-       
+        courseList = DataLoader.loadCourses();
+        userList = DataLoader.LoadUsers();
     }
 }
    
