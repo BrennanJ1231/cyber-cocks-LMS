@@ -16,6 +16,7 @@ public class Module {
     public Module(String title, String description, ArrayList<InstructiveMaterial> material) {
 
     }
+
     public void addAssignment(Assignment assignment, Type type) {
         if(type == Type.TEST) {
             test.add(assignment);

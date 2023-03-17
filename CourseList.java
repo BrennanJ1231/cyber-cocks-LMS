@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseList {
     
     private ArrayList <Course> courses;
     private static CourseList courseList;
 
-    private CourseList() { 
+    private CourseList() {
         courses = DataLoader.loadCourses();
     }
 
@@ -24,7 +25,11 @@ public class CourseList {
         return courses;
     }
     public void deleteCourse(Course course){
-        
+        for(int i = 0; i <courses.size(); i++) {
+            if(courses.get(i).uuid.equals(course.uuid)) {
+                courses.remove(i);
+            }
+        }
     }
     public void save(){
 

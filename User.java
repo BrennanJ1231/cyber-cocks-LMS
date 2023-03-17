@@ -18,8 +18,8 @@ public class User {
         this.type = type;
         this.uuid = uuid;
     }
-    public String getUserID() {
-        return this.userID;
+    public UUID getUserID() {
+        return this.uuid;
     }
     public String getPassword() {
         return this.password;
