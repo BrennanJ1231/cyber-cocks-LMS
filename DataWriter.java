@@ -163,10 +163,4 @@ public class DataWriter {
         commentDetails.put("comments", comment.comments);
         return commentDetails;
     }
-    public static void main(String[] args) {
-        DataLoader.loadCourses();
-        DataLoader.loadUsers();
-        DataWriter.saveUser(USERS_FILE_NAME);
-        DataWriter.saveCourse(COURSES_FILE_NAME);
-    }
 }
