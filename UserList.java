@@ -6,7 +6,7 @@ public class UserList {
     private static ArrayList <User> userList = new ArrayList<User>();
 
     private UserList() {
-        userList = DataLoader.LoadUsers();
+        userList = DataLoader.loadUsers();
     }
 
     public static UserList getInstance() {

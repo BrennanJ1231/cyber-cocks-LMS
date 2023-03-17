@@ -102,10 +102,16 @@ public class DataWriter {
         courseDetails.put("name", course.name);
         courseDetails.put("language", course.language);
         courseDetails.put("description", course.description);
+        JSONArray jsonModules = new JSONArray();
         for(int i = 0; i < course.modules.size(); i++) {
-            courseDetails.put("modules", getModuleJSON(course.modules.get(i)));
+            jsonModules.add(getModuleJSON(course.modules.get(i)));
         }
-        courseDetails.put("comments", course.modules);
+        courseDetails.put("modules", jsonModules);
+        JSONArray jsonComments = new JSONArray();
+        for(int i = 0; i < course.comments.size(); i++) {
+            jsonModules.add(getCommentsJSON(course.comments.get(i)));
+        }
+        courseDetails.put("comments", jsonComments);
         courseDetails.put("rating", course.modules);
         return courseDetails;
     }
@@ -113,12 +119,16 @@ public class DataWriter {
         JSONObject moduleDetails = new JSONObject();
 		moduleDetails.put("title", module.title);
         moduleDetails.put("description", module.description);
+        JSONArray jsonMaterial = new JSONArray();
         for(int i = 0; i < module.material.size(); i++) {
-            moduleDetails.put("material", getMaterialJSON(module.material.get(i)));
+            jsonMaterial.add(getMaterialJSON(module.material.get(i)));
         }
+        moduleDetails.put("material", jsonMaterial);
+        JSONArray jsonTest = new JSONArray();
         for(int i = 0; i < module.test.size(); i++) {
-            moduleDetails.put("quizzes", getAssignmentJSON(module.test.get(i)));
+            jsonTest.add(getAssignmentJSON(module.test.get(i)));
         }
+        moduleDetails.put("quizzes", jsonTest);
         return moduleDetails;
     }
     public static JSONObject getMaterialJSON(InstructiveMaterial material) {
@@ -131,10 +141,11 @@ public class DataWriter {
         JSONObject assignmentDetails = new JSONObject();
 		assignmentDetails.put("name", test.name);
         assignmentDetails.put("type", test.type);
-        Question newQuestion;
+        JSONArray jsonTest = new JSONArray();
         for(int i = 0; i < test.questions.size(); i++) {
-            assignmentDetails.put("questions", getQuestionJSON(test.questions.get(i)));
+            jsonTest.add(getQuestionJSON(test.questions.get(i)));
         }
+        assignmentDetails.put("questions", jsonTest);
         return assignmentDetails;
     }
     public static JSONObject getQuestionJSON(Question question) {
@@ -154,7 +165,7 @@ public class DataWriter {
     }
     public static void main(String[] args) {
         DataLoader.loadCourses();
-        DataLoader.LoadUsers();
+        DataLoader.loadUsers();
         DataWriter.saveUser(USERS_FILE_NAME);
         DataWriter.saveCourse(COURSES_FILE_NAME);
     }
