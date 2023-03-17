@@ -18,8 +18,13 @@ public class Course {
         this.language = language;
         this.uuid = uuid;
     }
-    public void addModules(ArrayList<Module> modules) {
-
+    public Course(String name, String description, Language language, UUID uuid,ArrayList<Module> modules, ArrayList<Comment> comments) {
+        this.name = name;
+        this.modules = modules;
+        this.description = description;
+        this.language = language;
+        this.uuid = uuid;
+        this.comments =  comments;
     }
     public void addModule(Module module) {
 

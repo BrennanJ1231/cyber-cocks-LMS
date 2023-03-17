@@ -30,11 +30,5 @@ public class UserList {
     public void editUser(User user){
 
     }
-<<<<<<< HEAD
     
-=======
-    public void findUser (User user) {
-        
-    }
->>>>>>> de9801900693586e77db23e23a0d963794ff85f7
 }

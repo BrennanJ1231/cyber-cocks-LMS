@@ -5,7 +5,7 @@ import org.json.simple.parser.*;
 public class DataLoader {
     private  static ArrayList<Course> courseList;
     private static ArrayList<User> userList;
-    public static ArrayList<User> LoadUsers() {
+    public static ArrayList<User> loadUsers() {
         userList = new ArrayList<User>();
         JSONParser parser = new JSONParser();
         try {
@@ -90,7 +90,6 @@ public class DataLoader {
                 String name = (String)course.get("name");
                 Language lang = Language.valueOf((String)course.get("language"));
                 String description = (String)course.get("description");
-                Course newCourse = new Course(name, description, lang, uuid);
                 JSONArray modules = (JSONArray)course.get("modules");
                 Iterator iterator = modules.iterator();
                 int k = 0;
@@ -100,7 +99,6 @@ public class DataLoader {
                     k++;
                     iterator.next();
                 }
-                newCourse.addModules(moduleList);
                 k = 0;
                 JSONArray comments = (JSONArray)course.get("comments");
                 iterator = comments.iterator();
@@ -110,8 +108,7 @@ public class DataLoader {
                     k++;
                     iterator.next();
                 }
-                newCourse.addComments(commentList);
-                courseList.add(newCourse);
+                courseList.add(new Course(name, description, lang, uuid, moduleList, commentList));
                 i++;
                 iterator2.next();
             }
@@ -234,10 +231,6 @@ public class DataLoader {
             e.printStackTrace();
         }
         return null;
-    }
-    public static void main(String[] args) {
-        courseList = DataLoader.loadCourses();
-        userList = DataLoader.LoadUsers();
     }
 }
    
