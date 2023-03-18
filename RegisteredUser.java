@@ -14,12 +14,12 @@ public class RegisteredUser extends User {
 
     }
     public void courseEnrolled(){
-
-    }
-    public void getCourse(){
         for (int i =0 ; i < currentCourse.size();i++){
             System.out.println(currentCourse.get(i));
         }
+    }
+    public void getCourse(){
+       
     }
     public void registerForCourse(Course course){
         currentCourse.add(course);
@@ -31,7 +31,7 @@ public class RegisteredUser extends User {
 
     }
     public boolean showComment(int age){
-        //@TODO add return type
+        
     }
 
 }
