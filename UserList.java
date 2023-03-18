@@ -16,19 +16,19 @@ public class UserList {
 		return UserList;
 	}
     public void addUser(User user){
-
+        userList.add(user);
     }
     public ArrayList<User> getAll(){
         return userList;
     }
     public void deleteUser(User user){
-
+        userList.remove(user);
     }
     public void save(){
-
+        //Unsure what this needs to do
     }
     public void editUser(User user){
-
+        //Unsure what this needs to do
     }
     
 }
