@@ -11,19 +11,21 @@ public class RegisteredUser extends User {
     }
 
     public void addFavorite(){
-        
+
     }
     public void courseEnrolled(){
 
     }
     public void getCourse(){
-
+        for (int i =0 ; i < currentCourse.size();i++){
+            System.out.println(currentCourse.get(i));
+        }
     }
     public void registerForCourse(Course course){
-
+        currentCourse.add(course);
     }
-    public void unregisterForCourse(){
-
+    public void unregisterForCourse(Course course){
+        currentCourse.remove(course);
     }
     public void addRating(){
 
