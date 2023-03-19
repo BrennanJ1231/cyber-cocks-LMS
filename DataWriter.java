@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -7,6 +8,7 @@ import org.json.simple.JSONObject;
 public class DataWriter {
     public static final String USERS_FILE_NAME = "users.json";
 	public static final String COURSES_FILE_NAME = "courses.json";
+    private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("mm/dd/yyyy");
 	public static void saveUser(String fileName) {
         UserList userList = UserList.getInstance();
 		ArrayList<User> users = userList.getAll();
@@ -44,7 +46,7 @@ public class DataWriter {
             userDetails.put("lastName",user.lastName);
             userDetails.put("password",user.password);
             userDetails.put("email",user.email);
-            userDetails.put("birthday",user.birthday);
+            userDetails.put("birthday",FORMATTER.format(user.birthday));
             userDetails.put("currentCourse", user.currentCourse);
             userDetails.put("courseProgress",user.courseProgress);
         return userDetails;
@@ -58,7 +60,7 @@ public class DataWriter {
             userDetails.put("lastName",user.lastName);
             userDetails.put("password",user.password);
             userDetails.put("email",user.email);
-            userDetails.put("birthday",user.birthday);
+            userDetails.put("birthday",FORMATTER.format(user.birthday));
             userDetails.put("students", user.Students);
         return userDetails;
 	}
@@ -71,7 +73,7 @@ public class DataWriter {
         userDetails.put("lastName",user.lastName);
         userDetails.put("password",user.password);
         userDetails.put("email",user.email);
-        userDetails.put("birthday",user.birthday);
+        userDetails.put("birthday",FORMATTER.format(user.birthday));
         userDetails.put("createdCourses", user.coursesCreated);
         userDetails.put("coursesCreated", user.listOfCourses);
         return userDetails;
@@ -140,7 +142,6 @@ public class DataWriter {
     public static JSONObject getAssignmentJSON(Assignment test) {
         JSONObject assignmentDetails = new JSONObject();
 		assignmentDetails.put("name", test.name);
-        assignmentDetails.put("type", test.type);
         JSONArray jsonTest = new JSONArray();
         for(int i = 0; i < test.questions.size(); i++) {
             jsonTest.add(getQuestionJSON(test.questions.get(i)));
@@ -159,7 +160,7 @@ public class DataWriter {
         JSONObject commentDetails = new JSONObject();
 		commentDetails.put("author", comment.author);
         commentDetails.put("content", comment.content);
-        commentDetails.put("datePosted", comment.date);
+        commentDetails.put("datePosted", FORMATTER.format(comment.date));
         commentDetails.put("comments", comment.comments);
         return commentDetails;
     }

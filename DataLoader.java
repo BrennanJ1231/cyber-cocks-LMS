@@ -1,10 +1,12 @@
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 public class DataLoader {
     private  static ArrayList<Course> courseList;
     private static ArrayList<User> userList;
+    private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
     public static ArrayList<User> loadUsers() {
         userList = new ArrayList<User>();
         JSONParser parser = new JSONParser();
@@ -22,9 +24,7 @@ public class DataLoader {
                 String lastname = (String) user.get("lastName");
                 String password = (String)user.get("password");
                 String email = (String) user.get("email");
-                String[] birthdayArray = user.get("birthday").toString().split("/");
-                Calendar birthday = Calendar.getInstance();
-                birthday.set(Integer.parseInt(birthdayArray[2]), Integer.parseInt(birthdayArray[1]), Integer.parseInt(birthdayArray[0]));
+                Date birthday = formatter.parse(user.get("birthday").toString());
                 if(type.equalsIgnoreCase("author")) {
                     int coursesCreated = Integer.parseInt(user.get("coursesCreated").toString());
                     ArrayList<Course> createdCourses = new ArrayList<Course>();
@@ -155,8 +155,7 @@ public class DataLoader {
     public static Assignment getAssignments(JSONObject assignment) {
         ArrayList<Question> questionList = new ArrayList<Question>();
         String name = (String)assignment.get("name");
-        Type type = Type.valueOf((String)assignment.get("type"));
-        Assignment newAssignment = new Assignment(name, type);
+        Assignment newAssignment = new Assignment(name);
         JSONArray questions = (JSONArray) assignment.get("questions");
         Iterator iterator = questions.iterator();
         int i = 0;
@@ -177,24 +176,27 @@ public class DataLoader {
         return new Question(name, choices, correctAnswer);
     }
     public static Comment getComments(JSONObject comment) {
-        ArrayList<Comment> commentList = new ArrayList<Comment>();
-        UUID author = UUID.fromString((String) comment.get("author"));
-        String content = (String)comment.get("content");
-        String[] dateArray = comment.get("datePosted").toString().split("/");
-        Calendar date = Calendar.getInstance();
-        date.set(Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]), Integer.parseInt(dateArray[0]));
-        Comment newComment = new Comment(author, content, date);
-        JSONArray comments = (JSONArray)comment.get("comments");
-        Iterator iterator = comments.iterator();
-        int i = 0;
-        while(iterator.hasNext()) {
-            JSONObject comment2 = (JSONObject) comments.get(i);
-            commentList.add(getComments(comment2));
-            i++;
-            iterator.next();
+        try {
+            ArrayList<Comment> commentList = new ArrayList<Comment>();
+            UUID author = UUID.fromString((String) comment.get("author"));
+            String content = (String)comment.get("content");
+            Date date = formatter.parse(comment.get("datePosted").toString());
+            Comment newComment = new Comment(author, content, date);
+            JSONArray comments = (JSONArray)comment.get("comments");
+            Iterator iterator = comments.iterator();
+            int i = 0;
+            while(iterator.hasNext()) {
+                JSONObject comment2 = (JSONObject) comments.get(i);
+                commentList.add(getComments(comment2));
+                i++;
+                iterator.next();
+            }
+            newComment.addComments(commentList);
+            return newComment;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        newComment.addComments(commentList);
-        return newComment;
+        return null;
     }
     public static ArrayList<RegisteredUser> getAdminStudentList(User admin) {
         ArrayList<RegisteredUser> studentList = new ArrayList<RegisteredUser>();
@@ -231,6 +233,14 @@ public class DataLoader {
             e.printStackTrace();
         }
         return null;
+    }
+    public static void main(String[] args) {
+       CourseList course  = CourseList.getInstance();
+       ArrayList<Course> listCourses = course.getAll();
+       UserList user = UserList.getInstance();
+       ArrayList<User> listUsers = user.getAll();
+       System.out.println(((RegisteredUser) listUsers.get(0)).showComment());
+
     }
 }
    

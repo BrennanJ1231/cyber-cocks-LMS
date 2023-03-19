@@ -25,7 +25,7 @@ public class UserList {
         userList.remove(user);
     }
     public void save(){
-        //Unsure what this needs to do
+        DataWriter.saveUser(DataWriter.USERS_FILE_NAME);
     }
     public void editUser(User user){
         //Unsure what this needs to do
