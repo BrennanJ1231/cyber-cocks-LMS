@@ -16,7 +16,7 @@ public class DataWriter {
 		
 		//creating all the json objects
 		for(int i=0; i< users.size(); i++) {
-            if(users.get(i).getType().equalsIgnoreCase("RegisteredUser")) {
+            if(users.get(i).getType().equalsIgnoreCase("Registered User")) {
                 jsonUsers.add(getRegisteredUserJSON((RegisteredUser) users.get(i)));
             }
             if(users.get(i).getType().equalsIgnoreCase("Admin")) {

@@ -239,7 +239,7 @@ public class DataLoader {
        ArrayList<Course> listCourses = course.getAll();
        UserList user = UserList.getInstance();
        ArrayList<User> listUsers = user.getAll();
-       System.out.println(((RegisteredUser) listUsers.get(0)).showComment());
+       user.save();
 
     }
 }
