@@ -32,9 +32,6 @@ public class CourseList {
         }
     }
     public void save(){
-        //Unsure what this needs to do
-    }
-    public void editCourse(Course course){
-        //Unsure what this needs to do
+        DataWriter.saveCourse(DataWriter.COURSES_FILE_NAME);
     }
 }

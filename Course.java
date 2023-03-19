@@ -33,6 +33,7 @@ public class Course {
     modules.remove(modul);
     }
     public void addComments(ArrayList<Comment> comments) {
-        comments.addAll(comments);
+        this.comments.addAll(comments);
     }
+
 }

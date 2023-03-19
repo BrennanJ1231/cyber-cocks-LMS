@@ -14,16 +14,16 @@ public class Module {
      * @param material Materials in the module
      */
     public Module(String title, String description, ArrayList<InstructiveMaterial> material) {
-
+        this.title = title;
+        this.description = description;
+        this.material = material;
     }
 
-    public void addAssignment(Assignment assignment, Type type) {
-        if(type == Type.TEST) {
+    public void addAssignment(Assignment assignment) {
+        if(assignment != null)
             test.add(assignment);
-        }
-        return;
     }
     public void addAssignments(ArrayList<Assignment> assignments) {
-        
+        test = assignments;
     }
 }
