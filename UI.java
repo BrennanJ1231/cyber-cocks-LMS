@@ -2,7 +2,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class UI {
-    public static void main () {
+    public static void main (String[] args) {
         run();
         //Keep the main clean
     }
@@ -30,7 +30,6 @@ public class UI {
             break;
         }
         // Login or register dialog
-
         System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
@@ -74,7 +73,7 @@ public class UI {
         System.out.println("Please enter your Email");
         String email = keyboard.nextLine();
         System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        Calendar birthday = keyboard.nextLine();
+        Calendar birthday = keyboard.next();
         System.out.println("Please enter your Desired Username");
         String username = keyboard.nextLine();
         System.out.println("Please enter your Password");
@@ -155,6 +154,7 @@ public class UI {
                 break;
             case 4: 
                 System.out.println("You have selected to logout. Good Bye");
+
             default:
                 System.out.println("Please enter a valid number");
 
