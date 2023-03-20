@@ -17,18 +17,18 @@ public class UI {
         int choice = keyboard.nextInt();
         String type;
         if (choice == 1) {
-            if(ReturningUser()!= true) {
-                System.out.println("Invalid Login");
-                break;
-            } else {
-                System.out.println("Welcome " + User.getName() + " to CyberCock's school of coding");
-            }
+            ReturningUser();
+            System.out.println("Welcome " + User.getName() + " to CyberCock's school of coding");
+        }
         }else if(choice == 2) {
             RegisterUser();
+            System.out.println("Now that you registered, You have to log in");
+            ReturningUser();
         } else {
             System.out.println("Invalid Choice");
-            break;
         }
+//Make a while loop so that as long as you are logged in you are able to continue
+        while () {
         // Login or register dialog
         System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
@@ -39,8 +39,9 @@ public class UI {
         } else {
             userDialog();
         }
+        System.out.println("");
          // Figure out the type and then display their options
-
+    }
     }
     
     /**
@@ -121,7 +122,7 @@ public class UI {
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
             // Create Courses
-            makeCourse();
+            CourseApplication.makeCourse();
         } else if ( choice  == 2 ) {
             // Find Courses
             CourseApplication.getMyCourses();
@@ -179,6 +180,15 @@ public class UI {
         String uuid = keyboard.nextLine();
         Course course = new Course(name, description, lang, null);
         return course;
+    }
+    /**
+     * Make Module Dialog
+     * @param course the course you want to create a course in
+     */
+    public static void makeModule(Course course) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You have selected to create a Module");
+
     }
 }   
 

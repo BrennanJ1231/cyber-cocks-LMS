@@ -72,6 +72,10 @@ public class CourseApplication{
         course.name = title;
         return course;
     }
+    public Module addModule(Course course) {
+        Module newModule = new Module(course, null, null, null);
+        return module;
+    }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
         return rating;
