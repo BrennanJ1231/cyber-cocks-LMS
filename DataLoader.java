@@ -1,11 +1,13 @@
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 public class DataLoader {
     private  static ArrayList<Course> courseList;
     private static ArrayList<User> userList;
-    public static ArrayList<User> LoadUsers() {
+    private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+    public static ArrayList<User> loadUsers() {
         userList = new ArrayList<User>();
         JSONParser parser = new JSONParser();
         try {
@@ -22,9 +24,7 @@ public class DataLoader {
                 String lastname = (String) user.get("lastName");
                 String password = (String)user.get("password");
                 String email = (String) user.get("email");
-                String[] birthdayArray = user.get("birthday").toString().split("/");
-                Calendar birthday = Calendar.getInstance();
-                birthday.set(Integer.parseInt(birthdayArray[2]), Integer.parseInt(birthdayArray[1]), Integer.parseInt(birthdayArray[0]));
+                Date birthday = formatter.parse(user.get("birthday").toString());
                 if(type.equalsIgnoreCase("author")) {
                     int coursesCreated = Integer.parseInt(user.get("coursesCreated").toString());
                     ArrayList<Course> createdCourses = new ArrayList<Course>();
@@ -35,14 +35,14 @@ public class DataLoader {
                         JSONObject cUUID = (JSONObject)courseArray.get(j);
                         UUID courseUUID = UUID.fromString(cUUID.get("UUID").toString());
                         for(int k = 0; k< courseList.size();k++) {
-                            if(courseList.get(k).uuid == courseUUID) {
+                            if(courseList.get(k).uuid.equals(courseUUID)) {
                                 createdCourses.add(courseList.get(k));
                             }
                         }
                         j++;
                         iterator2.next();
                     }
-                    userList.add(new Author("Author", username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
+                    userList.add(new Author(uuid,"Author", username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
 
                 }
                 if(type.equalsIgnoreCase("registered user")) {
@@ -53,18 +53,18 @@ public class DataLoader {
                     while(iterator2.hasNext()) {
                         JSONObject cUUID = (JSONObject)courseArray.get(j);
                         UUID courseUUID = UUID.fromString(cUUID.get("UUID").toString());
-                        for(int k = 0; k< courseList.size();k++) {
-                            if(courseList.get(k).uuid == courseUUID) {
+                        for(int k = 0; k < courseList.size();k++) {
+                            if(courseList.get(k).uuid.equals(courseUUID)) {
                                 currentCourses.add(courseList.get(k));
                             }
                         }
                         j++;
                         iterator2.next();
                     }
-                    userList.add(new RegisteredUser("Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
+                    userList.add(new RegisteredUser(uuid,"Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
                 }
                 if(type.equalsIgnoreCase("admin")) {
-                    userList.add(new Admin("Admin", username, firstName, lastname, password, birthday, email));
+                    userList.add(new Admin(uuid,"Admin", username, firstName, lastname, password, birthday, email));
                 }
                 i++;
                 iterator.next();
@@ -90,7 +90,6 @@ public class DataLoader {
                 String name = (String)course.get("name");
                 Language lang = Language.valueOf((String)course.get("language"));
                 String description = (String)course.get("description");
-                Course newCourse = new Course(name, description, lang);
                 JSONArray modules = (JSONArray)course.get("modules");
                 Iterator iterator = modules.iterator();
                 int k = 0;
@@ -100,7 +99,6 @@ public class DataLoader {
                     k++;
                     iterator.next();
                 }
-                newCourse.addModules(moduleList);
                 k = 0;
                 JSONArray comments = (JSONArray)course.get("comments");
                 iterator = comments.iterator();
@@ -110,8 +108,7 @@ public class DataLoader {
                     k++;
                     iterator.next();
                 }
-                newCourse.addComments(commentList);
-                courseList.add(newCourse);
+                courseList.add(new Course(name, description, lang, uuid, moduleList, commentList));
                 i++;
                 iterator2.next();
             }
@@ -158,8 +155,7 @@ public class DataLoader {
     public static Assignment getAssignments(JSONObject assignment) {
         ArrayList<Question> questionList = new ArrayList<Question>();
         String name = (String)assignment.get("name");
-        Type type = Type.valueOf((String)assignment.get("type"));
-        Assignment newAssignment = new Assignment(name, type);
+        Assignment newAssignment = new Assignment(name);
         JSONArray questions = (JSONArray) assignment.get("questions");
         Iterator iterator = questions.iterator();
         int i = 0;
@@ -180,32 +176,71 @@ public class DataLoader {
         return new Question(name, choices, correctAnswer);
     }
     public static Comment getComments(JSONObject comment) {
-        ArrayList<Comment> commentList = new ArrayList<Comment>();
-        UUID author = UUID.fromString((String) comment.get("author"));
-        String content = (String)comment.get("content");
-        String[] dateArray = comment.get("datePosted").toString().split("/");
-        Calendar date = Calendar.getInstance();
-        date.set(Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]), Integer.parseInt(dateArray[0]));
-        Comment newComment = new Comment(author, content, date);
-        JSONArray comments = (JSONArray)comment.get("comments");
-        Iterator iterator = comments.iterator();
-        int i = 0;
-        while(iterator.hasNext()) {
-            JSONObject comment2 = (JSONObject) comments.get(i);
-            commentList.add(getComments(comment2));
-            i++;
-            iterator.next();
+        try {
+            ArrayList<Comment> commentList = new ArrayList<Comment>();
+            UUID author = UUID.fromString((String) comment.get("author"));
+            String content = (String)comment.get("content");
+            Date date = formatter.parse(comment.get("datePosted").toString());
+            Comment newComment = new Comment(author, content, date);
+            JSONArray comments = (JSONArray)comment.get("comments");
+            Iterator iterator = comments.iterator();
+            int i = 0;
+            while(iterator.hasNext()) {
+                JSONObject comment2 = (JSONObject) comments.get(i);
+                commentList.add(getComments(comment2));
+                i++;
+                iterator.next();
+            }
+            newComment.addComments(commentList);
+            return newComment;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        newComment.addComments(commentList);
-        return newComment;
+        return null;
     }
-    public static ArrayList<User> getAdminStudentList() {
-        
+    public static ArrayList<RegisteredUser> getAdminStudentList(User admin) {
+        ArrayList<RegisteredUser> studentList = new ArrayList<RegisteredUser>();
+        UUID uuid = admin.uuid;
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader("./json/users.json"));
+            JSONArray users = (JSONArray)obj;
+            Iterator iterator = users.iterator();
+            int i = 0;
+            while(iterator.hasNext()) {
+                JSONObject user = (JSONObject)users.get(i);
+                if(UUID.fromString(user.get("UUID").toString()).equals(uuid)) {
+                    JSONArray students = (JSONArray)user.get("students");
+                    Iterator iterator2 = students.iterator();
+                    int j = 0;
+                    while(iterator2.hasNext()) {
+                        JSONObject sUUID = (JSONObject)students.get(j);
+                        UUID studentUUID = UUID.fromString(sUUID.get("UUID").toString());
+                        for(int k = 0; k< userList.size();k++) {
+                            if(userList.get(k).uuid.equals(studentUUID)) {
+                                studentList.add((RegisteredUser) (userList.get(k)));
+                            }
+                        }
+                        j++;
+                        iterator2.next();
+                    }
+                }
+                i++;
+                iterator.next();
+            }
+            return studentList;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public static void main(String[] args) {
-        DataLoader.loadCourses();
-        DataLoader.LoadUsers();
-       
+       CourseList course  = CourseList.getInstance();
+       ArrayList<Course> listCourses = course.getAll();
+       UserList user = UserList.getInstance();
+       ArrayList<User> listUsers = user.getAll();
+       user.save();
+
     }
 }
    

@@ -4,7 +4,6 @@ public class Module {
     protected String title;
     protected String description;
     protected ArrayList<InstructiveMaterial> material;
-    protected ArrayList<Assignment> quizzes;
     protected ArrayList<Assignment> test;
     protected double completion;
     protected ArrayList<Comment> comments;
@@ -15,18 +14,16 @@ public class Module {
      * @param material Materials in the module
      */
     public Module(String title, String description, ArrayList<InstructiveMaterial> material) {
-
+        this.title = title;
+        this.description = description;
+        this.material = material;
     }
-    public void addAssignment(Assignment assignment, Type type) {
-        if(type == Type.TEST) {
+
+    public void addAssignment(Assignment assignment) {
+        if(assignment != null)
             test.add(assignment);
-        }
-        if(type == Type.QUIZ) {
-            quizzes.add(assignment);
-        }
-        return;
     }
     public void addAssignments(ArrayList<Assignment> assignments) {
-        
+        test = assignments;
     }
 }

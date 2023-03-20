@@ -1,11 +1,14 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseList {
     
     private ArrayList <Course> courses;
     private static CourseList courseList;
 
-    private CourseList() {}
+    public CourseList() {
+        courses = DataLoader.loadCourses();
+    }
 
     public static CourseList getInstance() {
 		if (courseList == null) {
@@ -13,7 +16,6 @@ public class CourseList {
 		}
 		return courseList;
 	}
-
     public void addCourse(Course course){
         if(courses == null) 
             return;
@@ -23,12 +25,13 @@ public class CourseList {
         return courses;
     }
     public void deleteCourse(Course course){
-        
+        for(int i = 0; i <courses.size(); i++) {
+            if(courses.get(i).uuid.equals(course.uuid)) {
+                courses.remove(i);
+            }
+        }
     }
     public void save(){
-
-    }
-    public void editCourse(Course course){
-
+        DataWriter.saveCourse(DataWriter.COURSES_FILE_NAME);
     }
 }
