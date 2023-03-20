@@ -1,10 +1,10 @@
 import java.util.Calendar;
 import java.util.Scanner;
 
-// Log in and register
 public class UI {
     public static void main () {
         run();
+        //Keep the main clean
     }
 
     /**
@@ -17,7 +17,12 @@ public class UI {
         int choice = keyboard.nextInt();
         String type;
         if (choice == 1) {
-            ReturningUser();
+            if(ReturningUser()!= true) {
+                System.out.println("Invalid Login");
+                break;
+            } else {
+                System.out.println("Welcome " + User.getName() + " to CyberCock's school of coding");
+            }
         }else if(choice == 2) {
             RegisterUser();
         } else {
@@ -26,7 +31,7 @@ public class UI {
         }
         // Login or register dialog
 
-        System.out.println("Welcome " +  User.firstName + "!");
+        System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
             adminDialog();
@@ -129,6 +134,32 @@ public class UI {
             System.out.println("Invalid Choice");
         }
     }
+    public static void userDialog() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You are a registered user");
+        System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
+        int choice =  keyboard.nextInt();
+        switch(choice) {
+            case 1:
+                System.out.println("Showing your courses");
+                CourseApplication.getMyCourses();
+                break;
+            case 2:
+                System.out.println("You have selected to find courses");
+                CourseApplication.findCourses();
+                break;
+            case 3:
+                System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
+                String courseChoice = keyboard.nextLine();
+                CourseApplication.takeCourse(courseChoice);
+                break;
+            case 4: 
+                System.out.println("You have selected to logout. Good Bye");
+            default:
+                System.out.println("Please enter a valid number");
+
+        }
+    }
 
     /**
      * Dialog that pops up in the author dialog
@@ -150,7 +181,7 @@ public class UI {
         return course;
     }
 }   
-}
+
 //find course
 
 //
