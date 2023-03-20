@@ -192,6 +192,7 @@ public class UI {
         String name = keyboard.nextLine();
         System.out.println("Please enter intsructive material");
         String description = keyboard.nextLine();
+        CourseApplication.addModule(name,description);
     }
 
     public static void addQuestion(Module module) {
@@ -200,7 +201,6 @@ public class UI {
         String name = keyboard.nextLine();
         System.out.println("Please enter the description of the question");
         Assignment.addAssignment(name);
-
     }
 }   
 

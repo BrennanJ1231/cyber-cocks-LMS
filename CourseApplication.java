@@ -55,6 +55,7 @@ public class CourseApplication{
             return false;
         }
     }
+    @Override
     public ArrayList<Course>getFavoriteCourses() {
         return this.getFavoriteCourses();
     }
@@ -72,9 +73,10 @@ public class CourseApplication{
         course.name = title;
         return course;
     }
+
     public Module addModule(Course course) {
         Module newModule = new Module(course, null, null, null);
-        return module;
+        return newModule;
     }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
