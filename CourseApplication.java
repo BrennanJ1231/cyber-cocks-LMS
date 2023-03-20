@@ -27,17 +27,10 @@ public class CourseApplication{
         return this.findUser(keyword);
     }
 
-<<<<<<< HEAD
-    public User createUserAccount(String type, String firstName, String lastName, String email, Calendar birthday2, String username, String password)  {
-        User user = new User(type, firstName, lastName,  email, birthday2, username, password);
-        this.userList.addUser(user);
-        return user;
-=======
     public User createUserAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password)  {
         User registeredUser = new RegisteredUser(null, type, username, firstName, lastName, password, email, birthday, null );
         this.userList.addUser(registeredUser);
         return registeredUser;
->>>>>>> a7bd7d95ece0884e4660a2f0c7571ffde8f2bac9
     }
     public User createAdminAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
         User admin = new Admin(null, type, username, firstName, lastName, email, birthday, password);

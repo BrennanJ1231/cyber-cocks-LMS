@@ -69,7 +69,7 @@ public class UI {
         System.out.println("Please enter your Email");
         String email = keyboard.nextLine();
         System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        Calendar birthday = keyboard();
+        Calendar birthday = keyboard.nextLine();
         System.out.println("Please enter your Desired Username");
         String username = keyboard.nextLine();
         System.out.println("Please enter your Password");
@@ -88,9 +88,7 @@ public class UI {
         System.out.println("Please enter your password");
         String password = keyboard.nextLine();
         boolean login = CourseApplication.login(username,password);
-        if(true) {
-
-        }
+        return login;
     }
 
     /*
@@ -132,9 +130,24 @@ public class UI {
         }
     }
 
+    /**
+     * Dialog that pops up in the author dialog
+     * @return
+     */
     public Course makeCourse() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Course");
+        System.out.println("=======================================================================");
+        System.out.println("Please enter the name of the Course");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter a description of the Course");
+        String description = keyboard.nextLine();
+        System.out.println("Please enter the Language you are coding the course in");
+        Language lang = keyboard.nextLine();
+        System.out.println("Please enter the UUID for the course");
+        String uuid = keyboard.nextLine();
+        Course course = new Course(name, description, lang, null);
+        return course;
     }
 }   
 }
