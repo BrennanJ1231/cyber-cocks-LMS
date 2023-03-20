@@ -42,7 +42,7 @@ public class UI {
         System.out.println("");
          // Figure out the type and then display their options
     }
-    }
+    
     
     /**
      * Register User is registering a User into the user list
@@ -166,7 +166,7 @@ public class UI {
      * Dialog that pops up in the author dialog
      * @return
      */
-    public Course makeCourse() {
+    public static void makeCourse() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Course");
         System.out.println("=======================================================================");
@@ -179,7 +179,6 @@ public class UI {
         System.out.println("Please enter the UUID for the course");
         String uuid = keyboard.nextLine();
         Course course = new Course(name, description, lang, null);
-        return course;
     }
     /**
      * Make Module Dialog
@@ -188,6 +187,19 @@ public class UI {
     public static void makeModule(Course course) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Module");
+        System.out.println("=======================================================================");
+        System.out.println("Please enter the name of the Module");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter intsructive material");
+        String description = keyboard.nextLine();
+    }
+
+    public static void addQuestion(Module module) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please enter the name of the question");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter the description of the question");
+        Assignment.addAssignment(name);
 
     }
 }   
