@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Scanner;
 
 // Log in and register
@@ -25,7 +26,7 @@ public class UI {
         }
         // Login or register dialog
 
-        System.out.println("Welcome " +  User.getFirstName() + "!");
+        System.out.println("Welcome " +  User.firstName + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
             adminDialog();
@@ -68,7 +69,7 @@ public class UI {
         System.out.println("Please enter your Email");
         String email = keyboard.nextLine();
         System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        String birthday = keyboard.nextLine();
+        Calendar birthday = keyboard();
         System.out.println("Please enter your Desired Username");
         String username = keyboard.nextLine();
         System.out.println("Please enter your Password");
