@@ -3,9 +3,9 @@ import java.util.*;
 public class Comment {
     protected UUID author;
     protected String content;
-    protected Calendar date;
+    protected Date date;
     protected ArrayList<Comment> comments;
-    public Comment(UUID author, String content, Calendar date) {
+    public Comment(UUID author, String content, Date date) {
         this.author = author;
         this.content = content;
         this.date = date;

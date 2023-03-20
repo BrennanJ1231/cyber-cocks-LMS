@@ -6,7 +6,7 @@ public class CourseList {
     private ArrayList <Course> courses;
     private static CourseList courseList;
 
-    private CourseList() {
+    public CourseList() {
         courses = DataLoader.loadCourses();
     }
 
@@ -32,9 +32,6 @@ public class CourseList {
         }
     }
     public void save(){
-
-    }
-    public void editCourse(Course course){
-
+        DataWriter.saveCourse(DataWriter.COURSES_FILE_NAME);
     }
 }

@@ -1,9 +1,10 @@
+import java.util.Calendar;
 import java.util.Scanner;
 
-// Log in and register
 public class UI {
-    public static void main () {
+    public static void main (String[] args) {
         run();
+        //Keep the main clean
     }
 
     /**
@@ -17,14 +18,18 @@ public class UI {
         String type;
         if (choice == 1) {
             ReturningUser();
+            System.out.println("Welcome " + User.getName() + " to CyberCock's school of coding");
+        }
         }else if(choice == 2) {
             RegisterUser();
+            System.out.println("Now that you registered, You have to log in");
+            ReturningUser();
         } else {
             System.out.println("Invalid Choice");
-            break;
         }
+//Make a while loop so that as long as you are logged in you are able to continue
+        while () {
         // Login or register dialog
-
         System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
@@ -34,9 +39,10 @@ public class UI {
         } else {
             userDialog();
         }
+        System.out.println("");
          // Figure out the type and then display their options
-
     }
+    
     
     /**
      * Register User is registering a User into the user list
@@ -68,7 +74,7 @@ public class UI {
         System.out.println("Please enter your Email");
         String email = keyboard.nextLine();
         System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        String birthday = keyboard.nextLine();
+        Calendar birthday = keyboard.next();
         System.out.println("Please enter your Desired Username");
         String username = keyboard.nextLine();
         System.out.println("Please enter your Password");
@@ -87,9 +93,7 @@ public class UI {
         System.out.println("Please enter your password");
         String password = keyboard.nextLine();
         boolean login = CourseApplication.login(username,password);
-        if(true) {
-
-        }
+        return login;
     }
 
     /*
@@ -118,7 +122,7 @@ public class UI {
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
             // Create Courses
-            makeCourse();
+            CourseApplication.makeCourse();
         } else if ( choice  == 2 ) {
             // Find Courses
             CourseApplication.getMyCourses();
@@ -130,13 +134,76 @@ public class UI {
             System.out.println("Invalid Choice");
         }
     }
+    public static void userDialog() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You are a registered user");
+        System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
+        int choice =  keyboard.nextInt();
+        switch(choice) {
+            case 1:
+                System.out.println("Showing your courses");
+                CourseApplication.getMyCourses();
+                break;
+            case 2:
+                System.out.println("You have selected to find courses");
+                CourseApplication.findCourses();
+                break;
+            case 3:
+                System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
+                String courseChoice = keyboard.nextLine();
+                CourseApplication.takeCourse(courseChoice);
+                break;
+            case 4: 
+                System.out.println("You have selected to logout. Good Bye");
 
-    public Course makeCourse() {
+            default:
+                System.out.println("Please enter a valid number");
+
+        }
+    }
+
+    /**
+     * Dialog that pops up in the author dialog
+     * @return
+     */
+    public static void makeCourse() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Course");
+        System.out.println("=======================================================================");
+        System.out.println("Please enter the name of the Course");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter a description of the Course");
+        String description = keyboard.nextLine();
+        System.out.println("Please enter the Language you are coding the course in");
+        Language lang = keyboard.nextLine();
+        System.out.println("Please enter the UUID for the course");
+        String uuid = keyboard.nextLine();
+        Course course = new Course(name, description, lang, null);
+    }
+    /**
+     * Make Module Dialog
+     * @param course the course you want to create a course in
+     */
+    public static void makeModule(Course course) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You have selected to create a Module");
+        System.out.println("=======================================================================");
+        System.out.println("Please enter the name of the Module");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter intsructive material");
+        String description = keyboard.nextLine();
+        CourseApplication.addModule(name,description);
+    }
+
+    public static void addQuestion(Module module) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please enter the name of the question");
+        String name = keyboard.nextLine();
+        System.out.println("Please enter the description of the question");
+        Assignment.addAssignment(name);
     }
 }   
-}
+
 //find course
 
 //

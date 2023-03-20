@@ -27,12 +27,13 @@ public class Course {
         this.comments =  comments;
     }
     public void addModule(Module module) {
-
+        modules.add(module);
     }
     public void removeModule(Module modul) {
-
+    modules.remove(modul);
     }
     public void addComments(ArrayList<Comment> comments) {
-
+        this.comments.addAll(comments);
     }
+
 }
