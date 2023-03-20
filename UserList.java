@@ -5,7 +5,7 @@ public class UserList {
     private static UserList UserList = null;
     private static ArrayList <User> userList = new ArrayList<User>();
 
-    private UserList() {
+    public UserList() {
         userList = DataLoader.loadUsers();
     }
 
