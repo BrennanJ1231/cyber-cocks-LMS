@@ -48,7 +48,7 @@ public class CourseApplication{
 
     public Boolean login(String username, String password) {
         User user = this.userList.findUser(username);  //Are you thinking about adding a "findUser" method?
-        if (user != null &&  user.getPassword() == password) {
+        if (user != null &&  user.getPassword().equals(password)) {
             this.user = user;
             return true;
         } else {
@@ -81,5 +81,8 @@ public class CourseApplication{
     }
     public Assignment takeAssignment(int moduleNum, int assignmentNum){
         return Currentcourse.modules.get(moduleNum).test.get(assignmentNum);
+    }
+    public User getUser() {
+        return this.user;
     }
 }

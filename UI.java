@@ -63,7 +63,7 @@ public class UI {
             }else {
                 System.out.println("Invalid input");
             }
-        System.out.println("Welcome " +  User.getFirstName() + "!");
+        System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
             getAdminDialog();
@@ -119,21 +119,21 @@ public class UI {
     /**
     * returning user contains the dialog and checks if the User is in the User list. If so should login
     */
-    public static boolean getReturningUser() {
+    public boolean getReturningUser() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Welcome Back!");
         System.out.println("Please enter your username");
         String username = keyboard.nextLine();
         System.out.println("Please enter your password");
         String password = keyboard.nextLine();
-        boolean login = CourseApplication.login(username,password);
+        boolean login = this.courseApp.login(username,password);
         return login;
     }
 
     /*
      * Dialog for the admin User type 
      */
-    public static void getAdminDialog() {
+    public void getAdminDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an admin");
         System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
@@ -145,13 +145,13 @@ public class UI {
         } else if ( choice == 3 ) {
             System.out.println("Please enter the course details of the one you would like to take");
             String courseChoice = keyboard.nextLine();
-            CourseApplication.findCourses(courseChoice);
+            this.courseApp.findCourses(courseChoice);
         }
     }
     /*
      * Dialog for the author user type
      */
-    public static void getAuthorDialog() {
+    public void getAuthorDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an author");
         System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
@@ -159,14 +159,14 @@ public class UI {
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
             // Create Courses
-            CourseApplication.makeCourse();
-            CourseApplication.makeModule();
+            this.courseApp.makeCourse();
+            this.courseApp.makeModule();
         } else if ( choice  == 2 ) {
             // Find Courses
-            CourseApplication.getMyCourses();
+            this.courseApp.getMyCourses();
             System.out.println();
         } else if ( choice  == 3 ) {
-            CourseApplication.editCourse();
+            this.courseApp.editCourse();
             // Edit Courses
         } else {
             System.out.println("Invalid Choice");
@@ -175,7 +175,7 @@ public class UI {
     /*
      * Dialog for the Registered User usertype
      */
-    public static void getUserDialog() {
+    public void getUserDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are a registered user");
         System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
@@ -183,16 +183,16 @@ public class UI {
         switch(choice) {
             case 1:
                 System.out.println("Showing your courses");
-                CourseApplication.getMyCourses();
+                this.courseApp.getMyCourses();
                 break;
             case 2:
                 System.out.println("You have selected to find courses");
-                CourseApplication.findCourses();
+                this.courseApp.findCourses();
                 break;
             case 3:
                 System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
                 String courseChoice = keyboard.nextLine();
-                CourseApplication.takeCourse(courseChoice);
+                this.courseApp.takeCourse(courseChoice);
                 break;
             case 4: 
                 System.out.println("You have selected to logout. Good Bye");
@@ -216,7 +216,7 @@ public class UI {
         System.out.println("Please enter a description of the Course");
         String description = keyboard.nextLine();
         System.out.println("Please enter the Language you are coding the course in");
-        Language lang = keyboard.nextLine();
+        Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         System.out.println("Please enter the UUID for the course");
         String uuid = keyboard.nextLine();
         Course course = new Course(name, description, lang, null);
@@ -233,7 +233,7 @@ public class UI {
         String name = keyboard.nextLine();
         System.out.println("Please enter intsructive material");
         String description = keyboard.nextLine();
-        CourseApplication.addModule(name,description);
+        this.courseApp.addModule(name,description);
     }
 
     public Question addQuestion(Module module) {
