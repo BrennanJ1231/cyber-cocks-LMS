@@ -18,6 +18,9 @@ public class RegisteredUser extends User {
     public ArrayList<Course> courseEnrolled(){
        return currentCourse;
     }
+    public void getCourse(){
+       
+    }
     public void registerForCourse(Course course){
         currentCourse.add(course);
     }
