@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class UI {
     public static void main (String[] args) {
         UI ui = new UI();
+      
         ui.run();
         //Keep the main clean
     }
@@ -11,19 +12,55 @@ public class UI {
     /**
      * Run is the main dialog of the UI. It calls other methods based on Users wishes
      */
-    public static void run() {
+    public void run() {
+        CourseApplication courseApp = new CourseApplication();
         System.out.println("Welcome to CyberCock's school of coding");
+        System.out.println("=======================================================================");
         System.out.println("Please enter [1] to Login or enter [2] to Register");
         Scanner keyboard = new Scanner(System.in);
         int choice = keyboard.nextInt();
         String type;
         if (choice == 1) {
-            ReturningUser();
-            System.out.println("Welcome " + User.getName() + " to CyberCock's school of coding");
+            getReturningUser();
+            System.out.println("Welcome " + User.getFirstName() + " to CyberCock's school of coding");
         }else if(choice == 2) {
+            System.out.println("Welcome to the school of coding! It is time to register a new Account!");
+        System.out.println("=======================================================================");
+        // Copy this line for same length
+        System.out.println("Please enter your First Name");
+        String firstName = keyboard.nextLine();
+        System.out.println("Please enter your Last Name");
+        String lastName = keyboard.nextLine();
+        System.out.println("Please enter your Email");
+        String email = keyboard.nextLine();
+        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+        Date birthday = keyboard.next();
+        System.out.println("Please enter your Desired Username");
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your Password");
+        String password = keyboard.nextLine();
+        courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
+        }
+        String type ="";
+        do {
+        System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+        System.out.println();
+        int choice =  keyboard.nextInt();
+        if (choice == 1) {
+            type = "Author";
+        } else if (choice ==2) {
+            type = "User";
+        } else if (choice == 3) {
+            type = "Admin";
+        }else {
+            System.out.println("Invalid input");
+        } 
+        }   while(true);
+        
+        }
             RegisterUser();
             System.out.println("Now that you registered, You have to log in");
-            ReturningUser();
+            getReturningUser();
         }else {
             System.out.println("Invalid Choice");
         }
@@ -33,12 +70,12 @@ public class UI {
         System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
-            adminDialog();
+            getAdminDialog();
             System.out.println("")
         } else if (type == "Author") {
-            authorDialog();
+            getAuthorDialog();
         } else {
-            userDialog();
+            getUserDialog();
         }
         System.out.println("Thank you for using Our App");
          // Figure out the type and then display their options
@@ -48,7 +85,7 @@ public class UI {
     /**
      * Register User is registering a User into the user list
      */
-    public static void RegisterUser() {
+    public User RegisterUser() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Welcome to the school of coding! It is time to register a new Account!");
         System.out.println("=======================================================================");
@@ -80,7 +117,7 @@ public class UI {
         String username = keyboard.nextLine();
         System.out.println("Please enter your Password");
         String password = keyboard.nextLine();
-        CourseApplication.createUserAccount(type,firstName,lastName,email, birthday, username, password);
+        courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
         }
 
     /**
@@ -174,7 +211,7 @@ public class UI {
      * Dialog that pops up in the author dialog
      * @return
      */
-    public static void makeCourse() {
+    public Course makeCourse() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Course");
         System.out.println("=======================================================================");
@@ -192,7 +229,7 @@ public class UI {
      * Make Module Dialog
      * @param course the course you want to create a course in
      */
-    public static void makeModule(Course course) {
+    public Module makeModule(Course course) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Module");
         System.out.println("=======================================================================");
@@ -203,12 +240,12 @@ public class UI {
         CourseApplication.addModule(name,description);
     }
 
-    public static void addQuestion(Module module) {
+    public Question addQuestion(Module module) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
         System.out.println("Please enter the description of the question");
-        Assignment.addAssignment(name);
+        Assignment.addQuestion(name);
     }
 }   
 
