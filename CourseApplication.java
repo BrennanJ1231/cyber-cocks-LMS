@@ -55,10 +55,6 @@ public class CourseApplication{
             return false;
         }
     }
-    @Override
-    public ArrayList<Course>getFavoriteCourses() {
-        return this.getFavoriteCourses();
-    }
 
     public ArrayList<Course>getMyCourses() {
         return this.getMyCourses();
