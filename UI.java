@@ -1,8 +1,13 @@
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
+
 public class UI {
+    private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
     public static void main (String[] args) {
+        
         UI ui = new UI();
       
         ui.run();
@@ -34,7 +39,7 @@ public class UI {
         System.out.println("Please enter your Email");
         String email = keyboard.nextLine();
         System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        Date birthday = keyboard.next();
+        Date birthday = formatter.parse.keyboard.nextLine;
         System.out.println("Please enter your Desired Username");
         String username = keyboard.nextLine();
         System.out.println("Please enter your Password");
