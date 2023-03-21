@@ -36,9 +36,7 @@ public class CourseApplication{
         User admin = new Admin(null, type, username, firstName, lastName, email, birthday, password);
         this.userList.addUser(admin);
         return admin;
-    }
-
-    
+    }    
     public User createAuthorAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
         User author = new Author(null, type, username, firstName, lastName, password, email, birthday, 0 , null );
         this.userList.addUser(author);
@@ -55,6 +53,10 @@ public class CourseApplication{
             return false;
         }
     }
+    @Override
+    public ArrayList<Course>getFavoriteCourses() {
+        return this.getFavoriteCourses();
+    }
 
     public ArrayList<Course>getMyCourses() {
         return this.getMyCourses();
@@ -70,17 +72,16 @@ public class CourseApplication{
         return course;
     }
 
-    public Module addModule(String title, String description, ArrayList<InstructiveMaterial> material) {
-        Module newModule = new Module(title, description, material);
-        Currentcourse.addModule(newModule);
+    public Module addModule(Course course) {
+        Module newModule = new Module(course, null, null, null);
         return newModule;
     }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
         return rating;
     }
-    public Assignment takeAssignment(int moduleNum, int assignmentNum){
-        return Currentcourse.modules.get(moduleNum).test.get(assignmentNum);
+    public String takeAssignment(Course course, String assignmentName){
+        //Where are the assignments to be stored fo them to be accessed to be taken?
     }
     public User getUser() {
         return this.user;
