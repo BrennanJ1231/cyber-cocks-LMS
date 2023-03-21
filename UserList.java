@@ -27,9 +27,6 @@ public class UserList {
     public void save(){
         DataWriter.saveUser(DataWriter.USERS_FILE_NAME);
     }
-    public void editUser(User user){
-        //Unsure what this needs to do
-    }
     public User findUser(String username) {
         for (int i=0; i<userList.size();i++) {
             if (userList.get(i).username.equalsIgnoreCase(username)) {
