@@ -240,6 +240,7 @@ public class DataLoader {
        UserList user = UserList.getInstance();
        ArrayList<User> listUsers = user.getAll();
        user.save();
+       course.save();
 
     }
 }
