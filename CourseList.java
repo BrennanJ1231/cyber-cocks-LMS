@@ -34,4 +34,13 @@ public class CourseList {
     public void save(){
         DataWriter.saveCourse(DataWriter.COURSES_FILE_NAME);
     }
+
+    public Course findCourse(String name) {
+        for (int i=0; i<courses.size();i++) {
+            if (courses.get(i).name.equalsIgnoreCase(name)) {
+                return courses.get(i);
+            }
+        }
+        return null;
+    }
 }

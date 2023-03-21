@@ -6,8 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter {
-    public static final String USERS_FILE_NAME = "./json/users.json";
-	public static final String COURSES_FILE_NAME = "./json/courses.json";
+    public static final String USERS_FILE_NAME = "users.json";
+	public static final String COURSES_FILE_NAME = "courses.json";
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("mm/dd/yyyy");
 	public static void saveUser(String fileName) {
         UserList userList = UserList.getInstance();
@@ -39,7 +39,7 @@ public class DataWriter {
 	
 	public static JSONObject getRegisteredUserJSON(RegisteredUser user) {
 		JSONObject userDetails = new JSONObject();
-            userDetails.put("UUID",user.uuid);
+            userDetails.put("UUID",user.uuid.toString());
             userDetails.put("type","Registered User");
             userDetails.put("userName",user.username);
             userDetails.put("firstName",user.firstName);
@@ -47,13 +47,17 @@ public class DataWriter {
             userDetails.put("password",user.password);
             userDetails.put("email",user.email);
             userDetails.put("birthday",FORMATTER.format(user.birthday));
-            userDetails.put("currentCourse", user.currentCourse);
+            JSONArray courses = new JSONArray();
+             for(int i = 0; i < user.currentCourse.size();  i++) {
+                 courses.add(addCourses(user.currentCourse.get(i)));
+            }
+            userDetails.put("currentCourses", courses);
             userDetails.put("courseProgress",user.courseProgress);
         return userDetails;
 	}
     public static JSONObject getAdminUserJSON(Admin user) {
 		JSONObject userDetails = new JSONObject();
-            userDetails.put("UUID",user.uuid);
+            userDetails.put("UUID",user.uuid.toString());
             userDetails.put("type","Admin");
             userDetails.put("userName",user.username);
             userDetails.put("firstName",user.firstName);
@@ -66,7 +70,7 @@ public class DataWriter {
 	}
     public static JSONObject getAuthorUserJSON(Author user) {
 		JSONObject userDetails = new JSONObject();
-        userDetails.put("UUID",user.uuid);
+        userDetails.put("UUID",user.uuid.toString());
         userDetails.put("type","Author");
         userDetails.put("userName",user.username);
         userDetails.put("firstName",user.firstName);
@@ -75,9 +79,18 @@ public class DataWriter {
         userDetails.put("email",user.email);
         userDetails.put("birthday",FORMATTER.format(user.birthday));
         userDetails.put("createdCourses", user.coursesCreated);
-        userDetails.put("coursesCreated", user.listOfCourses);
+        JSONArray courses = new JSONArray();
+        for(int i = 0; i < user.listOfCourses.size();  i++) {
+            courses.add(addCourses(user.listOfCourses.get(i)));
+        }
+        userDetails.put("coursesCreated", courses);
         return userDetails;
 	}
+    public static JSONObject addCourses(Course course) {
+        JSONObject courses = new JSONObject();
+        courses.put("UUID", course.uuid.toString());
+        return courses;
+    }
 
     public static void saveCourse(String fileName) {
         CourseList courseList = CourseList.getInstance();
@@ -100,9 +113,9 @@ public class DataWriter {
 	}
     public static JSONObject getCourseJSON(Course course) {
         JSONObject courseDetails = new JSONObject();
-		courseDetails.put("UUID", course.uuid);
+		courseDetails.put("UUID", course.uuid.toString());
         courseDetails.put("name", course.name);
-        courseDetails.put("language", course.language);
+        courseDetails.put("language", course.language.toString());
         courseDetails.put("description", course.description);
         JSONArray jsonModules = new JSONArray();
         for(int i = 0; i < course.modules.size(); i++) {
@@ -114,7 +127,7 @@ public class DataWriter {
             jsonComments.add(getCommentsJSON(course.comments.get(i)));
         }
         courseDetails.put("comments", jsonComments);
-        courseDetails.put("rating", course.modules);
+        courseDetails.put("rating", course.rating);
         return courseDetails;
     }
     public static JSONObject getModuleJSON(Module module) {
@@ -130,7 +143,7 @@ public class DataWriter {
         for(int i = 0; i < module.test.size(); i++) {
             jsonTest.add(getAssignmentJSON(module.test.get(i)));
         }
-        moduleDetails.put("quizzes", jsonTest);
+        moduleDetails.put("assignment", jsonTest);
         return moduleDetails;
     }
     public static JSONObject getMaterialJSON(InstructiveMaterial material) {
@@ -158,7 +171,7 @@ public class DataWriter {
     }
     public static JSONObject getCommentsJSON(Comment comment) {
         JSONObject commentDetails = new JSONObject();
-		commentDetails.put("author", comment.author);
+		commentDetails.put("author", comment.author.toString());
         commentDetails.put("content", comment.content);
         commentDetails.put("datePosted", FORMATTER.format(comment.date));
         commentDetails.put("comments", comment.comments);

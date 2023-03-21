@@ -8,6 +8,9 @@ public class CourseApplication{
     private UserList userList;
     private Course Currentcourse;
     private User user;
+    private RegisteredUser regUser;
+    private Admin admin;
+    private Author author;
 
     /**
      * Constructor for the CourseApplication class. creates course list and user list
@@ -48,6 +51,15 @@ public class CourseApplication{
         User user = this.userList.findUser(username);  //Are you thinking about adding a "findUser" method?
         if (user != null &&  user.getPassword().equals(password)) {
             this.user = user;
+            if(this.user.type.equalsIgnoreCase("Registered User")) {
+                regUser = (RegisteredUser) user;
+            }
+            if(this.user.type.equalsIgnoreCase("Author")) {
+                author = (Author) user;
+            }
+            if(this.user.type.equalsIgnoreCase("Admin")) {
+                admin = (Admin) user;
+            }
             return true;
         } else {
             return false;
@@ -59,7 +71,7 @@ public class CourseApplication{
     }
 
     public ArrayList<Course>getMyCourses() {
-        return this.getMyCourses();
+        return regUser.currentCourse;
     }
 
     public Course addCourse(String title) {
@@ -85,5 +97,8 @@ public class CourseApplication{
     }
     public User getUser() {
         return this.user;
+    }
+    public Course takeCourse(String name) {
+        return courselist.findCourse(name);
     }
 }

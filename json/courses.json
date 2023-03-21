@@ -1,1 +1,42 @@
-[{"comments":[{"comments":[],"author":89253f65-4606-4f10-93a1-0a5bc9966247,"datePosted":"11\/09\/2022","content":"fun"}],"name":"intro to python","rating":[Module@7225790e],"description":"python introduction","language":PYTHON,"UUID":d9057ce7-36c9-4080-94fc-77235f400c4a,"modules":[{"material":[{"name":"for loops","content":"for loops"}],"description":"for and while loops","quizzes":[{"name":"for loops","questions":[{"name":"what is a for loop","choices":["a loop","not a loop"],"correctAnswer":"a loop"}]}],"title":"loops"}]}]
+[
+    {
+        "UUID":"d9057ce7-36c9-4080-94fc-77235f400c4a",
+        "name":"intro to python",
+        "language":"PYTHON",
+        "description":"python introduction",
+        "modules":[
+            {
+                "title":"loops",
+                "description":"for and while loops",
+                "material":[
+                    {
+                        "name":"for loops",
+                        "content":"for loops"
+                    }
+                    ],
+                "assignment":[
+                    {
+                        "name":"for loops",
+                        "questions":[
+                            {
+                                "name":"what is a for loop",
+                                "choices":["a loop", "not a loop"],
+                                "correctAnswer":"a loop"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "comments":[
+            {
+                "author":"89253f65-4606-4f10-93a1-0a5bc9966247",
+                "content":"fun",
+                "datePosted":"11/09/2022",
+                "comments":[]
+
+            }
+        ],
+        "rating":2
+    }
+]
