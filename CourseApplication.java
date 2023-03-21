@@ -70,9 +70,9 @@ public class CourseApplication{
         return course;
     }
 
-    public Module addModule(Course course) {
-        Module newModule = new Module(course, null, null, null);
-        return newModule;
+    public void addModule(Course course) {
+        Module newModule = new Module(null, null, null);
+        course.addModule(newModule);
     }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
