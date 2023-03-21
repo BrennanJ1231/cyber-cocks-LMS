@@ -26,8 +26,12 @@ public class UI {
         int choice = keyboard.nextInt();
         String type;
         if (choice == 1) { // Log in
-            getReturningUser();
-            System.out.println("Welcome " + User.getFirstName() + " to CyberCock's school of coding");
+            System.out.println("Welcome Back!");
+            System.out.println("Please enter your username");
+            String username = keyboard.nextLine();
+            System.out.println("Please enter your password");
+            String password = keyboard.nextLine();
+            courseApp.login(username, password);
         }else if(choice == 2) {   //Register User
             System.out.println("Welcome to the school of coding! It is time to register a new Account!");
             System.out.println("=======================================================================");
@@ -59,12 +63,6 @@ public class UI {
             }else {
                 System.out.println("Invalid input");
             }
-
-
-
-//Make a while loop so that as long as you are logged in you are able to continue
-        //while () {
-        // Login or register dialog
         System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
@@ -83,7 +81,7 @@ public class UI {
     /**
      * Register User is registering a User into the user list
      */
-    public User RegisterUser() {
+    /*public User RegisterUser() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Welcome to the school of coding! It is time to register a new Account!");
         System.out.println("=======================================================================");
@@ -117,7 +115,7 @@ public class UI {
         String password = keyboard.nextLine();
         courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
         }
-
+*/
     /**
     * returning user contains the dialog and checks if the User is in the User list. If so should login
     */
@@ -242,8 +240,7 @@ public class UI {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
-        System.out.println("Please enter the description of the question");
-        Assignment.addQuestion(name);
+        Assignment assignment = new Assignment(name);
     }
 }   
 
