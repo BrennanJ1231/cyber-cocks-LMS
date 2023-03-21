@@ -70,15 +70,16 @@ public class CourseApplication{
         return course;
     }
 
-    public void addModule(Course course) {
-        Module newModule = new Module(null, null, null);
-        course.addModule(newModule);
+    public Module addModule(String title, String description, ArrayList<InstructiveMaterial> material) {
+        Module newModule = new Module(title, description, material);
+        Currentcourse.addModule(newModule);
+        return newModule;
     }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
         return rating;
     }
-    public String takeAssignment(Course course, String assignmentName){
-        //Where are the assignments to be stored fo them to be accessed to be taken?
+    public Assignment takeAssignment(int moduleNum, int assignmentNum){
+        return Currentcourse.modules.get(moduleNum).test.get(assignmentNum);
     }
 }
