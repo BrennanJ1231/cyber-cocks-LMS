@@ -111,7 +111,7 @@ public class DataWriter {
         courseDetails.put("modules", jsonModules);
         JSONArray jsonComments = new JSONArray();
         for(int i = 0; i < course.comments.size(); i++) {
-            jsonModules.add(getCommentsJSON(course.comments.get(i)));
+            jsonComments.add(getCommentsJSON(course.comments.get(i)));
         }
         courseDetails.put("comments", jsonComments);
         courseDetails.put("rating", course.modules);
@@ -163,11 +163,5 @@ public class DataWriter {
         commentDetails.put("datePosted", FORMATTER.format(comment.date));
         commentDetails.put("comments", comment.comments);
         return commentDetails;
-    }
-    public static void main(String[] args) {
-        DataLoader.loadCourses();
-        DataLoader.loadUsers();
-        DataWriter.saveUser(USERS_FILE_NAME);
-        DataWriter.saveCourse(COURSES_FILE_NAME);
     }
 }
