@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+    private CourseApplication courseApp = new CourseApplication();
     public static void main (String[] args) {
         
         UI ui = new UI();
@@ -18,57 +19,49 @@ public class UI {
      * Run is the main dialog of the UI. It calls other methods based on Users wishes
      */
     public void run() {
-        CourseApplication courseApp = new CourseApplication();
         System.out.println("Welcome to CyberCock's school of coding");
         System.out.println("=======================================================================");
         System.out.println("Please enter [1] to Login or enter [2] to Register");
         Scanner keyboard = new Scanner(System.in);
         int choice = keyboard.nextInt();
         String type;
-        if (choice == 1) {
+        if (choice == 1) { // Log in
             getReturningUser();
             System.out.println("Welcome " + User.getFirstName() + " to CyberCock's school of coding");
-        }else if(choice == 2) {
+        }else if(choice == 2) {   //Register User
             System.out.println("Welcome to the school of coding! It is time to register a new Account!");
-        System.out.println("=======================================================================");
-        // Copy this line for same length
-        System.out.println("Please enter your First Name");
-        String firstName = keyboard.nextLine();
-        System.out.println("Please enter your Last Name");
-        String lastName = keyboard.nextLine();
-        System.out.println("Please enter your Email");
-        String email = keyboard.nextLine();
-        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        Date birthday = formatter.parse.keyboard.nextLine;
-        System.out.println("Please enter your Desired Username");
-        String username = keyboard.nextLine();
-        System.out.println("Please enter your Password");
-        String password = keyboard.nextLine();
-        courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
-        }
-        String type ="";
-        do {
-        System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
-        System.out.println();
-        int choice =  keyboard.nextInt();
-        if (choice == 1) {
-            type = "Author";
-        } else if (choice ==2) {
-            type = "User";
-        } else if (choice == 3) {
-            type = "Admin";
-        }else {
-            System.out.println("Invalid input");
-        } 
-        }   while(true);
-        
-        }
-            RegisterUser();
-            System.out.println("Now that you registered, You have to log in");
-            getReturningUser();
-        }else {
-            System.out.println("Invalid Choice");
-        }
+            System.out.println("=======================================================================");
+            // Copy this line for same length
+            System.out.println("Please enter your First Name");
+            String firstName = keyboard.nextLine();
+            System.out.println("Please enter your Last Name");
+            String lastName = keyboard.nextLine();
+            System.out.println("Please enter your Email");
+            String email = keyboard.nextLine();
+            System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+            Date birthday = formatter.parse(keyboard.nextLine());
+            System.out.println("Please enter your Desired Username");
+            String username = keyboard.nextLine();
+            System.out.println("Please enter your Password");
+            String password = keyboard.nextLine();
+            System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+            System.out.println();
+            int choice =  keyboard.nextInt();
+            if (choice == 1) {
+                type = "Author";
+                courseApp.createAuthorAccount(type, firstName, lastName, email, birthday, username, password);
+            } else if (choice ==2) {
+                type = "User";
+                courseApp.createUserAccount(type, firstName, lastName, email, birthday, username, password);
+            } else if (choice == 3) {
+                type = "Admin";
+                courseApp.createAdminAccount(type, firstName, lastName, email, birthday, username, password);
+            }else {
+                System.out.println("Invalid input");
+            }
+
+
+
 //Make a while loop so that as long as you are logged in you are able to continue
         //while () {
         // Login or register dialog
