@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class UI {
     public static void main (String[] args) {
-        run();
+        UI ui = new UI();
+        ui.run();
         //Keep the main clean
     }
 
@@ -19,27 +20,27 @@ public class UI {
         if (choice == 1) {
             ReturningUser();
             System.out.println("Welcome " + User.getName() + " to CyberCock's school of coding");
-        }
         }else if(choice == 2) {
             RegisterUser();
             System.out.println("Now that you registered, You have to log in");
             ReturningUser();
-        } else {
+        }else {
             System.out.println("Invalid Choice");
         }
 //Make a while loop so that as long as you are logged in you are able to continue
-        while () {
+        //while () {
         // Login or register dialog
         System.out.println("Welcome " +  User.getFirstName() + "!");
         System.out.println("=======================================================================");
         if (type == "Admin") {
             adminDialog();
+            System.out.println("")
         } else if (type == "Author") {
             authorDialog();
         } else {
             userDialog();
         }
-        System.out.println("");
+        System.out.println("Thank you for using Our App");
          // Figure out the type and then display their options
     }
     
@@ -85,7 +86,7 @@ public class UI {
     /**
     * returning user contains the dialog and checks if the User is in the User list. If so should login
     */
-    public static boolean ReturningUser() {
+    public static boolean getReturningUser() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Welcome Back!");
         System.out.println("Please enter your username");
@@ -99,7 +100,7 @@ public class UI {
     /*
      * Dialog for the admin User type 
      */
-    public static void adminDialog() {
+    public static void getAdminDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an admin");
         System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
@@ -114,7 +115,10 @@ public class UI {
             CourseApplication.findCourses(courseChoice);
         }
     }
-    public static void authorDialog() {
+    /*
+     * Dialog for the author user type
+     */
+    public static void getAuthorDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an author");
         System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
@@ -123,6 +127,7 @@ public class UI {
         if (choice == 1 )  {
             // Create Courses
             CourseApplication.makeCourse();
+            CourseApplication.makeModule();
         } else if ( choice  == 2 ) {
             // Find Courses
             CourseApplication.getMyCourses();
@@ -134,7 +139,10 @@ public class UI {
             System.out.println("Invalid Choice");
         }
     }
-    public static void userDialog() {
+    /*
+     * Dialog for the Registered User usertype
+     */
+    public static void getUserDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are a registered user");
         System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
