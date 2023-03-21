@@ -6,8 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter {
-    public static final String USERS_FILE_NAME = "users.json";
-	public static final String COURSES_FILE_NAME = "courses.json";
+    public static final String USERS_FILE_NAME = "./json/users.json";
+	public static final String COURSES_FILE_NAME = "./json/courses.json";
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("mm/dd/yyyy");
 	public static void saveUser(String fileName) {
         UserList userList = UserList.getInstance();
