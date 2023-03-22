@@ -168,14 +168,13 @@ public class UI {
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
             // Create Courses
-            courseApp.makeCourse();
-            CourseApplication.makeModule();
+            makeCourse();
         } else if ( choice  == 2 ) {
             // Find Courses
             courseApp.getMyCourses();
             System.out.println();
         } else if ( choice  == 3 ) {
-            courseApp.editCourse();
+            editCourse();
             // Edit Courses
         } else {
             System.out.println("Invalid Choice");
@@ -255,6 +254,9 @@ public class UI {
         String name = keyboard.nextLine();
         Question assignment = new Question(name,null,null);
         return assignment;
+        
+    }
+    public void editCourse() {
         
     }
 }   
