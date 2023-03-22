@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 
 
 public class UI {
@@ -230,7 +231,8 @@ public class UI {
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         System.out.println("Please enter the UUID for the course");
         String uuid = keyboard.nextLine();
-        Course course = new Course(name, description, lang, null);
+        Course course = new Course(name, description, null, null, null, null);
+        return course;
     }
     /**
      * Make Module Dialog
@@ -251,7 +253,9 @@ public class UI {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
-        Assignment assignment = new Assignment(name);
+        Question assignment = new Question(name,null,null);
+        return assignment;
+        
     }
 }   
 

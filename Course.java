@@ -11,13 +11,12 @@ public class Course {
     protected double completion;
     protected boolean registered;
     protected UUID uuid;
-    public Course(String name, String description, Language language, UUID uuid) {
-        this.name = name;
-       
-        this.description = description;
-        this.language = language;
-        this.uuid = uuid;
-    }
+    /*  ----??????----    WHY DO WE have TWO?   ---?????-----    public Course(String name, String description, Language language, UUID uuid){
+                                this.name = name;
+                                this.description = description;
+                                this.language = language;
+                                this.uuid = uuid;
+                            }*/
     public Course(String name, String description, Language language, UUID uuid,ArrayList<Module> modules, ArrayList<Comment> comments) {
         this.name = name;
         this.modules = modules;

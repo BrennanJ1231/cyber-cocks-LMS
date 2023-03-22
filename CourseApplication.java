@@ -6,7 +6,7 @@ import java.util.*;
 public class CourseApplication{
     private CourseList courselist;
     private UserList userList;
-    private Course Currentcourse;
+                                //--------------??????????private Course Currentcourse; Not used
     private User user;
     private RegisteredUser regUser;
     private Admin admin;
@@ -65,7 +65,7 @@ public class CourseApplication{
             return false;
         }
     }
-    @Override
+    
     public ArrayList<Course>getFavoriteCourses() {
         return this.getFavoriteCourses();
     }
@@ -75,7 +75,7 @@ public class CourseApplication{
     }
 
     public Course addCourse(String title) {
-        Course newCourse = new Course(title, title, null, null);
+        Course newCourse = new Course(title, title, null, null, null, null);
         courselist.addCourse(newCourse);
         return newCourse;
     }
@@ -85,7 +85,7 @@ public class CourseApplication{
     }
 
     public Module addModule(Course course) {
-        Module newModule = new Module(course, null, null, null);
+        Module newModule = new Module(course.name, course.description, null);
         return newModule;
     }
     public double reviewCourse (Course course, double rating) {
@@ -93,7 +93,8 @@ public class CourseApplication{
         return rating;
     }
     public String takeAssignment(Course course, String assignmentName){
-        //Where are the assignments to be stored fo them to be accessed to be taken?
+        //for(int i=0; i < test.size();i++ ){}
+        return assignmentName;
     }
     public User getUser() {
         return this.user;
