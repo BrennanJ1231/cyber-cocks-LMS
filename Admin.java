@@ -8,10 +8,6 @@ protected ArrayList <RegisteredUser> Students;
 
 public Admin(UUID uuid, String type, String username, String firstName, String lastName, String email, Date birthday, String password ){
     super(uuid, type, firstName, lastName, email, birthday, username, password);
-    this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
         
 }
 

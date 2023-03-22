@@ -8,6 +8,9 @@ public class CourseApplication{
     private UserList userList;
     private Course Currentcourse;
     private User user;
+    private RegisteredUser regUser;
+    private Admin admin;
+    private Author author;
 
     /**
      * Constructor for the CourseApplication class. creates course list and user list
@@ -36,9 +39,7 @@ public class CourseApplication{
         User admin = new Admin(null, type, username, firstName, lastName, email, birthday, password);
         this.userList.addUser(admin);
         return admin;
-    }
-
-    
+    }    
     public User createAuthorAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
         User author = new Author(null, type, username, firstName, lastName, password, email, birthday, 0 , null );
         this.userList.addUser(author);
@@ -48,16 +49,29 @@ public class CourseApplication{
 
     public Boolean login(String username, String password) {
         User user = this.userList.findUser(username);  //Are you thinking about adding a "findUser" method?
-        if (user != null &&  user.getPassword() == password) {
+        if (user != null &&  user.getPassword().equals(password)) {
             this.user = user;
+            if(this.user.type.equalsIgnoreCase("Registered User")) {
+                regUser = (RegisteredUser) user;
+            }
+            if(this.user.type.equalsIgnoreCase("Author")) {
+                author = (Author) user;
+            }
+            if(this.user.type.equalsIgnoreCase("Admin")) {
+                admin = (Admin) user;
+            }
             return true;
         } else {
             return false;
         }
     }
+    @Override
+    public ArrayList<Course>getFavoriteCourses() {
+        return this.getFavoriteCourses();
+    }
 
     public ArrayList<Course>getMyCourses() {
-        return this.getMyCourses();
+        return regUser.currentCourse;
     }
 
     public Course addCourse(String title) {
@@ -70,16 +84,21 @@ public class CourseApplication{
         return course;
     }
 
-    public Module addModule(String title, String description, ArrayList<InstructiveMaterial> material) {
-        Module newModule = new Module(title, description, material);
-        Currentcourse.addModule(newModule);
+    public Module addModule(Course course) {
+        Module newModule = new Module(course, null, null, null);
         return newModule;
     }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
         return rating;
     }
-    public Assignment takeAssignment(int moduleNum, int assignmentNum){
-        return Currentcourse.modules.get(moduleNum).test.get(assignmentNum);
+    public String takeAssignment(Course course, String assignmentName){
+        //Where are the assignments to be stored fo them to be accessed to be taken?
+    }
+    public User getUser() {
+        return this.user;
+    }
+    public Course takeCourse(String name) {
+        return courselist.findCourse(name);
     }
 }

@@ -78,10 +78,10 @@ public class DataLoader {
         courseList = new ArrayList<Course>();
         ArrayList<Module> moduleList = new ArrayList<Module>();
         ArrayList<Comment> commentList = new ArrayList<Comment>();
-        JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("./json/courses.json"));
-            JSONArray courses = (JSONArray)obj;
+            FileReader reader = new FileReader("./json/courses.json");
+            JSONParser parser = new JSONParser();
+            JSONArray courses = (JSONArray)parser.parse(reader);
             Iterator iterator2 = courses.iterator();
             int i = 0;
             while(iterator2.hasNext()) {
@@ -239,9 +239,7 @@ public class DataLoader {
        ArrayList<Course> listCourses = course.getAll();
        UserList user = UserList.getInstance();
        ArrayList<User> listUsers = user.getAll();
-       user.save();
-       course.save();
-
+       System.out.println(listUsers.get(1).firstName);
     }
 }
    

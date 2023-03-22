@@ -18,11 +18,11 @@ public class Module {
         this.description = description;
         this.material = material;
     }
-
-    public void addAssignment(Assignment assignment) {
+    public void addAssignment(Assignment assignment){
         if(assignment != null)
-            test.add(assignment);
+        test.add(assignment);
     }
+   
     public void addAssignments(ArrayList<Assignment> assignments) {
         test = assignments;
     }
