@@ -72,7 +72,7 @@ public class UI {
             getAuthorDialog();
         } else {
             getUserDialog();
-        }
+        } 
         System.out.println("Thank you for using Our App");
          // Figure out the type and then display their options
     }
