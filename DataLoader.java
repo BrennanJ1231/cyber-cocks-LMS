@@ -155,7 +155,7 @@ public class DataLoader {
     public static Assignment getAssignments(JSONObject assignment) {
         ArrayList<Question> questionList = new ArrayList<Question>();
         String name = (String)assignment.get("name");
-                                            // (test) newAssignment = new Assignment(name);
+        Assignment newAssignment = new Assignment(name);
         JSONArray questions = (JSONArray) assignment.get("questions");
         Iterator iterator = questions.iterator();
         int i = 0;
