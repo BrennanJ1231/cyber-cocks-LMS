@@ -9,9 +9,7 @@ public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
     private CourseApplication courseApp = new CourseApplication();
     public static void main (String[] args) {
-        
         UI ui = new UI();
-      
         ui.run();
         //Keep the main clean
     }
@@ -34,6 +32,10 @@ public class UI {
                 System.out.println("Please enter your password");
                 String password = keyboard.nextLine();
                 courseApp.login(username, password);
+
+                // Make it so there is a error checker if user is not found
+                // Make it so the user has to be logged in to continue to the next half of 
+
             }else if(choice == 2) {   //Register User
                 System.out.println("Welcome to the school of coding! It is time to register a new Account!");
                 System.out.println("=======================================================================");
@@ -62,6 +64,9 @@ public class UI {
                 }else {
                     System.out.println("Invalid input");
                 }
+
+                // Make it so that you have to log in after you create an account
+
             }
             System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
             System.out.println("=======================================================================");
@@ -74,10 +79,10 @@ public class UI {
                 getUserDialog();
             }
             System.out.println("Thank you for using Our App");
+            // Checks for exception
         } catch(Exception e) {
             e.printStackTrace();
         }
-         // Figure out the type and then display their options
     }
     
     
