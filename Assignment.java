@@ -10,7 +10,9 @@ public class Assignment {
         this.name = name;
     }
     public void addQuestion(Question question) {
-        
+        if(question != null) {
+            this.questions.add(question);
+        }
     }
     public void addQuestions(ArrayList<Question> questions) {
         
