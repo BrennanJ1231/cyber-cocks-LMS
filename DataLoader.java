@@ -166,7 +166,7 @@ public class DataLoader {
             iterator.next();
         }
         newAssignment.addQuestions(questionList);
-        return questions;
+        return newAssignment;
     }
 
     public static Question getQuestions(JSONObject question) {
