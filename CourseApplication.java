@@ -101,4 +101,9 @@ public class CourseApplication{
         return courselist.findCourse(name);
     }
 
+    public void saveAll() {
+        userList.save();
+        courselist.save();
+    }
+
 }
