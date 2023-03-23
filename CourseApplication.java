@@ -97,7 +97,7 @@ public class CourseApplication{
         return this.user;
     }
 
-    public Course takeCourse() {
-        return courselist.findCourse();
+    public Course takeCourse(String name) {
+        return courselist.findCourse(name);
     }
 }
