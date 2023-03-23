@@ -93,7 +93,6 @@ public class CourseApplication{
         return rating;
     }
     public String takeAssignment(Course course, String assignmentName){
-        //for(int i=0; i < test.size();i++ ){}
         return assignmentName;
     }
     public User getUser() {
