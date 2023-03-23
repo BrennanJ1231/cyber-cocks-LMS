@@ -22,22 +22,12 @@ public class UI {
         try {
             System.out.println("Welcome to CyberCock's school of coding");
             System.out.println("=======================================================================");
-            System.out.println("Please enter [1] to Login or enter [2] to Register");
+            System.out.println("Please enter [1] to Register or enter [2] to Login");
             Scanner keyboard = new Scanner(System.in);
             int choice = keyboard.nextInt();
             keyboard.nextLine();
-            if (choice == 1) { // Log in
-                System.out.println("Welcome Back!");
-                System.out.println("Please enter your username");
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your password");
-                String password = keyboard.nextLine();
-                courseApp.login(username, password);
+            if (choice == 1) { // Register
 
-                // Make it so there is a error checker if user is not found
-                // Make it so the user has to be logged in to continue to the next half of 
-
-            }else if(choice == 2) {   //Register User
                 System.out.println("Welcome to the school of coding! It is time to register a new Account!");
                 System.out.println("=======================================================================");
                 // Copy this line for same length
@@ -82,8 +72,16 @@ public class UI {
                 }
                 System.out.println("Thank you for using Our App");
                 // Checks for exception
-            }
-        }
+            } else if(choice == 2) {  
+                System.out.println("You have decided to log in");
+            }//Log in
+            System.out.println("Welcome Back!");
+            System.out.println("Please enter your username");
+            String username = keyboard.nextLine();
+            System.out.println("Please enter your password");
+            String password = keyboard.nextLine();
+            courseApp.login(username, password);
+    }
         catch(Exception e) {
             e.printStackTrace();
         }
