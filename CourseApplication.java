@@ -93,5 +93,11 @@ public class CourseApplication{
     public String takeAssignment(Course course, String assignmentName){
         return assignmentName;
     }
-    
+    public User getUser() {
+        return this.user;
+    }
+
+    public Course takeCourse() {
+        return courselist.findCourse();
+    }
 }
