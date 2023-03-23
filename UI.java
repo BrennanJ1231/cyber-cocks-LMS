@@ -68,61 +68,27 @@ public class UI {
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
                 // Make it so that you have to log in after you create an account
+
+
+                System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
+                System.out.println("=======================================================================");
+                if (courseApp.getUser().type.equals( "Admin")) {
+                    getAdminDialog();
+                    System.out.println("");
+                } else if (courseApp.getUser().type.equals("Author")) {
+                    getAuthorDialog();
+                } else {
+                    getUserDialog();
+                }
+                System.out.println("Thank you for using Our App");
+                // Checks for exception
             }
         }
         catch(Exception e) {
             e.printStackTrace();
         }
     }
-    /**
-     * Register User is registering a User into the user list
-     */
-    /*public User RegisterUser() {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Welcome to the school of coding! It is time to register a new Account!");
-        System.out.println("=======================================================================");
-        // Copy this line for same length
-        String type ="";
-        do {
-        System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
-        System.out.println();
-        int choice =  keyboard.nextInt();
-        if (choice == 1) {
-            type = "Author";
-        } else if (choice ==2) {
-            type = "User";
-        } else if (choice == 3) {
-            type = "Admin";
-        }else {
-            System.out.println("Invalid input");
-        } 
-        }   while(true);
-        System.out.println("Please enter your First Name");
-        String firstName = keyboard.nextLine();
-        System.out.println("Please enter your Last Name");
-        String lastName = keyboard.nextLine();
-        System.out.println("Please enter your Email");
-        String email = keyboard.nextLine();
-        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-        Calendar birthday = keyboard.next();
-        System.out.println("Please enter your Desired Username");
-        String username = keyboard.nextLine();
-        System.out.println("Please enter your Password");
-        String password = keyboard.nextLine();
-        courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
-        }
-
-
-
-
-
-        System.out.println("Thank you for using Our App");
-                // Checks for exception
-    }
-
-    /*
-     * Dialog for the admin User type 
-     */
+    
     public void getAdminDialog() {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
