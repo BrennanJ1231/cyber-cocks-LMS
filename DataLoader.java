@@ -234,12 +234,5 @@ public class DataLoader {
         }
         return null;
     }
-    public static void main(String[] args) {
-       CourseList course  = CourseList.getInstance();
-       ArrayList<Course> listCourses = course.getAll();
-       UserList user = UserList.getInstance();
-       ArrayList<User> listUsers = user.getAll();
-       System.out.println(listUsers.get(1).firstName);
-    }
 }
    
