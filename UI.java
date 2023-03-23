@@ -68,26 +68,12 @@ public class UI {
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
                 // Make it so that you have to log in after you create an account
-
-
-                System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
-                System.out.println("=======================================================================");
-                if (courseApp.getUser().type.equals( "Admin")) {
-                    getAdminDialog();
-                    System.out.println("");
-                } else if (courseApp.getUser().type.equals("Author")) {
-                    getAuthorDialog();
-                } else {
-                    getUserDialog();
-                }
-                System.out.println("Thank you for using Our App");
-                // Checks for exception
-            } catch(Exception e) {
-                e.printStackTrace();
             }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
-    
-    
     /**
      * Register User is registering a User into the user list
      */
@@ -125,19 +111,13 @@ public class UI {
         String password = keyboard.nextLine();
         courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
         }
-*/
-    /**
-    * returning user contains the dialog and checks if the User is in the User list. If so should login
-    */
-    public boolean getReturningUser() {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Welcome Back!");
-        System.out.println("Please enter your username");
-        String username = keyboard.nextLine();
-        System.out.println("Please enter your password");
-        String password = keyboard.nextLine();
-        boolean login = courseApp.login(username,password);
-        return login;
+
+
+
+
+
+        System.out.println("Thank you for using Our App");
+                // Checks for exception
     }
 
     /*
