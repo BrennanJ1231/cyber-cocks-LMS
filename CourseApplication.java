@@ -6,7 +6,7 @@ import java.util.*;
 public class CourseApplication{
     private CourseList courselist;
     private UserList userList;
-    Course Currentcourse;
+    private Course Currentcourse;
     private User user;
     private RegisteredUser regUser;
     private Admin admin;
@@ -93,10 +93,5 @@ public class CourseApplication{
     public String takeAssignment(Course course, String assignmentName){
         return assignmentName;
     }
-    public User getUser() {
-        return this.user;
-    }
-    public Course takeCourse(String name) {
-        return courselist.findCourse(name);
-    }
+    
 }
