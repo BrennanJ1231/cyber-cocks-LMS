@@ -70,7 +70,7 @@ public class UI {
                 } else {
                     getUserDialog();
                 }
-                System.out.println("Thank you for using Our App");
+                System.out.println("Incorrect value displayed");
                 // Checks for exception
             } else if(choice == 2) {  
                 System.out.println("You have decided to log in");
@@ -118,7 +118,8 @@ public class UI {
         if (choice == 1 )  {
             // Create Courses
             Course newCourse = makeCourse();
-            makeModule(newCourse);
+            Module newModule = makeModule(newCourse);
+            makeQuestion(newModule);
         } else if ( choice  == 2 ) {
             // Find Courses
             courseApp.getMyCourses();
@@ -172,7 +173,7 @@ public class UI {
      */
     public Course makeCourse() {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("You have selected to create a Course");
+        System.out.println("Time to create a Course");
         System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Course");
         String name = keyboard.nextLine();
@@ -191,13 +192,13 @@ public class UI {
      */
     public Module makeModule(Course course) {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("You have selected to create a Module");
+        System.out.println("Time to create a Module");
         System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Module");
         String name = keyboard.nextLine();
         System.out.println("Please enter a description");
         String description = keyboard.nextLine();
-        System.out.println("Please enter the intsructive material");
+        System.out.println("It is time to enter the Instructive Material");
         ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
         while (true) {
             System.out.println("Please enter the materials name");
@@ -215,7 +216,7 @@ public class UI {
         return newMod;
     }
 
-    public Question addQuestion(Module module) {
+    public Question makeQuestion(Module module) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
