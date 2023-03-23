@@ -69,8 +69,8 @@ public class UI {
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
                 // Make it so that you have to log in after you create an account
-
-            } catch(Exception e) {
+            }
+            catch(Exception e) {
                 e.printStackTrace();
             }
     }
@@ -89,13 +89,18 @@ public class UI {
         } else {
             getUserDialog();
         }
+        
+
+
+
+
         System.out.println("Thank you for using Our App");
                 // Checks for exception
     }
 
 
 
-    
+
     /*
      * Dialog for the admin User type 
      */
