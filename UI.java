@@ -70,11 +70,11 @@ public class UI {
                 courseApp.login(username, password);
                 // Make it so that you have to log in after you create an account
             }
-            catch(Exception e) {
-                e.printStackTrace();
-            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
-
     /**
      * Get tasks will display the user and author dialogs and make sure they 
      */
@@ -89,7 +89,7 @@ public class UI {
         } else {
             getUserDialog();
         }
-        
+
 
 
 
