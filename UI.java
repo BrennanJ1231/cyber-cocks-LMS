@@ -11,15 +11,14 @@ public class UI {
     private CourseApplication courseApp = new CourseApplication();
     public static void main (String[] args) {
         UI ui = new UI();
-        ui.getHomePage();
-        ui.getTasks();
+        ui.run();
         //Keep the main clean
     }
 
     /**
      * Run is the main dialog of the UI. It calls other methods based on Users wishes
      */
-    public void getHomePage() {
+    public void run() {
         try {
             System.out.println("Welcome to CyberCock's school of coding");
             System.out.println("=======================================================================");
@@ -76,18 +75,41 @@ public class UI {
         }
     }
     /**
-     * Get tasks will display the user and author dialogs and make sure they 
+     * Register User is registering a User into the user list
      */
-    public void getTasks() {
-        System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
+    /*public User RegisterUser() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Welcome to the school of coding! It is time to register a new Account!");
         System.out.println("=======================================================================");
-        if (courseApp.getUser().type.equals( "Admin")) {
-            getAdminDialog();
-            System.out.println("");
-        } else if (courseApp.getUser().type.equals("Author")) {
-            getAuthorDialog();
-        } else {
-            getUserDialog();
+        // Copy this line for same length
+        String type ="";
+        do {
+        System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+        System.out.println();
+        int choice =  keyboard.nextInt();
+        if (choice == 1) {
+            type = "Author";
+        } else if (choice ==2) {
+            type = "User";
+        } else if (choice == 3) {
+            type = "Admin";
+        }else {
+            System.out.println("Invalid input");
+        } 
+        }   while(true);
+        System.out.println("Please enter your First Name");
+        String firstName = keyboard.nextLine();
+        System.out.println("Please enter your Last Name");
+        String lastName = keyboard.nextLine();
+        System.out.println("Please enter your Email");
+        String email = keyboard.nextLine();
+        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+        Calendar birthday = keyboard.next();
+        System.out.println("Please enter your Desired Username");
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your Password");
+        String password = keyboard.nextLine();
+        courseApp.createUserAccount(type,firstName,lastName,email, birthday, username, password);
         }
 
 
@@ -97,9 +119,6 @@ public class UI {
         System.out.println("Thank you for using Our App");
                 // Checks for exception
     }
-
-
-
 
     /*
      * Dialog for the admin User type 
