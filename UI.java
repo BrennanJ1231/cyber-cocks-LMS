@@ -105,18 +105,22 @@ public class UI {
      * Dialog for the admin User type 
      */
     public void getAdminDialog() {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("You are an admin");
-        System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
-        int choice = keyboard.nextInt();
-        if ( choice == 1 ) {
-            System.out.println("Please enter the course details of the one you would like to assign");
-        } else if( choice == 2 ) {
-            System.out.println("Please enter the course details so we can find your course");
-        } else if ( choice == 3 ) {
-            System.out.println("Please enter the course details of the one you would like to take");
-            String courseChoice = keyboard.nextLine();
-            courseApp.findCourses(courseChoice);
+        if (courseApp.getUser().getAge()!= true) {
+            System.out.println("You are too young to be an admin sorry");
+        } else {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("You are an admin");
+            System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
+            int choice = keyboard.nextInt();
+            if ( choice == 1 ) {
+                System.out.println("Please enter the course details of the one you would like to assign");
+            } else if( choice == 2 ) {
+                System.out.println("Please enter the course details so we can find your course");
+            } else if ( choice == 3 ) {
+                System.out.println("Please enter the course details of the one you would like to take");
+                String courseChoice = keyboard.nextLine();
+                courseApp.findCourses(courseChoice);
+            }
         }
     }
     /*
