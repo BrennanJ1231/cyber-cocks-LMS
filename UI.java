@@ -149,7 +149,10 @@ public class UI {
                 break;
             case 2:
                 System.out.println("You have selected to find courses");
-                courseApp.findCourses("null");
+                System.out.println("Please enter the name of the course to search for.");
+                System.out.println();
+                String name = keyboard.nextLine();
+                courseApp.findCourses(name);
                 break;
             case 3:
                 System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
