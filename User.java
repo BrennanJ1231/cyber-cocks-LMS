@@ -1,4 +1,8 @@
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 public class User {
     protected UUID uuid;
@@ -30,5 +34,12 @@ public class User {
     }
     public String getType() {
         return this.type;
+    }
+    public boolean getAge(){
+      Instant instant = birthday.toInstant();
+      ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+      LocalDate givenDate = zone.toLocalDate();
+      Period period = Period.between(givenDate, LocalDate.now());
+      return period.getYears() > 18;
     }
 }
