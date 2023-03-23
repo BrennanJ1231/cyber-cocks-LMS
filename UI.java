@@ -65,25 +65,26 @@ public class UI {
                 }else {
                     System.out.println("Invalid input");
                 }
-
+                System.out.println("Logging you in.");
+                courseApp.login(username, password);
                 // Make it so that you have to log in after you create an account
 
+
+                System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
+                System.out.println("=======================================================================");
+                if (courseApp.getUser().type.equals( "Admin")) {
+                    getAdminDialog();
+                    System.out.println("");
+                } else if (courseApp.getUser().type.equals("Author")) {
+                    getAuthorDialog();
+                } else {
+                    getUserDialog();
+                }
+                System.out.println("Thank you for using Our App");
+                // Checks for exception
+            } catch(Exception e) {
+                e.printStackTrace();
             }
-            System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
-            System.out.println("=======================================================================");
-            if (courseApp.getUser().type.equals( "Admin")) {
-                getAdminDialog();
-                System.out.println("");
-            } else if (courseApp.getUser().type.equals("Author")) {
-                getAuthorDialog();
-            } else {
-                getUserDialog();
-            }
-            System.out.println("Thank you for using Our App");
-            // Checks for exception
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
     }
     
     
