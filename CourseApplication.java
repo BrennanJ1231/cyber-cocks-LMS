@@ -6,7 +6,7 @@ import java.util.*;
 public class CourseApplication{
     private CourseList courselist;
     private UserList userList;
-                                //--------------??????????private Course Currentcourse; Not used
+    private Course Currentcourse;
     private User user;
     private RegisteredUser regUser;
     private Admin admin;
@@ -15,8 +15,6 @@ public class CourseApplication{
     /**
      * Constructor for the CourseApplication class. creates course list and user list
      */
-    
-    
      public CourseApplication() {
         this.courselist = new CourseList();
         this.userList = new UserList();
@@ -48,7 +46,7 @@ public class CourseApplication{
     
 
     public Boolean login(String username, String password) {
-        User user = this.userList.findUser(username);  //Are you thinking about adding a "findUser" method?
+        User user = this.userList.findUser(username);  
         if (user != null &&  user.getPassword().equals(password)) {
             this.user = user;
             if(this.user.type.equalsIgnoreCase("Registered User")) {
@@ -93,13 +91,14 @@ public class CourseApplication{
         return rating;
     }
     public String takeAssignment(Course course, String assignmentName){
-        //for(int i=0; i < test.size();i++ ){}
         return assignmentName;
     }
     public User getUser() {
         return this.user;
     }
+
     public Course takeCourse(String name) {
         return courselist.findCourse(name);
     }
+
 }
