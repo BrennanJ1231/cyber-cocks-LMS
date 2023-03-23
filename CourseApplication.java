@@ -6,7 +6,7 @@ import java.util.*;
 public class CourseApplication{
     private CourseList courselist;
     private UserList userList;
-                                //--------------??????????private Course Currentcourse; Not used
+    Course Currentcourse;
     private User user;
     private RegisteredUser regUser;
     private Admin admin;
@@ -15,8 +15,6 @@ public class CourseApplication{
     /**
      * Constructor for the CourseApplication class. creates course list and user list
      */
-    
-    
      public CourseApplication() {
         this.courselist = new CourseList();
         this.userList = new UserList();
