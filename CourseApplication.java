@@ -48,7 +48,7 @@ public class CourseApplication{
     
 
     public Boolean login(String username, String password) {
-        User user = this.userList.findUser(username);  //Are you thinking about adding a "findUser" method?
+        User user = this.userList.findUser(username);  
         if (user != null &&  user.getPassword().equals(password)) {
             this.user = user;
             if(this.user.type.equalsIgnoreCase("Registered User")) {
