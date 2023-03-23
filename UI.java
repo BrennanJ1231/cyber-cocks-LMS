@@ -172,7 +172,7 @@ public class UI {
     public Course makeCourse() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Course");
-        System.out.println("=======================================================================");
+        System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Course");
         String name = keyboard.nextLine();
         System.out.println("Please enter a description of the Course");
@@ -191,7 +191,7 @@ public class UI {
     public Module makeModule(Course course) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You have selected to create a Module");
-        System.out.println("=======================================================================");
+        System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Module");
         String name = keyboard.nextLine();
         System.out.println("Please enter a description");
