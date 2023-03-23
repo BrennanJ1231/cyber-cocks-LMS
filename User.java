@@ -75,7 +75,7 @@ public class User {
 
     /*
      * gets the age of the user
-     * returns a boolean of the age 
+     * returns a boolean of the age return true if the user's age is over 18 years old, false otherwise.
      */
     public boolean getAge(){
       Instant instant = birthday.toInstant();
