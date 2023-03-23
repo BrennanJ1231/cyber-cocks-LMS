@@ -234,11 +234,4 @@ public class UI {
         return question;
         
     }
-    public void editCourse() {
-        
-    }
-}   
-
-//find course
-
-//
+}
