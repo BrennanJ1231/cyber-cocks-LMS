@@ -117,7 +117,8 @@ public class UI {
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
             // Create Courses
-            makeCourse();
+            Course newCourse = makeCourse();
+            makeModule(newCourse);
         } else if ( choice  == 2 ) {
             // Find Courses
             courseApp.getMyCourses();
@@ -179,10 +180,10 @@ public class UI {
         String description = keyboard.nextLine();
         System.out.println("Please enter the Language you are coding the course in");
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
-        System.out.println("Please enter the UUID for the course");
-        String uuid = keyboard.nextLine();
-        Course course = new Course(name, description, null, null, null, null);
+        UUID uuid = UUID. randomUUID();
+        Course course = new Course(name, description,lang, uuid, null, null);
         return course;
+        
     }
     /**
      * Make Module Dialog
