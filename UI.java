@@ -200,17 +200,42 @@ public class UI {
         System.out.println("=======================================================================");
         System.out.println("Please enter the name of the Module");
         String name = keyboard.nextLine();
-        System.out.println("Please enter intsructive material");
+        System.out.println("Please enter a description");
         String description = keyboard.nextLine();
+        System.out.println("Please enter the intsructive material");
+        ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
+        while (true) {
+            System.out.println("Please enter the materials name");
+            String materialName = keyboard.nextLine();
+            System.out.println("Please enter the materials contents");
+            String materialContent = keyboard.nextLine();
+            System.out.println("Would you like to add more material? (Enter 'y' for yes, or 'n' for no)");
+            String YoN = keyboard.nextLine();
+            if(YoN.equalsIgnoreCase(YoN)) {
+                break;
+            }
+        }
         courseApp.addModule(name,description);
+        Module newMod = new Module(name, description, material);
+        return newMod;
     }
 
     public Question addQuestion(Module module) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
-        Question assignment = new Question(name,null,null);
-        return assignment;
+        System.out.println("Please enter the number of answers you want to provide");
+        int numAnswers = keyboard.nextInt();
+        ArrayList<String> answers = new ArrayList<String>();
+        for (int i=0; i<numAnswers; i++) {
+            System.out.println("Please enter answer"+(i+1));
+            String answerChoice = keyboard.nextLine();
+            answers.add(answerChoice);
+        }
+        System.out.println("Please enter the correct answer choice");
+        String answer = keyboard.nextLine();
+        Question question = new Question(name,answers,answer);
+        return question;
         
     }
     public void editCourse() {
