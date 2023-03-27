@@ -55,17 +55,25 @@ public class UI {
                     courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
                     }else {
                     System.out.println("Invalid input");
+                    }
                 //}
                 System.out.println("Logging you in.");
                 courseApp.saveAll(); //Update the UserList after creating an account
                 }
                 // Make it so that you have to log in after you create an account
+            else if(choice == 2) {  
+                System.out.println("You have decided to log in");
                 System.out.println("Welcome Back!");
                 System.out.println("Please enter your username");
-                String userName = keyboard.nextLine();
-                System.out.println("Please enter your password");
-                String pass = keyboard.nextLine();
-                courseApp.login(userName, pass);
+                System.out.println();
+                String username = keyboard.nextLine();
+                System.out.println("Please enter your password"); 
+                System.out.println();
+                String password = keyboard.nextLine();
+                courseApp.login(username, password);  
+            } else {
+                System.out.println("Invalid input");
+            }
 
                 System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
                 System.out.println("=======================================================================");
@@ -106,13 +114,8 @@ public class UI {
                         System.out.println("Invalid input");
                     }
                 }
-                System.out.println("Incorrect value displayed");
-                // Checks for exception
-            } else if(choice == 2) {  
-                System.out.println("You have decided to log in");
-            }//Log in
-            
-    }
+             
+        }
         catch(Exception e) {
             e.printStackTrace();
         }
