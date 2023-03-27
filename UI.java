@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
+//To do: implement object oriented programming
+// Any time there is a choice use a method
 
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
@@ -25,7 +27,7 @@ public class UI {
             System.out.println("=======================================================================");
             System.out.println("Please enter [1] to Register or enter [2] to Login");
             Scanner keyboard = new Scanner(System.in);
-            int choice = keyboard.nextInt();
+            int choice = keyboard.nextInt(); 
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
