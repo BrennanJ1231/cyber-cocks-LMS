@@ -30,17 +30,17 @@ public class CourseApplication{
 
     public User createUserAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password)  {
         User registeredUser = new RegisteredUser(null, type, username, firstName, lastName, password, email, birthday, null );
-        this.userList.addUser(registeredUser);
+        userList.addUser(registeredUser);
         return registeredUser;
     }
     public User createAdminAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
         User admin = new Admin(null, type, username, firstName, lastName, email, birthday, password);
-        this.userList.addUser(admin);
+        userList.addUser(admin);
         return admin;
     }    
     public User createAuthorAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
         User author = new Author(null, type, username, firstName, lastName, password, email, birthday, 0 , null );
-        this.userList.addUser(author);
+        userList.addUser(author);
         return author;
     }
     
@@ -62,6 +62,12 @@ public class CourseApplication{
         } else {
             return false;
         }
+    }
+
+    public void logout() {
+        saveAll();
+        System.out.println("Successfully saved data, logging out");
+        System.exit(0);
     }
     
     public ArrayList<Course>getFavoriteCourses() {
@@ -106,5 +112,4 @@ public class CourseApplication{
         userList.save();
         courselist.save();
     }
-
 }
