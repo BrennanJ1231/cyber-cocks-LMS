@@ -26,37 +26,39 @@ public class UI {
             Scanner keyboard = new Scanner(System.in);
             int choice = keyboard.nextInt();
             keyboard.nextLine();
+            //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
-
-                System.out.println("Welcome to the school of coding! It is time to register a new Account!");
-                System.out.println("=======================================================================");
-                // Copy this line for same length
-                System.out.println("Please enter your First Name");
-                String firstName = keyboard.nextLine();
-                System.out.println("Please enter your Last Name");
-                String lastName = keyboard.nextLine();
-                System.out.println("Please enter your Email");
-                String email = keyboard.nextLine();
-                System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-                Date birthday = formatter.parse(keyboard.nextLine());
-                System.out.println("Please enter your Desired Username");
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your Password");
-                String password = keyboard.nextLine();
-                System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
-                System.out.println();
-                choice =  keyboard.nextInt();
-                if (choice == 1) {
+                //while (true) {
+                    System.out.println("Welcome to the school of coding! It is time to register a new Account!");
+                    System.out.println("=======================================================================");
+                    // Copy this line for same length
+                    System.out.println("Please enter your First Name");
+                    String firstName = keyboard.nextLine();
+                    System.out.println("Please enter your Last Name");
+                    String lastName = keyboard.nextLine();
+                    System.out.println("Please enter your Email");
+                    String email = keyboard.nextLine();
+                    System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+                    Date birthday = formatter.parse(keyboard.nextLine());
+                    System.out.println("Please enter your Desired Username");
+                    String username = keyboard.nextLine();
+                    System.out.println("Please enter your Password");
+                    String password = keyboard.nextLine();
+                    System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+                    System.out.println();
+                    choice =  keyboard.nextInt();
+                    if (choice == 1) {
                     courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
-                } else if (choice ==2) {
+                    } else if (choice ==2) {
                     courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
-                } else if (choice == 3) {
+                    } else if (choice == 3) {
                     courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
-                }else {
+                    }else {
                     System.out.println("Invalid input");
-                }
+                //}
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
+                }
                 // Make it so that you have to log in after you create an account
 
 
@@ -121,11 +123,19 @@ public class UI {
             Module newModule = makeModule(newCourse);
             makeQuestion(newModule);
         } else if ( choice  == 2 ) {
-            // Find Courses
-            courseApp.getMyCourses();
+            // List Courses
+            ArrayList<Course> courses = courseApp.getMyCourses();
+            for(int i = 0; i < courses.size(); i++) {
+                System.out.println(courses.get(i).name);
+            }
             System.out.println();
         } else if ( choice  == 3 ) {
-            editCourse();
+            ArrayList<Course> courses = courseApp.getMyCourses();
+            for(int i = 0; i < courses.size(); i++) {
+                System.out.println(courses.get(i).name);
+            }
+            System.out.println("Please enter the name of the course you would like to edit");
+            //editCourse();
             // Edit Courses
         } else {
             System.out.println("Invalid Choice");
