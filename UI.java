@@ -57,32 +57,61 @@ public class UI {
                     System.out.println("Invalid input");
                 //}
                 System.out.println("Logging you in.");
-                courseApp.login(username, password);
+                courseApp.saveAll(); //Update the UserList after creating an account
                 }
                 // Make it so that you have to log in after you create an account
-
+                System.out.println("Welcome Back!");
+                System.out.println("Please enter your username");
+                String userName = keyboard.nextLine();
+                System.out.println("Please enter your password");
+                String pass = keyboard.nextLine();
+                courseApp.login(userName, pass);
 
                 System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
                 System.out.println("=======================================================================");
                 if (courseApp.getUser().type.equals( "Admin")) {
                     getAdminDialog();
-                    System.out.println("");
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int adminContinueChoice = keyboard.nextInt();
+                    if(adminContinueChoice == 1) {
+                        getAdminDialog();
+                    } else if(adminContinueChoice == 2) {
+                        courseApp.saveAll();
+                    } else {
+                        System.out.println("Invalid input");
+                    }
                 } else if (courseApp.getUser().type.equals("Author")) {
                     getAuthorDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int authorContinueChoice = keyboard.nextInt();
+                    if(authorContinueChoice == 1) {
+                        getAuthorDialog();
+                    } else if ( authorContinueChoice == 2 ) {
+                        courseApp.saveAll();
+                    } else {
+                        System.out.println("Invalid input");
+                    }
                 } else {
                     getUserDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int userContinueChoice = keyboard.nextInt();
+                    if(userContinueChoice == 1) {
+                        getAuthorDialog();
+                    } else if ( userContinueChoice == 2 ) {
+                        courseApp.saveAll(); // Update the courseList and UserList
+                    } else {
+                        System.out.println("Invalid input");
+                    }
                 }
                 System.out.println("Incorrect value displayed");
                 // Checks for exception
             } else if(choice == 2) {  
                 System.out.println("You have decided to log in");
             }//Log in
-            System.out.println("Welcome Back!");
-            System.out.println("Please enter your username");
-            String username = keyboard.nextLine();
-            System.out.println("Please enter your password");
-            String password = keyboard.nextLine();
-            courseApp.login(username, password);
+            
     }
         catch(Exception e) {
             e.printStackTrace();
@@ -94,7 +123,6 @@ public class UI {
             System.out.println("You are too young to be an admin sorry");
         } else {
             Scanner keyboard = new Scanner(System.in);
-            System.out.println("You are an admin");
             System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
             int choice = keyboard.nextInt();
             if ( choice == 1 ) {
