@@ -223,8 +223,9 @@ public class UI {
         System.out.println("Please enter the number of answers you want to provide");
         int numAnswers = keyboard.nextInt();
         ArrayList<String> answers = new ArrayList<String>();
-        for (int i=0; i<numAnswers; i++) {
-            System.out.println("Please enter answer"+(i+1));
+        for (int i=0; i<numAnswers + 1; i++) {
+            System.out.println("Please enter answer"+ (i+1));
+            System.out.println("");
             String answerChoice = keyboard.nextLine();
             answers.add(answerChoice);
         }
@@ -235,9 +236,11 @@ public class UI {
         
     }
     public void editCourse() {
-        
+        Up
     }
 }   
+
+//Save all
 
 //find course
 
