@@ -70,6 +70,7 @@ public class CourseApplication{
 
     public ArrayList<Course>getMyCourses() {
         return regUser.currentCourse;
+        //Change this based on whether the user is author or Registered User
     }
 
     public Course addCourse(String title) {

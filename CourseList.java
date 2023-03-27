@@ -37,7 +37,8 @@ public ArrayList<Course> getAll(){
     return courses;
 }
 /*
- * 
+ * deletes a course
+ * @parm course of type Course
  */
 public void deleteCourse(Course course){
     for(int i = 0; i <courses.size(); i++) {
@@ -47,10 +48,18 @@ public void deleteCourse(Course course){
     }
 }
 
+/*
+ * Saves a course
+ */
 public void save(){
     DataWriter.saveCourse(DataWriter.COURSES_FILE_NAME);
 }
 
+/*
+ * find a course 
+ * @returns a Course
+ * @parm a String name
+ */
 public Course findCourse(String name) {
     for (int i=0; i<courses.size();i++) {
         if (courses.get(i).name.equalsIgnoreCase(name)) {
@@ -59,5 +68,6 @@ public Course findCourse(String name) {
     }
     return null;
 
+}
 }
 
