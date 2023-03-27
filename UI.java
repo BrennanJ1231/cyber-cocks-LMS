@@ -28,7 +28,6 @@ public class UI {
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
-                //while (true) {
                     System.out.println("Welcome to the school of coding! It is time to register a new Account!");
                     System.out.println("=======================================================================");
                     // Copy this line for same length
@@ -56,13 +55,10 @@ public class UI {
                     }else {
                     System.out.println("Invalid input");
                     }
-                //}
-                System.out.println("Logging you in.");
-                courseApp.login(username, password);
-                courseApp.saveAll(); //Update the UserList after creating an account
-                }
-                // Make it so that you have to log in after you create an account
-            else if(choice == 2) {  
+                    System.out.println("Logging you in.");
+                    courseApp.login(username, password);
+                    courseApp.saveAll(); //Update the UserList after creating an account
+            }else if(choice == 2) {  
                 System.out.println("You have decided to log in");
                 System.out.println("Welcome Back!");
                 System.out.println("Please enter your username");
@@ -86,7 +82,7 @@ public class UI {
                     System.out.println();
                     int adminContinueChoice = keyboard.nextInt();
                     if(adminContinueChoice == 1) {
-                        getAdminDialog();
+                        System.out.println("You have chosen to continue");
                     } else if(adminContinueChoice == 2) {
                         quit = true;
                         courseApp.saveAll();
