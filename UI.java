@@ -58,6 +58,7 @@ public class UI {
                     }
                 //}
                 System.out.println("Logging you in.");
+                courseApp.login(username, password);
                 courseApp.saveAll(); //Update the UserList after creating an account
                 }
                 // Make it so that you have to log in after you create an account
@@ -145,7 +146,7 @@ public class UI {
     public void getAuthorDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an author");
-        System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
+        System.out.println("Please enter [1] to create course, enter [2] to see courses you created, enter [3] to edit one of your courses");
         System.out.println();
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
@@ -224,6 +225,7 @@ public class UI {
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         UUID uuid = UUID. randomUUID();
         Course course = new Course(name, description,lang, uuid, null, null);
+        courseApp.saveAll();
         return course;
         
     }
@@ -254,6 +256,7 @@ public class UI {
         }
         courseApp.addModule(name,description);
         Module newMod = new Module(name, description, material);
+        courseApp.saveAll();
         return newMod;
     }
 
@@ -273,6 +276,7 @@ public class UI {
         System.out.println("Please enter the correct answer choice");
         String answer = keyboard.nextLine();
         Question question = new Question(name,answers,answer);
+        courseApp.saveAll();
         return question;
         
     }
