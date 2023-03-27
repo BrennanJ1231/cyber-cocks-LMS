@@ -78,6 +78,8 @@ public class UI {
 
                 System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
                 System.out.println("=======================================================================");
+                boolean quit = false;
+                while(quit != true) {
                 if (courseApp.getUser().type.equals( "Admin")) {
                     getAdminDialog();
                     System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
@@ -86,6 +88,7 @@ public class UI {
                     if(adminContinueChoice == 1) {
                         getAdminDialog();
                     } else if(adminContinueChoice == 2) {
+                        quit = true;
                         courseApp.saveAll();
                     } else {
                         System.out.println("Invalid input");
@@ -98,6 +101,7 @@ public class UI {
                     if(authorContinueChoice == 1) {
                         getAuthorDialog();
                     } else if ( authorContinueChoice == 2 ) {
+                        quit = true;
                         courseApp.saveAll();
                     } else {
                         System.out.println("Invalid input");
@@ -108,14 +112,15 @@ public class UI {
                     System.out.println();
                     int userContinueChoice = keyboard.nextInt();
                     if(userContinueChoice == 1) {
-                        getAuthorDialog();
+                        System.out.println("You have chosen to continue");
                     } else if ( userContinueChoice == 2 ) {
+                        quit = true;
                         courseApp.saveAll(); // Update the courseList and UserList
                     } else {
                         System.out.println("Invalid input");
                     }
                 }
-             
+            }
         }
         catch(Exception e) {
             e.printStackTrace();
