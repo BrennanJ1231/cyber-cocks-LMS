@@ -142,6 +142,7 @@ public class UI {
             e.printStackTrace();
         }
     }
+
     public void getAdminDialog() {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
