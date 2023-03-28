@@ -82,48 +82,47 @@ public class UI {
             } else {
                 System.out.println("Invalid input");
             }
-                System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
-                System.out.println("=======================================================================");
-                while(true) {
-                    if (courseApp.getUser().type.equals( "Admin")) {
-                        getAdminDialog();
-                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                        System.out.println();
-                        int adminContinueChoice = keyboard.nextInt();
-                        if(adminContinueChoice == 1) {
-                            System.out.println("You have chosen to continue");
-                        } else if(adminContinueChoice == 2) {
-                            courseApp.saveAll();
-                        
-                        } else {
-                        System.out.println("Invalid input");
-                        }
-                    } else if (courseApp.getUser().type.equals( "Author")) {
-                        getAuthorDialog();
-                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                        System.out.println();
-                        int authorContinueChoice = keyboard.nextInt();
-                        if(authorContinueChoice == 1) {
-                            getAuthorDialog();
-                        } else if ( authorContinueChoice == 2 ) {
-                            courseApp.saveAll();
-                        } else {
-                            System.out.println("Invalid input");
-                        }
+            System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
+            System.out.println("=======================================================================");
+            while(true) {
+                if (courseApp.getUser().type.equals( "Admin")) {
+                    getAdminDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int adminContinueChoice = keyboard.nextInt();
+                    if(adminContinueChoice == 1) {
+                        System.out.println("You have chosen to continue");
+                    } else if(adminContinueChoice == 2) {
+                        courseApp.saveAll();   
                     } else {
-                        getUserDialog();
-                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                        System.out.println();
-                        int userContinueChoice = keyboard.nextInt();
-                        if(userContinueChoice == 1) {
-                            System.out.println("You have chosen to continue");
-                        } else if ( userContinueChoice == 2 ) {
-                            courseApp.saveAll(); // Update the courseList and UserList
-                        } else {
-                            System.out.println("Invalid input");
-                        }
+                        System.out.println("Invalid input");
                     }
-                    System.out.println("Incorrect value displayed");
+                } else if (courseApp.getUser().type.equals( "Author")) {
+                    getAuthorDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int authorContinueChoice = keyboard.nextInt();
+                    if(authorContinueChoice == 1) {
+                        getAuthorDialog();
+                    } else if ( authorContinueChoice == 2 ) {
+                        courseApp.saveAll();
+                    } else {
+                        System.out.println("Invalid input");
+                    }
+                } else {
+                    getUserDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int userContinueChoice = keyboard.nextInt();
+                    if(userContinueChoice == 1) {
+                        System.out.println("You have chosen to continue");
+                    } else if ( userContinueChoice == 2 ) {
+                        courseApp.saveAll(); // Update the courseList and UserList
+                    } else {
+                        System.out.println("Invalid input");
+                    }
+                }
+                System.out.println("Incorrect value displayed");
                 // Checks for exception
             } 
     }
