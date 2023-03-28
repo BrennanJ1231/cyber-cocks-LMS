@@ -78,22 +78,13 @@ public class UI {
             }
                 // Make it so that you have to log in after you create an account
             else if(choice == 2) {  
-                System.out.println("You have decided to log in");
-                System.out.println("Welcome Back!");
-                System.out.println("Please enter your username");
-                System.out.println();
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your password"); 
-                System.out.println();
-                String password = keyboard.nextLine();
-                courseApp.login(username, password);  
+                getLogin(); 
             } else {
                 System.out.println("Invalid input");
             }
                 System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
                 System.out.println("=======================================================================");
-                boolean quit = false;
-                while(quit != true) {
+                while(true) {
                     if (courseApp.getUser().type.equals( "Admin")) {
                         getAdminDialog();
                         System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
@@ -102,8 +93,8 @@ public class UI {
                         if(adminContinueChoice == 1) {
                             System.out.println("You have chosen to continue");
                         } else if(adminContinueChoice == 2) {
-                            quit = true;
                             courseApp.saveAll();
+                        
                         } else {
                         System.out.println("Invalid input");
                         }
@@ -115,7 +106,6 @@ public class UI {
                         if(authorContinueChoice == 1) {
                             getAuthorDialog();
                         } else if ( authorContinueChoice == 2 ) {
-                            quit = true;
                             courseApp.saveAll();
                         } else {
                             System.out.println("Invalid input");
@@ -128,7 +118,6 @@ public class UI {
                         if(userContinueChoice == 1) {
                             System.out.println("You have chosen to continue");
                         } else if ( userContinueChoice == 2 ) {
-                            quit = true;
                             courseApp.saveAll(); // Update the courseList and UserList
                         } else {
                             System.out.println("Invalid input");
@@ -143,10 +132,24 @@ public class UI {
         }
     }
 
+    public void getLogin() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("You have decided to log in");
+        System.out.println("Welcome Back!");
+        System.out.println("Please enter your username");
+        System.out.println();
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your password"); 
+        System.out.println();
+        String password = keyboard.nextLine();
+        courseApp.login(username, password); 
+    }
+
     public void getAdminDialog() {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
         } else {
+            
             Scanner keyboard = new Scanner(System.in);
             System.out.println("You are an admin");
             System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
