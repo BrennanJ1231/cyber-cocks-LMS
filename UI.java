@@ -27,66 +27,21 @@ public class UI {
             System.out.println("Welcome to CyberCock's school of coding");
             System.out.println("=======================================================================");
             System.out.println("Please enter [1] to Register or enter [2] to Login");
-            int choice = keyboard.nextInt(); 
+            int choice = 0; 
+            while (true) {
+                choice = keyboard.nextInt(); 
+                if (choice == 1 || choice == 2) {
+                    break;
+                }
+            }
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
-                System.out.println("Welcome to the school of coding! It is time to register a new Account!");
-                System.out.println("=======================================================================");
-                // Copy this line for same length
-                System.out.println("Please enter your First Name");
-                String firstName = keyboard.nextLine();
-                System.out.println("Please enter your Last Name");
-                String lastName = keyboard.nextLine();
-                System.out.println("Please enter your Email");
-                String email = keyboard.nextLine();
-                System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-                String date;
-                while (true) {
-                    date = keyboard.nextLine();
-                    if(checkDateFormat(date) == true) {
-                        break;
-                    } else {
-                        System.out.println("The date provided is in the incorrect format please try again:");
-                    }
-                }
-                Date birthday = formatter.parse(date);
-                System.out.println("Please enter your Desired Username");
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your Password");
-                String password = keyboard.nextLine();
-                while (true) {
-                    System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
-                    choice =  keyboard.nextInt();
-                    if (choice == 1) {
-                        courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
-                        break;
-                    } else if (choice ==2) {
-                        courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
-                        break;
-                    } else if (choice == 3) {
-                        courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
-                        break;
-                    }else {
-                    System.out.println("Invalid input");
-                    }
-                //}
-                System.out.println("Logging you in.");
-                courseApp.login(username, password);
-                courseApp.saveAll(); //Update the UserList after creating an account
-                }
+                getRegister();
             }
                 // Make it so that you have to log in after you create an account
             else if(choice == 2) {  
-                System.out.println("You have decided to log in");
-                System.out.println("Welcome Back!");
-                System.out.println("Please enter your username");
-                System.out.println();
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your password"); 
-                System.out.println();
-                String password = keyboard.nextLine();
-                courseApp.login(username, password);  
+                getLogin();
             } else {
                 System.out.println("Invalid input");
             }
