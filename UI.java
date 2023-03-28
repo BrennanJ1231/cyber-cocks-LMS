@@ -175,7 +175,7 @@ public class UI {
     public void getAuthorDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an author");
-        System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
+        System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses, or enter [4] to logout");
         System.out.println();
         int choice = keyboard.nextInt();
         if (choice == 1 )  {
