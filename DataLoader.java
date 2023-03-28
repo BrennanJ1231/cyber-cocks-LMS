@@ -26,9 +26,9 @@ public class DataLoader {
                 String email = (String) user.get("email");
                 Date birthday = formatter.parse(user.get("birthday").toString());
                 if(type.equalsIgnoreCase("author")) {
-                    int coursesCreated = Integer.parseInt(user.get("coursesCreated").toString());
+                    int coursesCreated = Integer.parseInt(user.get("createdCourses").toString());
                     ArrayList<Course> createdCourses = new ArrayList<Course>();
-                    JSONArray courseArray = (JSONArray)user.get("createdCourses");
+                    JSONArray courseArray = (JSONArray)user.get("coursesCreated");
                     Iterator iterator2 = courseArray.iterator();
                     int j = 0;
                     while(iterator2.hasNext()) {
@@ -48,6 +48,7 @@ public class DataLoader {
                 if(type.equalsIgnoreCase("registered user")) {
                     ArrayList<Course> currentCourses = new ArrayList<Course>();
                     JSONArray courseArray = (JSONArray)user.get("currentCourse");
+                    if(courseArray != null){
                     Iterator iterator2 = courseArray.iterator();
                     int j = 0;
                     while(iterator2.hasNext()) {
@@ -61,6 +62,7 @@ public class DataLoader {
                         j++;
                         iterator2.next();
                     }
+                }
                     userList.add(new RegisteredUser(uuid,"Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
                 }
                 if(type.equalsIgnoreCase("admin")) {

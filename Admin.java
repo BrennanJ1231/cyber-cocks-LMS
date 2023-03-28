@@ -25,7 +25,6 @@ public Admin(UUID uuid, String type, String username, String firstName, String l
 }
 
 /**
-
 Assigns a course to a registered user.
 @param course the course to be assigned.
 @param student the registered user to whom the course will be assigned.
