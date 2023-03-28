@@ -44,10 +44,10 @@ public class UI {
                 String date;
                 while (true) {
                     date = keyboard.nextLine();
-                    if(isValidDate(date) == true) {
+                    if(checkDateFormat(date) == true) {
                         break;
                     } else {
-                        System.out.println("The date provided is in the incorrect format and/or an impossible date please try again:");
+                        System.out.println("The date provided is in the incorrect format please try again:");
                     }
                 }
                 Date birthday = formatter.parse(date);
@@ -78,7 +78,15 @@ public class UI {
             }
                 // Make it so that you have to log in after you create an account
             else if(choice == 2) {  
-                getLogin(); 
+                System.out.println("You have decided to log in");
+                System.out.println("Welcome Back!");
+                System.out.println("Please enter your username");
+                System.out.println();
+                String username = keyboard.nextLine();
+                System.out.println("Please enter your password"); 
+                System.out.println();
+                String password = keyboard.nextLine();
+                courseApp.login(username, password);  
             } else {
                 System.out.println("Invalid input");
             }
@@ -87,28 +95,8 @@ public class UI {
             while(true) {
                 if (courseApp.getUser().type.equals( "Admin")) {
                     getAdminDialog();
-                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                    System.out.println();
-                    int adminContinueChoice = keyboard.nextInt();
-                    if(adminContinueChoice == 1) {
-                        System.out.println("You have chosen to continue");
-                    } else if(adminContinueChoice == 2) {
-                        courseApp.saveAll();   
-                    } else {
-                        System.out.println("Invalid input");
-                    }
                 } else if (courseApp.getUser().type.equals( "Author")) {
                     getAuthorDialog();
-                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                    System.out.println();
-                    int authorContinueChoice = keyboard.nextInt();
-                    if(authorContinueChoice == 1) {
-                        getAuthorDialog();
-                    } else if ( authorContinueChoice == 2 ) {
-                        courseApp.saveAll();
-                    } else {
-                        System.out.println("Invalid input");
-                    }
                 } else {
                     getUserDialog();
                     System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
@@ -125,11 +113,61 @@ public class UI {
                 System.out.println("Incorrect value displayed");
                 // Checks for exception
             } 
-    }
-        catch(Exception e) {
+        }catch(Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Methods below for the run method
+
+
+    public void getRegister() {
+        System.out.println("Welcome to the school of coding! It is time to register a new Account!");
+        System.out.println("=======================================================================");
+        // Copy this line for same length
+        System.out.println("Please enter your First Name");
+        String firstName = keyboard.nextLine();
+        System.out.println("Please enter your Last Name");
+        String lastName = keyboard.nextLine();
+        System.out.println("Please enter your Email");
+        String email = keyboard.nextLine();
+        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+        String date;
+        while (true) {
+            date = keyboard.nextLine();
+            if(checkDateFormat(date) == true) {
+                break;
+            } else {
+                System.out.println("The date provided is in the incorrect format please try again:");
+            }
+        }
+        Date birthday = formatter.parse(date);
+        System.out.println("Please enter your Desired Username");
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your Password");
+        String password = keyboard.nextLine();
+        while (true) {
+            System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+            int choice =  keyboard.nextInt();
+            if (choice == 1) {
+                courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
+                break;
+            } else if (choice ==2) {
+                courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
+                break;
+            } else if (choice == 3) {
+                courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
+                break;
+            }else {
+                System.out.println("Invalid input");
+            }
+            System.out.println("Logging you in.");
+            courseApp.login(username, password);
+            courseApp.saveAll(); //Update the UserList after creating an account
+            }
+        }
 
     public void getLogin() {
         System.out.println("You have decided to log in");
@@ -166,6 +204,18 @@ public class UI {
                 }else {
                     System.out.println("Invalid input");
                 }
+                System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                System.out.println();
+                int adminContinueChoice = keyboard.nextInt();
+                if( adminContinueChoice == 1 ) {
+                    System.out.println("You have chosen to continue");
+                } else if(adminContinueChoice == 2) {
+                    courseApp.saveAll(); 
+                    break;  
+                } else {
+                    System.out.println("Invalid input");
+                    break; // If the user does not want to do anything else kill the loop
+                }
             }
         }
     }
@@ -175,27 +225,28 @@ public class UI {
     public void getAuthorDialog() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an author");
-        System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses, or enter [4] to logout");
-        System.out.println();
-        int choice = keyboard.nextInt();
-        if (choice == 1 )  {
-            // Create Courses
-            Course newCourse = makeCourse();
-            Module newModule = makeModule(newCourse);
-            makeQuestion(newModule);
-        } else if ( choice  == 2 ) {
-            // List Courses
-            Author currentAuthor = (Author) courseApp.getUser();
-            if (currentAuthor.listOfCourses.isEmpty()) {
-                System.out.println("You currently have no classes");
-            } else {
-                ArrayList<Course> courses = courseApp.getMyCourses();
-                for(int i = 0; i < courses.size(); i++) {
-                    System.out.println(courses.get(i).name);
-                }
-            }
+        while (true) {
+            System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
             System.out.println();
-        } else if ( choice  == 3 ) {
+            int choice = keyboard.nextInt();
+            if (choice == 1 )  {
+                // Create Courses
+                Course newCourse = makeCourse();
+                Module newModule = makeModule(newCourse);
+                makeQuestion(newModule);
+            } else if ( choice  == 2 ) {
+                // List Courses
+                Author currentAuthor = (Author) courseApp.getUser();
+                if (currentAuthor.listOfCourses.isEmpty()) {
+                    System.out.println("You currently have no classes");
+                } else {
+                    ArrayList<Course> courses = courseApp.getMyCourses();
+                    for(int i = 0; i < courses.size(); i++) {
+                        System.out.println(courses.get(i).name);
+                    }
+                }
+            System.out.println();
+        } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
             Author currentAuthor = (Author) courseApp.getUser();
             if (currentAuthor.listOfCourses.isEmpty()) {
                 System.out.println("You currently have no classes");
@@ -209,10 +260,23 @@ public class UI {
             }
         } else if ( choice == 4 ) {
             courseApp.logout();
+            break;
         } else {
             System.out.println("Invalid Choice");
         }
-        getAuthorDialog();
+        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+        System.out.println();
+        int authorContinueChoice = keyboard.nextInt();
+        if(authorContinueChoice == 1) {
+            System.out.println("You have selected to continue");
+        } else if ( authorContinueChoice == 2 ) {
+            courseApp.saveAll();
+            break;
+        } else {
+            System.out.println("Invalid input");
+        }
+                
+    }
     }
     /*
      * Dialog for the Registered User usertype
@@ -222,6 +286,7 @@ public class UI {
         System.out.println("You are a registered user");
         System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
         int choice =  keyboard.nextInt();
+        keyboard.nextLine();
         switch(choice) {
             case 1:
                 System.out.println("Showing your courses");
