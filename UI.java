@@ -64,7 +64,7 @@ public class UI {
     //Methods below for the run method
 
 
-    public void getRegister() {
+    public void getRegister() throws ParseException {
         System.out.println("Welcome to the school of coding! It is time to register a new Account!");
         System.out.println("=======================================================================");
         // Copy this line for same length
@@ -184,38 +184,38 @@ public class UI {
                     }
                 }
             System.out.println();
-        } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
-            Author currentAuthor = (Author) courseApp.getUser();
-            if (currentAuthor.listOfCourses.isEmpty()) {
-                System.out.println("You currently have no classes");
-            } else {
-                ArrayList<Course> courses = courseApp.getMyCourses();
-                for(int i = 0; i < courses.size(); i++) {
-                    System.out.println(courses.get(i).name);
+            } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
+                Author currentAuthor = (Author) courseApp.getUser();
+                if (currentAuthor.listOfCourses.isEmpty()) {
+                    System.out.println("You currently have no classes");
+                } else {
+                    ArrayList<Course> courses = courseApp.getMyCourses();
+                    for(int i = 0; i < courses.size(); i++) {
+                        System.out.println(courses.get(i).name);
+                    }
+                    System.out.println("Please enter the name of the course you would like to edit");
+                    String editCourse = keyboard.nextLine();
                 }
-                System.out.println("Please enter the name of the course you would like to edit");
-                String editCourse = keyboard.nextLine();
+            } else if ( choice == 4 ) {
+                courseApp.logout();
+                break;
+            } else {
+                System.out.println("Invalid Choice");
             }
-        } else if ( choice == 4 ) {
-            courseApp.logout();
-            break;
-        } else {
-            System.out.println("Invalid Choice");
-        }
-        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-        System.out.println();
-        int authorContinueChoice = keyboard.nextInt();
-        if(authorContinueChoice == 1) {
-            System.out.println("You have selected to continue");
-        } else if ( authorContinueChoice == 2 ) {
-            courseApp.saveAll();
-            break;
-        } else {
-            System.out.println("Invalid input");
-        }
-                
-    }
-    }
+            System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+            System.out.println();
+            int authorContinueChoice = keyboard.nextInt();
+            if(authorContinueChoice == 1) {
+                System.out.println("You have selected to continue");
+            } else if ( authorContinueChoice == 2 ) {
+                courseApp.saveAll();
+                break;
+            } else {
+                System.out.println("Invalid input");
+            }           
+        }// End of while loop
+    } // End of Author Dialog
+    
     /*
      * Dialog for the Registered User usertype
      */
@@ -267,7 +267,6 @@ public class UI {
      * @return
      */
     public Course makeCourse() {
-        Scanner keyboard = new Scanner(System.in);
         System.out.println("Time to create a Course");
         System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Course");
@@ -288,7 +287,6 @@ public class UI {
      */
     public ArrayList<Module> makeModule() {
         ArrayList<Module> modules = new ArrayList<Module>();
-        Scanner keyboard = new Scanner(System.in);
         System.out.println("Time to create a Module");
         System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Module");
@@ -318,7 +316,7 @@ public class UI {
         System.out.println("Please enter the name of the assignment");
         String name = keyboard.nextLine();
         Assignment.addAssignment(name);
-        return assign;
+        return assignment;
 
     }
 
