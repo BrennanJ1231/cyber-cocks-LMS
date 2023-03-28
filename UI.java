@@ -171,9 +171,7 @@ public class UI {
             int choice = keyboard.nextInt();
             if (choice == 1 )  {
                 // Create Courses
-                Course newCourse = makeCourse();
-                Module newModule = makeModule(newCourse);
-                makeQuestion(newModule);
+                makeCourse();
             } else if ( choice  == 2 ) {
                 // List Courses
                 Author currentAuthor = (Author) courseApp.getUser();
@@ -279,7 +277,7 @@ public class UI {
         System.out.println("Please enter the Language you are coding the course in");
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         UUID uuid = UUID. randomUUID();
-        Course course = new Course(name, description,lang, uuid, null, null);
+        Course course = new Course(name, description,lang, uuid, makeModule(), null);
         courseApp.saveAll();
         return course;
         
@@ -288,7 +286,8 @@ public class UI {
      * Make Module Dialog
      * @param course the course you want to create a course in
      */
-    public Module makeModule(Course course) {
+    public ArrayList<Module> makeModule() {
+        ArrayList<Module> modules = new ArrayList<Module>();
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Time to create a Module");
         System.out.println("==========================================================================");
@@ -309,10 +308,9 @@ public class UI {
                 break;
             }
         }
-        courseApp.addModule(name,description);
-        Module newMod = new Module(name, description, material);
-        courseApp.saveAll();
-        return newMod;
+       
+       modules.add(new Module(name, description, material));
+        return modules;
     }
 
     public Question makeQuestion(Module module) {
@@ -322,6 +320,7 @@ public class UI {
         System.out.println("Please enter the number of answers you want to provide");
 
         int numAnswers = keyboard.nextInt();
+        keyboard.nextLine();
         ArrayList<String> answers = new ArrayList<String>();
         for (int i=0; i<numAnswers + 1; i++) {
             System.out.println("Please enter answer"+ (i+1));
@@ -332,9 +331,8 @@ public class UI {
         System.out.println("Please enter the correct answer choice");
         String answer = keyboard.nextLine();
         Question question = new Question(name,answers,answer);
-        courseApp.saveAll();
         return question;
-        
+    
     }
 
     public static boolean isValidDate(String dateStr) {
