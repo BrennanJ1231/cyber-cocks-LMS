@@ -137,7 +137,7 @@ public class UI {
         String date;
         while (true) {
             date = keyboard.nextLine();
-            if(checkDateFormat(date) == true) {
+            if(isValidDate(date) == true) {
                 break;
             } else {
                 System.out.println("The date provided is in the incorrect format please try again:");
