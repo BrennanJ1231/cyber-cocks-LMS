@@ -92,11 +92,6 @@ public class CourseApplication{
         course.name = title;
         return course;
     }
-
-    public Module addModule(String name, String description) {
-        Module newModule = new Module(name, description, null);
-        return newModule;
-    }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;
         return rating;
