@@ -38,9 +38,7 @@ public class UI {
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
                 getRegister();
-            }
-                // Make it so that you have to log in after you create an account
-            else if(choice == 2) {  
+            }else if(choice == 2) {  
                 getLogin();
             } else {
                 System.out.println("Invalid input");
