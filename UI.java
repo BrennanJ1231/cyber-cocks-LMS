@@ -308,14 +308,16 @@ public class UI {
                 break;
             }
         }
-       
-       modules.add(new Module(name, description, material));
+        modules.add(new Module(name, description, material, makeAssignment()));
         return modules;
     }
 
-    public Assignment makeAssignment() {
+    public ArrayList<Assignment> makeAssignment() {
         System.out.println("It is time to make an assignment.");
         System.out.println("Please enter the name of the assignment");
+        String name = keyboard.nextLine();
+        Assignment assignment =  new Assignment(name);
+        return assignment;
     }
 
     public Question makeQuestion(Module module) {
