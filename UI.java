@@ -133,7 +133,6 @@ public class UI {
         }
 
     public void getLogin() {
-        Scanner keyboard = new Scanner(System.in);
         System.out.println("You have decided to log in");
         System.out.println("Welcome Back!");
         System.out.println("Please enter your username");
@@ -325,13 +324,23 @@ public class UI {
         
     }
 
-    public boolean checkDateFormat(String date) {
+    public static boolean isValidDate(String dateStr) {
         formatter.setLenient(false);
         try {
-            formatter.parse(date);
+            Date date = formatter.parse(dateStr);
+            // check if the parsed date is the same as the original date string
+            if (!dateStr.equals(formatter.format(date))) {
+                return false;
+            }
+            // check if the parsed date is a possible date
+            Calendar cal = Calendar.getInstance();
+            cal.setLenient(false);
+            cal.setTime(date);
+            cal.get(Calendar.YEAR);
             return true;
         } catch (ParseException e) {
             return false;
         }
     }
+    
 }
