@@ -31,53 +31,8 @@ public class UI {
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
-                System.out.println("Welcome to the school of coding! It is time to register a new Account!");
-                System.out.println("=======================================================================");
-                // Copy this line for same length
-                System.out.println("Please enter your First Name");
-                String firstName = keyboard.nextLine();
-                System.out.println("Please enter your Last Name");
-                String lastName = keyboard.nextLine();
-                System.out.println("Please enter your Email");
-                String email = keyboard.nextLine();
-                System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
-                String date;
-                while (true) {
-                    date = keyboard.nextLine();
-                    if(checkDateFormat(date) == true) {
-                        break;
-                    } else {
-                        System.out.println("The date provided is in the incorrect format please try again:");
-                    }
-                }
-                Date birthday = formatter.parse(date);
-                System.out.println("Please enter your Desired Username");
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your Password");
-                String password = keyboard.nextLine();
-                while (true) {
-                    System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
-                    choice =  keyboard.nextInt();
-                    if (choice == 1) {
-                        courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
-                        break;
-                    } else if (choice ==2) {
-                        courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
-                        break;
-                    } else if (choice == 3) {
-                        courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
-                        break;
-                    }else {
-                    System.out.println("Invalid input");
-                    }
-                //}
-                System.out.println("Logging you in.");
-                courseApp.login(username, password);
-                courseApp.saveAll(); //Update the UserList after creating an account
-                }
-            }
-                // Make it so that you have to log in after you create an account
-            else if(choice == 2) {  
+                getRegister();
+            }else if(choice == 2) {  //Log in
                 getLogin(); 
             } else {
                 System.out.println("Invalid input");
@@ -130,6 +85,52 @@ public class UI {
             e.printStackTrace();
         }
     }
+
+    public void getRegister() {
+        System.out.println("Welcome to the school of coding! It is time to register a new Account!");
+        System.out.println("=======================================================================");
+        // Copy this line for same length
+        System.out.println("Please enter your First Name");
+        String firstName = keyboard.nextLine();
+        System.out.println("Please enter your Last Name");
+        String lastName = keyboard.nextLine();
+        System.out.println("Please enter your Email");
+        String email = keyboard.nextLine();
+        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+        String date;
+        while (true) {
+            date = keyboard.nextLine();
+            if(checkDateFormat(date) == true) {
+                break;
+            } else {
+                System.out.println("The date provided is in the incorrect format please try again:");
+            }
+        }
+        Date birthday = formatter.parse(date);
+        System.out.println("Please enter your Desired Username");
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your Password");
+        String password = keyboard.nextLine();
+        while (true) {
+            System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+            int choice =  keyboard.nextInt();
+            if (choice == 1) {
+                courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
+                break;
+            } else if (choice ==2) {
+                courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
+                break;
+            } else if (choice == 3) {
+                courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
+                break;
+            }else {
+                System.out.println("Invalid input");
+            }
+            System.out.println("Logging you in.");
+            courseApp.login(username, password);
+            courseApp.saveAll(); //Update the UserList after creating an account
+            }
+        }
 
     public void getLogin() {
         Scanner keyboard = new Scanner(System.in);
