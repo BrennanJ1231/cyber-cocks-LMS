@@ -12,6 +12,7 @@ import java.util.UUID;
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
     private CourseApplication courseApp = new CourseApplication();
+    public Scanner keyboard = new Scanner(System.in);
     public static void main (String[] args) {
         UI ui = new UI();
         ui.run();
@@ -78,15 +79,7 @@ public class UI {
             }
                 // Make it so that you have to log in after you create an account
             else if(choice == 2) {  
-                System.out.println("You have decided to log in");
-                System.out.println("Welcome Back!");
-                System.out.println("Please enter your username");
-                System.out.println();
-                String username = keyboard.nextLine();
-                System.out.println("Please enter your password"); 
-                System.out.println();
-                String password = keyboard.nextLine();
-                courseApp.login(username, password);  
+                login();
             } else {
                 System.out.println("Invalid input");
             }
@@ -143,7 +136,15 @@ public class UI {
             e.printStackTrace();
         }
     }
-
+    public void login() {
+        System.out.println("You have decided to log in");
+        System.out.println("Welcome Back!");
+        System.out.println("Please enter your username");
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your password");
+        String password = keyboard.nextLine();
+        courseApp.login(username, password);  
+    }
     public void getAdminDialog() {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
