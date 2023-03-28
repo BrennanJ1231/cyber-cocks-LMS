@@ -17,10 +17,11 @@ public class Module {
     @param description the description of the module.
     @param material an ArrayList of instructive materials in the module.
     */
-    public Module(String title, String description, ArrayList<InstructiveMaterial> material) {
+    public Module(String title, String description, ArrayList<InstructiveMaterial> material, ArrayList<Assignment> assignments) {
         this.title = title;
         this.description = description;
         this.material = material;
+        this.test = assignments;
     }
 
     /**
