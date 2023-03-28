@@ -16,8 +16,8 @@ public class CourseApplication{
      * Constructor for the CourseApplication class. creates course list and user list
      */
      public CourseApplication() {
-        this.courselist = new CourseList();
-        this.userList = new UserList();
+        this.courselist = CourseList.getInstance();
+        this.userList = UserList.getInstance();
     }
 
     public ArrayList<Course>findCourses(String keyword) {
@@ -29,17 +29,17 @@ public class CourseApplication{
     }
 
     public User createUserAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password)  {
-        User registeredUser = new RegisteredUser(null, type, username, firstName, lastName, password, email, birthday, null );
+        User registeredUser = new RegisteredUser(UUID.randomUUID(), type, username, firstName, lastName, password, email, birthday, null );
         userList.addUser(registeredUser);
         return registeredUser;
     }
     public User createAdminAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
-        User admin = new Admin(null, type, username, firstName, lastName, email, birthday, password);
+        User admin = new Admin(UUID.randomUUID(), type, username, firstName, lastName, email, birthday, password);
         userList.addUser(admin);
         return admin;
     }    
     public User createAuthorAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password){
-        User author = new Author(null, type, username, firstName, lastName, password, email, birthday, 0 , null );
+        User author = new Author(UUID.randomUUID(), type, username, firstName, lastName, password, email, birthday, 0 , null );
         userList.addUser(author);
         return author;
     }
@@ -75,7 +75,11 @@ public class CourseApplication{
     }
 
     public ArrayList<Course>getMyCourses() {
-        return regUser.currentCourse;
+        if(user.type.equalsIgnoreCase("author"))
+            return author.listOfCourses;
+        if(user.type.equalsIgnoreCase("registered user"))
+            return regUser.currentCourse;
+        return null;    
         //Change this based on whether the user is author or Registered User
     }
 
@@ -109,6 +113,8 @@ public class CourseApplication{
     }
 
     public void saveAll() {
+       ArrayList<User> list = userList.getAll();
+       System.out.println(list.get(4).username);
         userList.save();
         courselist.save();
     }

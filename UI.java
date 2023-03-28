@@ -71,10 +71,11 @@ public class UI {
                     System.out.println("Invalid input");
                     }
                 //}
+                }
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
                 courseApp.saveAll(); //Update the UserList after creating an account
-                }
+                
             }
                 // Make it so that you have to log in after you create an account
             else if(choice == 2) {  
@@ -217,6 +218,7 @@ public class UI {
         System.out.println("You are a registered user");
         System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
         int choice =  keyboard.nextInt();
+        keyboard.nextLine();
         switch(choice) {
             case 1:
                 System.out.println("Showing your courses");

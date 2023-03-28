@@ -6,8 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter {
-    public static final String USERS_FILE_NAME = "users.json";
-	public static final String COURSES_FILE_NAME = "courses.json";
+    public static final String USERS_FILE_NAME = "./json/users.json";
+	public static final String COURSES_FILE_NAME = "./json/courses.json";
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("mm/dd/yyyy");
 	public static void saveUser(String fileName) {
         UserList userList = UserList.getInstance();
@@ -41,17 +41,19 @@ public class DataWriter {
 		JSONObject userDetails = new JSONObject();
             userDetails.put("UUID",user.uuid.toString());
             userDetails.put("type","Registered User");
-            userDetails.put("userName",user.username);
+            userDetails.put("username",user.username);
             userDetails.put("firstName",user.firstName);
             userDetails.put("lastName",user.lastName);
             userDetails.put("password",user.password);
             userDetails.put("email",user.email);
             userDetails.put("birthday",FORMATTER.format(user.birthday));
-            JSONArray courses = new JSONArray();
-             for(int i = 0; i < user.currentCourse.size();  i++) {
-                 courses.add(addCourses(user.currentCourse.get(i)));
+            if(user.currentCourse != null) {
+                JSONArray courses = new JSONArray();
+                for(int i = 0; i < user.currentCourse.size();  i++) {
+                    courses.add(addCourses(user.currentCourse.get(i)));
+                }
+                userDetails.put("currentCourses", courses);
             }
-            userDetails.put("currentCourses", courses);
             userDetails.put("courseProgress",user.courseProgress);
         return userDetails;
 	}
@@ -59,7 +61,7 @@ public class DataWriter {
 		JSONObject userDetails = new JSONObject();
             userDetails.put("UUID",user.uuid.toString());
             userDetails.put("type","Admin");
-            userDetails.put("userName",user.username);
+            userDetails.put("username",user.username);
             userDetails.put("firstName",user.firstName);
             userDetails.put("lastName",user.lastName);
             userDetails.put("password",user.password);
@@ -72,7 +74,7 @@ public class DataWriter {
 		JSONObject userDetails = new JSONObject();
         userDetails.put("UUID",user.uuid.toString());
         userDetails.put("type","Author");
-        userDetails.put("userName",user.username);
+        userDetails.put("username",user.username);
         userDetails.put("firstName",user.firstName);
         userDetails.put("lastName",user.lastName);
         userDetails.put("password",user.password);
