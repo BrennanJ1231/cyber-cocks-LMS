@@ -90,7 +90,6 @@ public class UI {
             } else {
                 System.out.println("Invalid input");
             }
-
                 System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
                 System.out.println("=======================================================================");
                 boolean quit = false;
