@@ -313,11 +313,13 @@ public class UI {
     }
 
     public ArrayList<Assignment> makeAssignment() {
-        System.out.println("It is time to make an assignment.");
+        System.out.println("It is time to make an assignment."); 
+        ArrayList<Assignment> assign =  new ArrayList<Assignment>();
         System.out.println("Please enter the name of the assignment");
         String name = keyboard.nextLine();
-        Assignment assignment =  new Assignment(name);
-        return assignment;
+        Assignment.addAssignment(name);
+        return assign;
+
     }
 
     public Question makeQuestion(Module module) {
