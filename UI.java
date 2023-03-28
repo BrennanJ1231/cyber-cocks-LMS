@@ -12,6 +12,7 @@ import java.util.UUID;
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
     private CourseApplication courseApp = new CourseApplication();
+    public Scanner keyboard = new Scanner(System.in);
     public static void main (String[] args) {
         UI ui = new UI();
         ui.run();
@@ -26,7 +27,6 @@ public class UI {
             System.out.println("Welcome to CyberCock's school of coding");
             System.out.println("=======================================================================");
             System.out.println("Please enter [1] to Register or enter [2] to Login");
-            Scanner keyboard = new Scanner(System.in);
             int choice = keyboard.nextInt(); 
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
