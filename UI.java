@@ -313,8 +313,12 @@ public class UI {
         return modules;
     }
 
+    public Assignment makeAssignment() {
+        System.out.println("It is time to make an assignment.");
+        System.out.println("Please enter the name of the assignment");
+    }
+
     public Question makeQuestion(Module module) {
-        Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
         System.out.println("Please enter the number of answers you want to provide");
