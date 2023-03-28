@@ -38,9 +38,7 @@ public class UI {
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
                 getRegister();
-            }
-                // Make it so that you have to log in after you create an account
-            else if(choice == 2) {  
+            }else if(choice == 2) {  
                 getLogin();
             } else {
                 System.out.println("Invalid input");
@@ -49,24 +47,12 @@ public class UI {
             System.out.println("=======================================================================");
             while(true) {
                 if (courseApp.getUser().type.equals( "Admin")) {
-                    getAdminDialog();
+                    getAdminDialog(); // Admin
                 } else if (courseApp.getUser().type.equals( "Author")) {
-                    getAuthorDialog();
+                    getAuthorDialog(); // Author
                 } else {
-                    getUserDialog();
-                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                    System.out.println();
-                    int userContinueChoice = keyboard.nextInt();
-                    if(userContinueChoice == 1) {
-                        System.out.println("You have chosen to continue");
-                    } else if ( userContinueChoice == 2 ) {
-                        courseApp.saveAll(); // Update the courseList and UserList
-                    } else {
-                        System.out.println("Invalid input");
-                    }
+                    getUserDialog(); // User
                 }
-                System.out.println("Incorrect value displayed");
-                // Checks for exception
             } 
         }catch(Exception e) {
             e.printStackTrace();
@@ -178,7 +164,6 @@ public class UI {
      * Dialog for the author user type
      */
     public void getAuthorDialog() {
-        Scanner keyboard = new Scanner(System.in);
         System.out.println("You are an author");
         while (true) {
             System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
@@ -186,9 +171,7 @@ public class UI {
             int choice = keyboard.nextInt();
             if (choice == 1 )  {
                 // Create Courses
-                Course newCourse = makeCourse();
-                Module newModule = makeModule(newCourse);
-                makeQuestion(newModule);
+                makeCourse();
             } else if ( choice  == 2 ) {
                 // List Courses
                 Author currentAuthor = (Author) courseApp.getUser();
@@ -237,37 +220,45 @@ public class UI {
      * Dialog for the Registered User usertype
      */
     public void getUserDialog() {
-        Scanner keyboard = new Scanner(System.in);
         System.out.println("You are a registered user");
-        System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
-        int choice =  keyboard.nextInt();
-        keyboard.nextLine();
-        switch(choice) {
-            case 1:
+        while (true) {  
+            System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
+            int choice =  keyboard.nextInt();
+            keyboard.nextLine();
+            if(choice == 1) {
                 System.out.println("Showing your courses");
                 ArrayList<Course> myCourses = courseApp.getMyCourses();
                 for(int i = 0; i < myCourses.size(); i++) {
                     System.out.println(i+1 + ": " + myCourses.get(i).name);
                 }
-                break;
-            case 2:
-                System.out.println("You have selected to find courses");
-                System.out.println("Please enter the name of the course to search for.");
-                System.out.println();
-                String name = keyboard.nextLine();
-                courseApp.findCourses(name);
-                break;
-            case 3:
-                System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
-                String courseChoice = keyboard.nextLine();
-                courseApp.takeCourse(courseChoice);
-                break;
-            case 4: 
+            }else if( choice == 2 ) { 
+                    System.out.println("You have selected to find courses");
+                    System.out.println("Please enter the name of the course to search for.");
+                    System.out.println();
+                    String name = keyboard.nextLine();
+                    courseApp.findCourses(name);
+                    break;
+            }else if(choice == 3) { 
+                    System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
+                    String courseChoice = keyboard.nextLine();
+                    courseApp.takeCourse(courseChoice);
+            }else if (choice == 4) { 
                 System.out.println("You have selected to logout. Good Bye");
                 courseApp.logout();
-            default:
+            }else {
                 System.out.println("Please enter a valid number");
-
+            }
+            System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+            System.out.println();
+            int userContinueChoice = keyboard.nextInt();
+            if(userContinueChoice == 1) {
+                System.out.println("You have chosen to continue");
+            } else if ( userContinueChoice == 2 ) {
+                courseApp.saveAll(); // Update the courseList and UserList
+                break;
+            } else {
+                System.out.println("Invalid input");
+            }   
         }
     }
 
@@ -286,7 +277,7 @@ public class UI {
         System.out.println("Please enter the Language you are coding the course in");
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         UUID uuid = UUID. randomUUID();
-        Course course = new Course(name, description,lang, uuid, null, null);
+        Course course = new Course(name, description,lang, uuid, makeModule(), null);
         courseApp.saveAll();
         return course;
         
@@ -295,7 +286,8 @@ public class UI {
      * Make Module Dialog
      * @param course the course you want to create a course in
      */
-    public Module makeModule(Course course) {
+    public ArrayList<Module> makeModule() {
+        ArrayList<Module> modules = new ArrayList<Module>();
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Time to create a Module");
         System.out.println("==========================================================================");
@@ -316,10 +308,9 @@ public class UI {
                 break;
             }
         }
-        courseApp.addModule(name,description);
-        Module newMod = new Module(name, description, material);
-        courseApp.saveAll();
-        return newMod;
+       
+       modules.add(new Module(name, description, material));
+        return modules;
     }
 
     public Question makeQuestion(Module module) {
@@ -327,7 +318,9 @@ public class UI {
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
         System.out.println("Please enter the number of answers you want to provide");
+
         int numAnswers = keyboard.nextInt();
+        keyboard.nextLine();
         ArrayList<String> answers = new ArrayList<String>();
         for (int i=0; i<numAnswers + 1; i++) {
             System.out.println("Please enter answer"+ (i+1));
@@ -338,9 +331,8 @@ public class UI {
         System.out.println("Please enter the correct answer choice");
         String answer = keyboard.nextLine();
         Question question = new Question(name,answers,answer);
-        courseApp.saveAll();
         return question;
-        
+    
     }
 
     public static boolean isValidDate(String dateStr) {
