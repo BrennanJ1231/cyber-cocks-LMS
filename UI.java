@@ -147,21 +147,25 @@ public class UI {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
         } else {
-            
-            Scanner keyboard = new Scanner(System.in);
-            System.out.println("You are an admin");
-            System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
-            int choice = keyboard.nextInt();
-            if ( choice == 1 ) {
-                System.out.println("Please enter the course details of the one you would like to assign");
-            } else if( choice == 2 ) {
-                System.out.println("Please enter the course details so we can find your course");
-            } else if ( choice == 3 ) {
-                System.out.println("Please enter the course details of the one you would like to take");
-                String courseChoice = keyboard.nextLine();
-                courseApp.findCourses(courseChoice);
-            } else if (choice == 4) {
-                courseApp.logout();
+            while(true) { 
+                System.out.println("You are an admin");
+                System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course, enter [4] to log out.");
+                int choice = keyboard.nextInt();
+                if ( choice == 1 ) {
+                    System.out.println("Please enter the course details of the one you would like to assign");
+                } else if( choice == 2 ) {
+                    System.out.println("Please enter the course details so we can find your course");
+                } else if ( choice == 3 ) {
+                    System.out.println("Please enter the course details of the one you would like to take");
+                    String courseChoice = keyboard.nextLine();
+                    courseApp.findCourses(courseChoice);
+                } else if(choice == 4){
+                    System.out.println("Logging you out");
+                    courseApp.logout();
+                    break;
+                }else {
+                    System.out.println("Invalid input");
+                }
             }
         }
     }
