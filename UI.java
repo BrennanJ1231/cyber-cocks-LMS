@@ -12,6 +12,7 @@ import java.util.UUID;
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
     private CourseApplication courseApp = new CourseApplication();
+    public Scanner keyboard = new Scanner(System.in);
     public static void main (String[] args) {
         UI ui = new UI();
         ui.run();
@@ -26,7 +27,6 @@ public class UI {
             System.out.println("Welcome to CyberCock's school of coding");
             System.out.println("=======================================================================");
             System.out.println("Please enter [1] to Register or enter [2] to Login");
-            Scanner keyboard = new Scanner(System.in);
             int choice = keyboard.nextInt(); 
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
@@ -71,11 +71,10 @@ public class UI {
                     System.out.println("Invalid input");
                     }
                 //}
-                }
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
                 courseApp.saveAll(); //Update the UserList after creating an account
-                
+                }
             }
                 // Make it so that you have to log in after you create an account
             else if(choice == 2) {  
@@ -91,52 +90,47 @@ public class UI {
             } else {
                 System.out.println("Invalid input");
             }
-
-                System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
-                System.out.println("=======================================================================");
-                boolean quit = false;
-                while(quit != true) {
-                    if (courseApp.getUser().type.equals( "Admin")) {
-                        getAdminDialog();
-                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                        System.out.println();
-                        int adminContinueChoice = keyboard.nextInt();
-                        if(adminContinueChoice == 1) {
-                            System.out.println("You have chosen to continue");
-                        } else if(adminContinueChoice == 2) {
-                            quit = true;
-                            courseApp.saveAll();
-                        } else {
-                        System.out.println("Invalid input");
-                        }
-                    } else if (courseApp.getUser().type.equals( "Author")) {
-                        getAuthorDialog();
-                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                        System.out.println();
-                        int authorContinueChoice = keyboard.nextInt();
-                        if(authorContinueChoice == 1) {
-                            getAuthorDialog();
-                        } else if ( authorContinueChoice == 2 ) {
-                            quit = true;
-                            courseApp.saveAll();
-                        } else {
-                            System.out.println("Invalid input");
-                        }
+            System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
+            System.out.println("=======================================================================");
+            while(true) {
+                if (courseApp.getUser().type.equals( "Admin")) {
+                    getAdminDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int adminContinueChoice = keyboard.nextInt();
+                    if(adminContinueChoice == 1) {
+                        System.out.println("You have chosen to continue");
+                    } else if(adminContinueChoice == 2) {
+                        courseApp.saveAll();   
                     } else {
-                        getUserDialog();
-                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                        System.out.println();
-                        int userContinueChoice = keyboard.nextInt();
-                        if(userContinueChoice == 1) {
-                            System.out.println("You have chosen to continue");
-                        } else if ( userContinueChoice == 2 ) {
-                            quit = true;
-                            courseApp.saveAll(); // Update the courseList and UserList
-                        } else {
-                            System.out.println("Invalid input");
-                        }
+                        System.out.println("Invalid input");
                     }
-                    System.out.println("Incorrect value displayed");
+                } else if (courseApp.getUser().type.equals( "Author")) {
+                    getAuthorDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int authorContinueChoice = keyboard.nextInt();
+                    if(authorContinueChoice == 1) {
+                        getAuthorDialog();
+                    } else if ( authorContinueChoice == 2 ) {
+                        courseApp.saveAll();
+                    } else {
+                        System.out.println("Invalid input");
+                    }
+                } else {
+                    getUserDialog();
+                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                    System.out.println();
+                    int userContinueChoice = keyboard.nextInt();
+                    if(userContinueChoice == 1) {
+                        System.out.println("You have chosen to continue");
+                    } else if ( userContinueChoice == 2 ) {
+                        courseApp.saveAll(); // Update the courseList and UserList
+                    } else {
+                        System.out.println("Invalid input");
+                    }
+                }
+                System.out.println("Incorrect value displayed");
                 // Checks for exception
             } 
     }
@@ -144,24 +138,88 @@ public class UI {
             e.printStackTrace();
         }
     }
+
+    public void getRegister() {
+        System.out.println("Welcome to the school of coding! It is time to register a new Account!");
+        System.out.println("=======================================================================");
+        // Copy this line for same length
+        System.out.println("Please enter your First Name");
+        String firstName = keyboard.nextLine();
+        System.out.println("Please enter your Last Name");
+        String lastName = keyboard.nextLine();
+        System.out.println("Please enter your Email");
+        String email = keyboard.nextLine();
+        System.out.println("Please enter your Date of Birth in this notation (xx/xx/xxxx)");
+        String date;
+        while (true) {
+            date = keyboard.nextLine();
+            if(checkDateFormat(date) == true) {
+                break;
+            } else {
+                System.out.println("The date provided is in the incorrect format please try again:");
+            }
+        }
+        Date birthday = formatter.parse(date);
+        System.out.println("Please enter your Desired Username");
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your Password");
+        String password = keyboard.nextLine();
+        while (true) {
+            System.out.println("Type [1] to create an author account, [2] to create a user account, and [3] to create an admin account");
+            int choice =  keyboard.nextInt();
+            if (choice == 1) {
+                courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
+                break;
+            } else if (choice ==2) {
+                courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
+                break;
+            } else if (choice == 3) {
+                courseApp.createAdminAccount("Admin", firstName, lastName, email, birthday, username, password);
+                break;
+            }else {
+                System.out.println("Invalid input");
+            }
+            System.out.println("Logging you in.");
+            courseApp.login(username, password);
+            courseApp.saveAll(); //Update the UserList after creating an account
+            }
+        }
+
+    public void getLogin() {
+        System.out.println("You have decided to log in");
+        System.out.println("Welcome Back!");
+        System.out.println("Please enter your username");
+        System.out.println();
+        String username = keyboard.nextLine();
+        System.out.println("Please enter your password"); 
+        System.out.println();
+        String password = keyboard.nextLine();
+        courseApp.login(username, password); 
+    }
+
     public void getAdminDialog() {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
         } else {
-            Scanner keyboard = new Scanner(System.in);
-            System.out.println("You are an admin");
-            System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course");
-            int choice = keyboard.nextInt();
-            if ( choice == 1 ) {
-                System.out.println("Please enter the course details of the one you would like to assign");
-            } else if( choice == 2 ) {
-                System.out.println("Please enter the course details so we can find your course");
-            } else if ( choice == 3 ) {
-                System.out.println("Please enter the course details of the one you would like to take");
-                String courseChoice = keyboard.nextLine();
-                courseApp.findCourses(courseChoice);
-            } else if (choice == 4) {
-                courseApp.logout();
+            while(true) { 
+                System.out.println("You are an admin");
+                System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course, enter [4] to log out.");
+                int choice = keyboard.nextInt();
+                if ( choice == 1 ) {
+                    System.out.println("Please enter the course details of the one you would like to assign");
+                } else if( choice == 2 ) {
+                    System.out.println("Please enter the course details so we can find your course");
+                } else if ( choice == 3 ) {
+                    System.out.println("Please enter the course details of the one you would like to take");
+                    String courseChoice = keyboard.nextLine();
+                    courseApp.findCourses(courseChoice);
+                } else if(choice == 4){
+                    System.out.println("Logging you out");
+                    courseApp.logout();
+                    break;
+                }else {
+                    System.out.println("Invalid input");
+                }
             }
         }
     }
@@ -320,13 +378,23 @@ public class UI {
         
     }
 
-    public boolean checkDateFormat(String date) {
+    public static boolean isValidDate(String dateStr) {
         formatter.setLenient(false);
         try {
-            formatter.parse(date);
+            Date date = formatter.parse(dateStr);
+            // check if the parsed date is the same as the original date string
+            if (!dateStr.equals(formatter.format(date))) {
+                return false;
+            }
+            // check if the parsed date is a possible date
+            Calendar cal = Calendar.getInstance();
+            cal.setLenient(false);
+            cal.setTime(date);
+            cal.get(Calendar.YEAR);
             return true;
         } catch (ParseException e) {
             return false;
         }
     }
+    
 }
