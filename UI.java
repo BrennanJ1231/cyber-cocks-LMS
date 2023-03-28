@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
+//To do: implement object oriented programming
+// Any time there is a choice use a method
 
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
@@ -25,7 +27,7 @@ public class UI {
             System.out.println("=======================================================================");
             System.out.println("Please enter [1] to Register or enter [2] to Login");
             Scanner keyboard = new Scanner(System.in);
-            int choice = keyboard.nextInt();
+            int choice = keyboard.nextInt(); 
             keyboard.nextLine();
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
@@ -68,11 +70,26 @@ public class UI {
                     }else {
                     System.out.println("Invalid input");
                     }
+                //}
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
+                courseApp.saveAll(); //Update the UserList after creating an account
                 }
+            }
                 // Make it so that you have to log in after you create an account
-
+            else if(choice == 2) {  
+                System.out.println("You have decided to log in");
+                System.out.println("Welcome Back!");
+                System.out.println("Please enter your username");
+                System.out.println();
+                String username = keyboard.nextLine();
+                System.out.println("Please enter your password"); 
+                System.out.println();
+                String password = keyboard.nextLine();
+                courseApp.login(username, password);  
+            } else {
+                System.out.println("Invalid input");
+            }
 
                 System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
                 System.out.println("=======================================================================");
@@ -84,39 +101,45 @@ public class UI {
                         System.out.println();
                         int adminContinueChoice = keyboard.nextInt();
                         if(adminContinueChoice == 1) {
-                            getAdminDialog();
+                            System.out.println("You have chosen to continue");
                         } else if(adminContinueChoice == 2) {
+                            quit = true;
+                            courseApp.saveAll();
+                        } else {
+                        System.out.println("Invalid input");
+                        }
+                    } else if (courseApp.getUser().type.equals( "Author")) {
+                        getAuthorDialog();
+                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                        System.out.println();
+                        int authorContinueChoice = keyboard.nextInt();
+                        if(authorContinueChoice == 1) {
+                            getAuthorDialog();
+                        } else if ( authorContinueChoice == 2 ) {
                             quit = true;
                             courseApp.saveAll();
                         } else {
                             System.out.println("Invalid input");
                         }
-                    } else if (courseApp.getUser().type.equals("Author")) {
-                    getAuthorDialog();
-                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                    System.out.println();
-                    int authorContinueChoice = keyboard.nextInt();
-                    if(authorContinueChoice == 1) {
-                        getAuthorDialog();
-                    } else if ( authorContinueChoice == 2 ) {
-                        quit = true;
-                        courseApp.saveAll();
                     } else {
-                        System.out.println("Invalid input");
+                        getUserDialog();
+                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                        System.out.println();
+                        int userContinueChoice = keyboard.nextInt();
+                        if(userContinueChoice == 1) {
+                            System.out.println("You have chosen to continue");
+                        } else if ( userContinueChoice == 2 ) {
+                            quit = true;
+                            courseApp.saveAll(); // Update the courseList and UserList
+                        } else {
+                            System.out.println("Invalid input");
+                        }
                     }
-                }
-                System.out.println("Incorrect value displayed");
+                    System.out.println("Incorrect value displayed");
                 // Checks for exception
-            } else if(choice == 2) {  
-                System.out.println("You have decided to log in");
-            }//Log in
-            System.out.println("Welcome Back!");
-            System.out.println("Please enter your username");
-            String username = keyboard.nextLine();
-            System.out.println("Please enter your password");
-            String password = keyboard.nextLine();
-            courseApp.login(username, password);
-        } catch(Exception e) {
+            } 
+    }
+        catch(Exception e) {
             e.printStackTrace();
         }
     }
@@ -217,8 +240,6 @@ public class UI {
                 break;
             case 4: 
                 System.out.println("You have selected to logout. Good Bye");
-                //for (int i = 0; i < courseApp.userList;i++) {
-                //}
                 courseApp.logout();
             default:
                 System.out.println("Please enter a valid number");
