@@ -67,7 +67,7 @@ public class UI {
                         break;
                     }else {
                     System.out.println("Invalid input");
-                //}
+                    }
                 System.out.println("Logging you in.");
                 courseApp.login(username, password);
                 }
@@ -78,20 +78,20 @@ public class UI {
                 System.out.println("=======================================================================");
                 boolean quit = false;
                 while(quit != true) {
-                if (courseApp.getUser().type.equals( "Admin")) {
-                    getAdminDialog();
-                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                    System.out.println();
-                    int adminContinueChoice = keyboard.nextInt();
-                    if(adminContinueChoice == 1) {
+                    if (courseApp.getUser().type.equals( "Admin")) {
                         getAdminDialog();
-                    } else if(adminContinueChoice == 2) {
-                        quit = true;
-                        courseApp.saveAll();
-                    } else {
-                        System.out.println("Invalid input");
-                    }
-                } else if (courseApp.getUser().type.equals("Author")) {
+                        System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
+                        System.out.println();
+                        int adminContinueChoice = keyboard.nextInt();
+                        if(adminContinueChoice == 1) {
+                            getAdminDialog();
+                        } else if(adminContinueChoice == 2) {
+                            quit = true;
+                            courseApp.saveAll();
+                        } else {
+                            System.out.println("Invalid input");
+                        }
+                    } else if (courseApp.getUser().type.equals("Author")) {
                     getAuthorDialog();
                     System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
                     System.out.println();
@@ -101,19 +101,6 @@ public class UI {
                     } else if ( authorContinueChoice == 2 ) {
                         quit = true;
                         courseApp.saveAll();
-                    } else {
-                        System.out.println("Invalid input");
-                    }
-                } else {
-                    getUserDialog();
-                    System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                    System.out.println();
-                    int userContinueChoice = keyboard.nextInt();
-                    if(userContinueChoice == 1) {
-                        System.out.println("You have chosen to continue");
-                    } else if ( userContinueChoice == 2 ) {
-                        quit = true;
-                        courseApp.saveAll(); // Update the courseList and UserList
                     } else {
                         System.out.println("Invalid input");
                     }
@@ -129,11 +116,11 @@ public class UI {
             System.out.println("Please enter your password");
             String password = keyboard.nextLine();
             courseApp.login(username, password);
-    }
-        catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
+
     public void getAdminDialog() {
         if (courseApp.getUser().getAge()!= true) {
             System.out.println("You are too young to be an admin sorry");
@@ -230,9 +217,8 @@ public class UI {
                 break;
             case 4: 
                 System.out.println("You have selected to logout. Good Bye");
-                for (int i = 0; i < courseApp.userList;i++) {
-
-                }
+                //for (int i = 0; i < courseApp.userList;i++) {
+                //}
                 courseApp.logout();
             default:
                 System.out.println("Please enter a valid number");
