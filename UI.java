@@ -39,7 +39,6 @@ public class UI {
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
                 getRegister();
-                getLogin();
             }else if(choice == 2) {  
                 getLogin();
             } else {
@@ -104,59 +103,40 @@ public class UI {
             }else {
                 System.out.println("Invalid input");
             }
-            System.out.println("Logging you in.");
         }
-        courseApp.login(username, password);
+        System.out.println("Logging you in.");
         courseApp.saveAll(); //Update the UserList after creating an account
-            
+        courseApp.login(username, password);
     }
 
     public void getLogin() {
         System.out.println("It is time to log in");
         System.out.println("Please enter your username");
-        keyboard.nextLine();
         String username = keyboard.nextLine();
-        System.out.println("Please enter your password"); 
-        keyboard.nextLine();
+        System.out.println("Please enter your password");
         String password = keyboard.nextLine();
         courseApp.login(username, password); 
     }
 
     public void getAdminDialog() {
-        if (courseApp.getUser().getAge()!= true) {
-            System.out.println("You are too young to be an admin sorry");
-        } else {
-            while(true) { 
-                System.out.println("You are an admin");
-                System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course, enter [4] to log out.");
-                int choice = keyboard.nextInt();
-                if ( choice == 1 ) {
-                    System.out.println("Please enter the course details of the one you would like to assign");
-                } else if( choice == 2 ) {
-                    System.out.println("Please enter the course details so we can find your course");
-                } else if ( choice == 3 ) {
-                    System.out.println("Please enter the course details of the one you would like to take");
-                    String courseChoice = keyboard.nextLine();
-                    courseApp.findCourse(courseChoice);
-                } else if(choice == 4){
-                    System.out.println("Logging you out");
-                    courseApp.logout();
-                    break;
-                }else {
-                    System.out.println("Invalid input");
-                }
-                System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-                System.out.println();
-                int adminContinueChoice = keyboard.nextInt();
-                if( adminContinueChoice == 1 ) {
-                    System.out.println("You have chosen to continue");
-                } else if(adminContinueChoice == 2) {
-                    courseApp.saveAll(); 
-                    break;  
-                } else {
-                    System.out.println("Invalid input");
-                    break; // If the user does not want to do anything else kill the loop
-                }
+        System.out.println("You are an admin");
+        while (true) {
+            System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course, enter [4] to log out.");
+            int choice = keyboard.nextInt();
+            if ( choice == 1 ) {
+                System.out.println("Please enter the course details of the one you would like to assign");
+            } else if ( choice == 2 ) {
+                System.out.println("Please enter the course details so we can find your course");
+            } else if ( choice == 3 ) {
+                System.out.println("Please enter the course details of the one you would like to take");
+                String courseChoice = keyboard.nextLine();
+                courseApp.findCourse(courseChoice);
+            } else if (choice == 4) {
+                System.out.println("Logging you out");
+                courseApp.logout();
+                break;
+            } else {
+                System.out.println("Invalid input");
             }
         }
     }
@@ -166,7 +146,7 @@ public class UI {
     public void getAuthorDialog() {
         System.out.println("You are an author");
         while (true) {
-            System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses");
+            System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses, enter [4] to logout");
             System.out.println();
             int choice = keyboard.nextInt();
             if (choice == 1 )  {
@@ -186,24 +166,15 @@ public class UI {
                     }
                     System.out.println("Please enter the name of the course you would like to edit");
                     String editCourse = keyboard.nextLine();
+                    System.out.println("Enter [1] to edit a module or [2] to edit instructive");
                 }
             } else if ( choice == 4 ) {
+                System.out.println("Logging you out");
                 courseApp.logout();
                 break;
             } else {
                 System.out.println("Invalid Choice");
-            }
-            System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-            System.out.println();
-            int authorContinueChoice = keyboard.nextInt();
-            if(authorContinueChoice == 1) {
-                System.out.println("You have selected to continue");
-            } else if ( authorContinueChoice == 2 ) {
-                courseApp.saveAll();
-                break;
-            } else {
-                System.out.println("Invalid input");
-            }           
+            }      
         }// End of while loop
     } // End of Author Dialog
     
@@ -215,41 +186,29 @@ public class UI {
         while (true) {  
             System.out.println("Please enter [1] to view your courses, enter [2] to search for one a courses, enter [3] to take a course, enter [4] to logout");
             int choice =  keyboard.nextInt();
-            keyboard.nextLine();
             if(choice == 1) {
                 System.out.println("Showing your courses");
                 ArrayList<Course> myCourses = courseApp.getMyCourses();
                 for(int i = 0; i < myCourses.size(); i++) {
                     System.out.println(i+1 + ": " + myCourses.get(i).name);
                 }
-            }else if( choice == 2 ) { 
-                    System.out.println("You have selected to find courses");
-                    System.out.println("Please enter the name of the course to search for.");
-                    System.out.println();
-                    String name = keyboard.nextLine();
-                    courseApp.findCourse(name);
-                    break;
-            }else if(choice == 3) { 
-                    System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
-                    String courseChoice = keyboard.nextLine();
-                    courseApp.takeCourse(courseChoice);
-            }else if (choice == 4) { 
+            } else if ( choice == 2 ) { 
+                System.out.println("You have selected to find courses");
+                System.out.println("Please enter the name of the course to search for.");
+                System.out.println();
+                String name = keyboard.nextLine();
+                courseApp.findCourse(name);
+            } else if (choice == 3) { 
+                System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
+                String courseChoice = keyboard.nextLine();
+                courseApp.takeCourse(courseChoice);
+            } else if (choice == 4) { 
                 System.out.println("You have selected to logout. Good Bye");
                 courseApp.logout();
-            }else {
-                System.out.println("Please enter a valid number");
-            }
-            System.out.println("Would you like to do anything else? Please enter [1] to continue or [2] to quit.");
-            System.out.println();
-            int userContinueChoice = keyboard.nextInt();
-            if(userContinueChoice == 1) {
-                System.out.println("You have chosen to continue");
-            } else if ( userContinueChoice == 2 ) {
-                courseApp.saveAll(); // Update the courseList and UserList
                 break;
             } else {
-                System.out.println("Invalid input");
-            }   
+                System.out.println("Please enter a valid number");
+            }
         }
     }
 
