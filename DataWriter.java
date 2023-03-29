@@ -81,11 +81,13 @@ public class DataWriter {
         userDetails.put("email",user.email);
         userDetails.put("birthday",FORMATTER.format(user.birthday));
         userDetails.put("createdCourses", user.coursesCreated);
-        JSONArray courses = new JSONArray();
-        for(int i = 0; i < user.listOfCourses.size();  i++) {
-            courses.add(addCourses(user.listOfCourses.get(i)));
+        if(user.listOfCourses != null) {
+            JSONArray courses = new JSONArray();
+            for(int i = 0; i < user.listOfCourses.size();  i++) {
+                courses.add(addCourses(user.listOfCourses.get(i)));
+            }
+            userDetails.put("coursesCreated", courses);
         }
-        userDetails.put("coursesCreated", courses);
         return userDetails;
 	}
     public static JSONObject addCourses(Course course) {
@@ -130,11 +132,13 @@ public class DataWriter {
             jsonModules.add(getModuleJSON(course.modules.get(i)));
         }
         courseDetails.put("modules", jsonModules);
-        JSONArray jsonComments = new JSONArray();
-        for(int i = 0; i < course.comments.size(); i++) {
-            jsonComments.add(getCommentsJSON(course.comments.get(i)));
+        if(course.comments != null) {
+            JSONArray comments = new JSONArray();
+            for(int i = 0; i < course.comments.size();  i++) {
+                comments.add(getCommentsJSON(course.comments.get(i)));
+            }
+            courseDetails.put("comments", comments);
         }
-        courseDetails.put("comments", jsonComments);
         courseDetails.put("rating", course.rating);
         return courseDetails;
     }

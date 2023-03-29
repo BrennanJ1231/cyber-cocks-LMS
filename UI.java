@@ -94,7 +94,7 @@ public class UI {
             if (choice == 1) {
                 courseApp.createAuthorAccount("Author", firstName, lastName, email, birthday, username, password);
                 break;
-            } else if (choice ==2) {
+            } else if (choice == 2) {
                 courseApp.createUserAccount("Registered User", firstName, lastName, email, birthday, username, password);
                 break;
             } else if (choice == 3) {
@@ -147,7 +147,6 @@ public class UI {
         System.out.println("You are an author");
         while (true) {
             System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses, enter [4] to logout");
-            System.out.println();
             int choice = keyboard.nextInt();
             if (choice == 1 )  {
                 // Create Courses
