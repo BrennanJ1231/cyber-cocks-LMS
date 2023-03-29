@@ -174,16 +174,7 @@ public class UI {
                 makeCourse();
             } else if ( choice  == 2 ) {
                 // List Courses
-                Author currentAuthor = (Author) courseApp.getUser();
-                if (currentAuthor.listOfCourses.isEmpty()) {
-                    System.out.println("You currently have no classes");
-                } else {
-                    ArrayList<Course> courses = courseApp.getMyCourses();
-                    for(int i = 0; i < courses.size(); i++) {
-                        System.out.println(courses.get(i).name);
-                    }
-                }
-            System.out.println();
+                currentCourses();
             } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
                 Author currentAuthor = (Author) courseApp.getUser();
                 if (currentAuthor.listOfCourses.isEmpty()) {
@@ -261,6 +252,21 @@ public class UI {
             }   
         }
     }
+
+    /**
+     * returns an a
+     * @return
+     */
+    public ArrayList<Course> currentCourses() {
+        Author currentAuthor = (Author) courseApp.getUser();
+                if (currentAuthor.listOfCourses.isEmpty()) {
+                    return null;
+                } else {
+                    ArrayList<Course> courses = courseApp.getMyCourses();
+                    return courses;
+                }
+    }
+
 
     /**
      * Dialog that pops up in the author dialog
