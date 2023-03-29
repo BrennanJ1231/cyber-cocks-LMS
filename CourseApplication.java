@@ -83,19 +83,13 @@ public class CourseApplication{
         //Change this based on whether the user is author or Registered User
     }
 
-    public Course addCourse(String title) {
-        Course newCourse = new Course(title, title, null, null, null, null);
+    public Course addCourse(Course newCourse) {
         courselist.addCourse(newCourse);
         return newCourse;
     }
     public Course editCourse(Course course, String title) {
         course.name = title;
         return course;
-    }
-
-    public Module addModule(String name, String description) {
-        Module newModule = new Module(name, description, null);
-        return newModule;
     }
     public double reviewCourse (Course course, double rating) {
         course.rating = rating;

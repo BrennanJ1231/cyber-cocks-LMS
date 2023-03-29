@@ -94,6 +94,12 @@ public class DataWriter {
         return courses;
     }
 
+    //courses is a hashmap and the key is hardcoded to be "uuid" and that wont work because it wont accept duplicates  
+    // old code line 93     --  courses.put("UUID", course.uuid.toString()); --
+    // proposed new code on line 93 is    -- courses.put(course.uuid.toString(), course.uuid.toString()); --  
+    // 
+
+
     public static void saveCourse(String fileName) {
         CourseList courseList = CourseList.getInstance();
 		ArrayList<Course> courses = courseList.getAll();
@@ -138,7 +144,7 @@ public class DataWriter {
         moduleDetails.put("description", module.description);
         JSONArray jsonMaterial = new JSONArray();
         for(int i = 0; i < module.material.size(); i++) {
-            jsonMaterial.add(getMaterialJSON(module.material.get(i)));
+            jsonMaterial.add(module.material.get(i));
         }
         moduleDetails.put("material", jsonMaterial);
         JSONArray jsonTest = new JSONArray();

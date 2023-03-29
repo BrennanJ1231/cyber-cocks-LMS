@@ -13,8 +13,9 @@ public class Assignment {
     Constructs a new Assignment with the specified name.
     @param name the name of the assignment.
     */
-    public Assignment(String name) {
+    public Assignment(String name, ArrayList<Question> questions) {
         this.name = name;
+        this.questions = questions;
     }
 
     /**
@@ -58,5 +59,6 @@ public class Assignment {
         }
         return numRight/questions.size();
     }
+
 
 }
