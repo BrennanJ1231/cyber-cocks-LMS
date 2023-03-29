@@ -11,7 +11,6 @@ public class Module {
     protected ArrayList<Comment> comments;
 
     /**
-
     Constructor for Module class.
     @param title the title of the module.
     @param description the description of the module.
@@ -25,7 +24,6 @@ public class Module {
     }
 
     /**
-
     Adds an assignment to the test.
     @param assignment the assignment to add.
     */
@@ -35,7 +33,6 @@ public class Module {
     }
    
     /**
-
     Adds multiple assignments.
     @param assignments an ArrayList of assignments to add.
     */
