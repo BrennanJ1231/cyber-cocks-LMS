@@ -2,7 +2,7 @@ import java.util.ArrayList;
 // We need to reference People.java
 public class UserList {
     
-    private static UserList UserList = null;
+    private static UserList users = null;
     private static ArrayList <User> userList = new ArrayList<User>();
 
     public UserList() {
@@ -11,10 +11,10 @@ public class UserList {
 
 
     public static UserList getInstance() {
-		if (UserList == null) {
-			UserList = new UserList();
+		if (users == null) {
+			users = new UserList();
 		}
-		return UserList;
+		return users;
 	}
 
 
