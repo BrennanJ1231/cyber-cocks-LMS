@@ -47,15 +47,13 @@ public class UI {
             }
             System.out.println("Welcome " +  courseApp.getUser().getFirstName() + "!");
             System.out.println("=======================================================================");
-            while(true) {
-                if (courseApp.getUser().type.equals( "Admin")) {
-                    getAdminDialog(); // Admin
-                } else if (courseApp.getUser().type.equals( "Author")) {
-                    getAuthorDialog(); // Author
-                } else {
-                    getUserDialog(); // User
-                }
-            } 
+            if (courseApp.getUser().type.equals( "Admin")) {
+                getAdminDialog(); // Admin
+            } else if (courseApp.getUser().type.equals( "Author")) {
+                getAuthorDialog(); // Author
+            } else {
+                getUserDialog(); // User
+            }
         }catch(Exception e) {
             e.printStackTrace();
         }
