@@ -139,7 +139,7 @@ public class UI {
                 } else if ( choice == 3 ) {
                     System.out.println("Please enter the course details of the one you would like to take");
                     String courseChoice = keyboard.nextLine();
-                    courseApp.findCourses(courseChoice);
+                    courseApp.findCourse(courseChoice);
                 } else if(choice == 4){
                     System.out.println("Logging you out");
                     courseApp.logout();
@@ -238,7 +238,7 @@ public class UI {
                     System.out.println("Please enter the name of the course to search for.");
                     System.out.println();
                     String name = keyboard.nextLine();
-                    courseApp.findCourses(name);
+                    courseApp.findCourse(name);
                     break;
             }else if(choice == 3) { 
                     System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
