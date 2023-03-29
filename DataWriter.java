@@ -144,7 +144,7 @@ public class DataWriter {
         moduleDetails.put("description", module.description);
         JSONArray jsonMaterial = new JSONArray();
         for(int i = 0; i < module.material.size(); i++) {
-            jsonMaterial.add(module.material.get(i));
+            jsonMaterial.add(getMaterialJSON(module.material.get(i)));
         }
         moduleDetails.put("material", jsonMaterial);
         JSONArray jsonTest = new JSONArray();
