@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardUpLeftHandler;
 
 //To do: implement object oriented programming
 // Any time there is a choice use a method
@@ -267,6 +268,7 @@ public class UI {
      * @return
      */
     public Course makeCourse() {
+        keyboard.nextLine();
         System.out.println("Time to create a Course");
         System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Course");
@@ -277,6 +279,7 @@ public class UI {
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         UUID uuid = UUID. randomUUID();
         Course course = new Course(name, description,lang, uuid, makeModule(), null);
+        courseApp.addCourse(course);
         courseApp.saveAll();
         return course;
         
@@ -301,6 +304,7 @@ public class UI {
             System.out.println("Please enter the materials contents");
             String materialContent = keyboard.nextLine();
             System.out.println("Would you like to add more material? (Enter 'y' for yes, or 'n' for no)");
+            material.add(new InstructiveMaterial(materialName, materialContent));
             String YoN = keyboard.nextLine();
             if(YoN.equalsIgnoreCase(YoN)) {
                 break;
@@ -315,12 +319,13 @@ public class UI {
         ArrayList<Assignment> assign =  new ArrayList<Assignment>();
         System.out.println("Please enter the name of the assignment");
         String name = keyboard.nextLine();
-        Assignment.addAssignment(name);
-        return assignment;
+        assign.add(new Assignment(name, makeQuestion()));
+        return assign;
 
     }
 
-    public Question makeQuestion(Module module) {
+    public ArrayList<Question> makeQuestion() {
+        ArrayList<Question> questions = new ArrayList<Question>();
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
         System.out.println("Please enter the number of answers you want to provide");
@@ -336,8 +341,8 @@ public class UI {
         }
         System.out.println("Please enter the correct answer choice");
         String answer = keyboard.nextLine();
-        Question question = new Question(name,answers,answer);
-        return question;
+        questions.add(new Question(name,answers,answer));
+        return questions;
     
     }
 

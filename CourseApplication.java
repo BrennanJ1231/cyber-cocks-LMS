@@ -83,8 +83,7 @@ public class CourseApplication{
         //Change this based on whether the user is author or Registered User
     }
 
-    public Course addCourse(String title) {
-        Course newCourse = new Course(title, title, null, null, null, null);
+    public Course addCourse(Course newCourse) {
         courselist.addCourse(newCourse);
         return newCourse;
     }

@@ -134,7 +134,6 @@ public class DataLoader {
             i++;
             iterator.next();
         }
-        Module newModule = new Module(title, description, materialList);
         JSONArray assignments = (JSONArray)module.get("assignment");
         iterator = assignments.iterator();
         i = 0;
@@ -144,8 +143,8 @@ public class DataLoader {
             i++;
             iterator.next();
         }
-        newModule.addAssignments(assignmentList);
-        return newModule;
+       
+        return (new Module(title, description, materials, assignments));
       
     }
     public static InstructiveMaterial getMaterial(JSONObject material) {
@@ -157,7 +156,6 @@ public class DataLoader {
     public static Assignment getAssignments(JSONObject assignment) {
         ArrayList<Question> questionList = new ArrayList<Question>();
         String name = (String)assignment.get("name");
-        Assignment newAssignment = new Assignment(name);
         JSONArray questions = (JSONArray) assignment.get("questions");
         Iterator iterator = questions.iterator();
         int i = 0;
@@ -167,8 +165,7 @@ public class DataLoader {
             i++;
             iterator.next();
         }
-        newAssignment.addQuestions(questionList);
-        return newAssignment;
+        return new Assignment(name, questions);
     }
 
     public static Question getQuestions(JSONObject question) {
