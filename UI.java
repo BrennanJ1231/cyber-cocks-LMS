@@ -39,6 +39,7 @@ public class UI {
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
                 getRegister();
+                getLogin();
             }else if(choice == 2) {  
                 getLogin();
             } else {
@@ -106,19 +107,19 @@ public class UI {
                 System.out.println("Invalid input");
             }
             System.out.println("Logging you in.");
-            courseApp.login(username, password);
-            courseApp.saveAll(); //Update the UserList after creating an account
-            }
         }
+        courseApp.login(username, password);
+        courseApp.saveAll(); //Update the UserList after creating an account
+            
+    }
 
     public void getLogin() {
-        System.out.println("You have decided to log in");
-        System.out.println("Welcome Back!");
+        System.out.println("It is time to log in");
         System.out.println("Please enter your username");
-        System.out.println();
+        keyboard.nextLine();
         String username = keyboard.nextLine();
         System.out.println("Please enter your password"); 
-        System.out.println();
+        keyboard.nextLine();
         String password = keyboard.nextLine();
         courseApp.login(username, password); 
     }
