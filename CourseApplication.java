@@ -107,8 +107,6 @@ public class CourseApplication{
     }
 
     public void saveAll() {
-       ArrayList<User> list = userList.getAll();
-       System.out.println(list.get(4).username);
         userList.save();
         courselist.save();
     }

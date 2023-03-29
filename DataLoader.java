@@ -144,7 +144,7 @@ public class DataLoader {
             iterator.next();
         }
        
-        return (new Module(title, description, materials, assignments));
+        return (new Module(title, description, materialList, assignmentList));
       
     }
     public static InstructiveMaterial getMaterial(JSONObject material) {
@@ -165,7 +165,7 @@ public class DataLoader {
             i++;
             iterator.next();
         }
-        return new Assignment(name, questions);
+        return new Assignment(name, questionList);
     }
 
     public static Question getQuestions(JSONObject question) {
