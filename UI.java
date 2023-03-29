@@ -78,7 +78,7 @@ public class UI {
     //Methods below for the run method
 
 
-    public void getRegister() {
+    public void getRegister() throws ParseException {
         System.out.println("Welcome to the school of coding! It is time to register a new Account!");
         System.out.println("=======================================================================");
         // Copy this line for same length
@@ -255,7 +255,17 @@ public class UI {
                 System.out.println("Please enter the name of the course to search for.");
                 System.out.println();
                 String name = keyboard.nextLine();
-                courseApp.findCourses(name);
+                if (courseApp.findCourse(name) != null) {
+                    Course course = courseApp.findCourse(name);
+                    System.out.println(course.name);
+                    System.out.println("Would you like to add this course enter 'y' for yes and 'n' for no");
+                    String addCourseYoN = keyboard.nextLine();
+                    if (addCourseYoN.equalsIgnoreCase("y")) {
+
+                    } else if (addCourseYoN.equalsIgnoreCase("n")) {
+
+                    }
+                }
                 break;
             case 3:
                 System.out.println("You have decided to take a course. Please enter the name of the course you want to take");

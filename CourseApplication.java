@@ -20,8 +20,8 @@ public class CourseApplication{
         this.userList = UserList.getInstance();
     }
 
-    public ArrayList<Course>findCourses(String keyword) {
-        return this.findCourses(keyword);
+    public Course findCourse(String name) {
+        return courselist.findCourse(name);
     }
 
     public ArrayList<User>findUser(String keyword) {
