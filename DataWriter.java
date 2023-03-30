@@ -193,7 +193,13 @@ public class DataWriter {
 		commentDetails.put("author", comment.author.toString());
         commentDetails.put("content", comment.content);
         commentDetails.put("datePosted", FORMATTER.format(comment.date));
-        commentDetails.put("comments", comment.comments);
+        if(comment.comments != null) {
+            JSONArray comments = new JSONArray();
+            for(int i = 0; i < comment.comments.size();  i++) {
+                comments.add(getCommentsJSON(comment.comments.get(i)));
+            }
+            commentDetails.put("comments", comments);
+        }
         return commentDetails;
     }
 }

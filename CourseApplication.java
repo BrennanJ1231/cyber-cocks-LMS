@@ -29,7 +29,7 @@ public class CourseApplication{
         return this.findUser(keyword);
     }
     public User findUser(UUID uuid) {
-        return this.findUser(uuid);
+        return userList.findUser(uuid);
     }
 
     public User createUserAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password)  {
