@@ -39,4 +39,22 @@ public class Module {
     public void addAssignments(ArrayList<Assignment> assignments) {
         test = assignments;
     }
+
+    public Assignment findAssignment(String name) {
+        for (int i=0; i<test.size();i++) {
+            if (test.get(i).name.equalsIgnoreCase(name)) {
+                return test.get(i);
+            }
+        }
+        return null;
+    }
+
+    public InstructiveMaterial findMaterial(String name) {
+        for (int i=0; i<material.size();i++) {
+            if (material.get(i).name.equalsIgnoreCase(name)) {
+                return material.get(i);
+            }
+        }
+        return null;
+    }
 }

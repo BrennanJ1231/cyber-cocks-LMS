@@ -34,7 +34,15 @@ public class Course {
         this.uuid = uuid;
         this.comments =  comments;
     }
-
+    public Module findModule(String title) {
+        for (int i=0; i<modules.size();i++) {
+            if (modules.get(i).title.equalsIgnoreCase(title)) {
+                return modules.get(i);
+            }
+        }
+        return null;
+    
+    }
     /*
      Adds a module to the course.
     @param module the module to be added.

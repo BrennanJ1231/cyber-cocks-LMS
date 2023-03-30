@@ -49,7 +49,7 @@ public class DataLoader {
                 }
                 if(type.equalsIgnoreCase("registered user")) {
                     ArrayList<Course> currentCourses = new ArrayList<Course>();
-                    JSONArray courseArray = (JSONArray)user.get("currentCourse");
+                    JSONArray courseArray = (JSONArray)user.get("currentCourses");
                     if(courseArray != null){
                     Iterator iterator2 = courseArray.iterator();
                     int j = 0;
@@ -80,8 +80,6 @@ public class DataLoader {
     }
     public static ArrayList<Course> loadCourses() {
         courseList = new ArrayList<Course>();
-        ArrayList<Module> moduleList = new ArrayList<Module>();
-        ArrayList<Comment> commentList = new ArrayList<Comment>();
         try {
             FileReader reader = new FileReader("./json/courses.json");
             JSONParser parser = new JSONParser();
@@ -89,6 +87,8 @@ public class DataLoader {
             Iterator iterator2 = courses.iterator();
             int i = 0;
             while(iterator2.hasNext()) {
+                ArrayList<Module> moduleList = new ArrayList<Module>();
+                ArrayList<Comment> commentList = new ArrayList<Comment>();
                 JSONObject course = (JSONObject)courses.get(i);
                 UUID uuid = UUID.fromString(course.get("UUID").toString());
                 String name = (String)course.get("name");
@@ -127,6 +127,7 @@ public class DataLoader {
     public static Module getModules(JSONObject module) {
         ArrayList<InstructiveMaterial> materialList = new ArrayList<InstructiveMaterial>();
         ArrayList<Assignment> assignmentList = new ArrayList<Assignment>();
+        ArrayList<Comment> commentList = new ArrayList<Comment>();
         String title = (String)module.get("title");
         String description = (String)module.get("description");
         JSONArray materials = (JSONArray)module.get("material");
@@ -142,13 +143,25 @@ public class DataLoader {
         iterator = assignments.iterator();
         i = 0;
         while(iterator.hasNext()) {
-            JSONObject assignment = (JSONObject) assignments.get(0);
+            JSONObject assignment = (JSONObject) assignments.get(i);
             assignmentList.add(getAssignments(assignment));
             i++;
             iterator.next();
         }
-       
-        return (new Module(title, description, materialList, assignmentList));
+        i = 0;
+        JSONArray comments = (JSONArray)module.get("comments");
+        if(comments != null) {
+            iterator = comments.iterator();
+            while(iterator.hasNext()) {
+                JSONObject comment = (JSONObject) comments.get(i);
+                commentList.add(getComments(comment));
+                i++;
+                iterator.next();
+            }
+         }
+       Module modules = new Module(title, description, materialList, assignmentList);
+       modules.comments = commentList;
+        return modules;
       
     }
     public static InstructiveMaterial getMaterial(JSONObject material) {
@@ -186,6 +199,7 @@ public class DataLoader {
             Date date = formatter.parse(comment.get("datePosted").toString());
             Comment newComment = new Comment(author, content, date);
             JSONArray comments = (JSONArray)comment.get("comments");
+            if(comments != null) {
             Iterator iterator = comments.iterator();
             int i = 0;
             while(iterator.hasNext()) {
@@ -195,6 +209,7 @@ public class DataLoader {
                 iterator.next();
             }
             newComment.addComments(commentList);
+        }
             return newComment;
         } catch(Exception e) {
             e.printStackTrace();

@@ -156,6 +156,13 @@ public class DataWriter {
             jsonTest.add(getAssignmentJSON(module.test.get(i)));
         }
         moduleDetails.put("assignment", jsonTest);
+        if(module.comments != null) {
+            JSONArray comments = new JSONArray();
+            for(int i = 0; i < module.comments.size();  i++) {
+                comments.add(getCommentsJSON(module.comments.get(i)));
+            }
+            moduleDetails.put("comments", comments);
+        }
         return moduleDetails;
     }
     public static JSONObject getMaterialJSON(InstructiveMaterial material) {
@@ -186,7 +193,13 @@ public class DataWriter {
 		commentDetails.put("author", comment.author.toString());
         commentDetails.put("content", comment.content);
         commentDetails.put("datePosted", FORMATTER.format(comment.date));
-        commentDetails.put("comments", comment.comments);
+        if(comment.comments != null) {
+            JSONArray comments = new JSONArray();
+            for(int i = 0; i < comment.comments.size();  i++) {
+                comments.add(getCommentsJSON(comment.comments.get(i)));
+            }
+            commentDetails.put("comments", comments);
+        }
         return commentDetails;
     }
 }
