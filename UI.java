@@ -304,23 +304,26 @@ public class UI {
         }
     }
     public void showComment(Module module) {
-        System.out.println("Viewing comments");
+        System.out.println("Viewing comments" + module.comments.get(0).content);
         if(module.comments == null) {
             System.out.println("No comments");
             showMaterials(module);
         }
         for(int i = 0; i < module.comments.size(); i++) {
-            System.out.println(i+1 + ": " + "Author: " + courseApp.findUser(module.comments.get(i).author).username);
+            System.out.println(i+1 + ": " + "Author: " + module.comments.get(i).author);
             System.out.println("Content: " + module.comments.get(i).content);
             System.out.println("Date: " + module.comments.get(i).date.toString());
+            if(module.comments.get(i).comments != null) {
             for(int j = 0; j < module.comments.get(i).comments.size(); j ++) {
                 System.out.println(j+1 + ": " + "Author: " + courseApp.findUser(module.comments.get(i).comments.get(j).author).username);
                 System.out.println("Content: " + module.comments.get(i).comments.get(j).content);
                 System.out.println("Date: " + module.comments.get(i).comments.get(j).date.toString());
             }
         }
+        }
         System.out.println("Enter which comment you would like to reply to, or enter " + (int)(module.comments.size()+1) + " to create a new comment, or 0 to go back");
         int choice = keyboard.nextInt();
+        keyboard.nextLine();
         if(choice == 0) {
             showMaterials(module);
         }
@@ -334,15 +337,22 @@ public class UI {
         String content = keyboard.nextLine();
         module.comments.add(new Comment(courseApp.getUser().uuid, content, new Date()));
         System.out.println("Enter 0 to go back");
-        showComment(module);
-
+        int choice = keyboard.nextInt();
+        if(choice == 0){
+            courseApp.saveAll();
+            showComment(module);
+        }
     }
     public void replyComment(Comment comment, Module module) {
         System.out.println("Enter your comment: ");
         String content = keyboard.nextLine();
         comment.comments.add(new Comment(courseApp.getUser().uuid, content, new Date()));
         System.out.println("Enter 0 to go back");
-        showComment(module);
+        int choice = keyboard.nextInt();
+        if(choice == 0){
+            courseApp.saveAll();
+            showComment(module);
+        }
     }
 
     /**
