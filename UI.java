@@ -208,8 +208,9 @@ public class UI {
 
         System.out.println("Showing your courses");
                 ArrayList<Course> myCourses = courseApp.getMyCourses();
+                ArrayList<Progress> progress = (ArrayList<Progress>)courseApp.regUser.courseProgress;
                 for(int i = 0; i < myCourses.size(); i++) {
-                    System.out.println(i+1 + ": " + myCourses.get(i).name);
+                    System.out.println(i+1 + ": " + myCourses.get(i).name + "\t" + progress.get(i).courseProgress);
                 }
                 System.out.println("Type which course you would like to view, or enter 0 to go back");
                 int choice = keyboard.nextInt();

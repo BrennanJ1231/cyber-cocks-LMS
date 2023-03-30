@@ -14,6 +14,10 @@ public class Progress {
     @param module The module object to calculate the progress of
     @return The progress of the module as a decimal value 
     */
+    public Progress() {
+        courseProgress = 0;
+        moduleProgress = 0;
+    }
     public double calculateModuleProgress(Module module){
         double numAssignment = module.test.size();
         double completed = 0;

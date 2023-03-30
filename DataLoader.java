@@ -49,6 +49,7 @@ public class DataLoader {
                 }
                 if(type.equalsIgnoreCase("registered user")) {
                     ArrayList<Course> currentCourses = new ArrayList<Course>();
+                    ArrayList<Progress> courseP = new ArrayList<Progress>();
                     JSONArray courseArray = (JSONArray)user.get("currentCourses");
                     if(courseArray != null){
                     Iterator iterator2 = courseArray.iterator();
@@ -64,8 +65,20 @@ public class DataLoader {
                         j++;
                         iterator2.next();
                     }
+                    JSONArray courseProgress = (JSONArray)user.get("courseProgress");
+                    Iterator iterator3 = courseProgress.iterator();
+                    j = 0;
+                    while(iterator3.hasNext()) {
+                        JSONObject progress = (JSONObject)courseProgress.get(i);
+                        Double prog = Double.parseDouble(progress.get("courseProgress").toString());
+                        Progress pro = new Progress();
+                        pro.courseProgress = prog;
+                        courseP.add(pro);
+                    }
                 }
-                    userList.add(new RegisteredUser(uuid,"Registered user", username, firstName, lastname, password, email, birthday, currentCourses));
+                    RegisteredUser RegUser = new RegisteredUser(uuid, "Registered user", username, firstName, lastname, password, email, birthday, currentCourses);
+                    RegUser.courseProgress = courseP;
+                    userList.add(RegUser);
                 }
                 if(type.equalsIgnoreCase("admin")) {
                     userList.add(new Admin(uuid,"Admin", username, firstName, lastname, password, birthday, email));

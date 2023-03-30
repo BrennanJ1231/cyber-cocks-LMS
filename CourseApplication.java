@@ -8,7 +8,7 @@ public class CourseApplication{
     private UserList userList;
     protected Course Currentcourse;
     private User user;
-    private RegisteredUser regUser;
+    protected RegisteredUser regUser;
     private Admin admin;
     private Author author;
 
