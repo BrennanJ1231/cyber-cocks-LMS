@@ -271,7 +271,18 @@ public class UI {
         return mod;
     }
 
-    public 
+
+    public InstructiveMaterial editInstructive(Module mod) {
+        //Enter the module name and edit the different
+        ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
+        System.out.println("Please enter the materials name");
+        String materialName = keyboard.nextLine();
+        System.out.println("Please enter the materials contents");
+        String materialContent = keyboard.nextLine();
+        System.out.println("Would you like to add more material? (Enter 'y' for yes, or 'n' for no)");
+        material.add(new InstructiveMaterial(materialName, materialContent));
+        return 
+    }
     /**
      * Make Module Dialog
      * @param course the course you want to create a course in
