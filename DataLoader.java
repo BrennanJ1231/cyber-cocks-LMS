@@ -66,15 +66,19 @@ public class DataLoader {
                         iterator2.next();
                     }
                     JSONArray courseProgress = (JSONArray)user.get("courseProgress");
+                    if(courseProgress != null) {
                     Iterator iterator3 = courseProgress.iterator();
                     j = 0;
                     while(iterator3.hasNext()) {
-                        JSONObject progress = (JSONObject)courseProgress.get(i);
+                        JSONObject progress = (JSONObject)courseProgress.get(j);
                         Double prog = Double.parseDouble(progress.get("courseProgress").toString());
                         Progress pro = new Progress();
                         pro.courseProgress = prog;
                         courseP.add(pro);
+                        iterator3.next();
+                        j++;
                     }
+                }
                 }
                     RegisteredUser RegUser = new RegisteredUser(uuid, "Registered user", username, firstName, lastname, password, email, birthday, currentCourses);
                     RegUser.courseProgress = courseP;

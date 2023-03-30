@@ -54,9 +54,21 @@ public class DataWriter {
                 }
                 userDetails.put("currentCourses", courses);
             }
-            userDetails.put("courseProgress",user.courseProgress);
+            if(user.courseProgress != null) {
+                JSONArray progress = new JSONArray();
+                for(int i = 0; i < user.courseProgress.size();  i++) {
+                    progress.add(addProgress(user.courseProgress.get(i)));
+                }
+                userDetails.put("courseProgress", progress);
+
+            }
         return userDetails;
 	}
+    public static JSONObject addProgress(Progress progress) {
+        JSONObject progressDetails = new JSONObject();
+        progressDetails.put("courseProgress", progress.courseProgress);
+        return progressDetails;
+    }
     public static JSONObject getAdminUserJSON(Admin user) {
 		JSONObject userDetails = new JSONObject();
             userDetails.put("UUID",user.uuid.toString());

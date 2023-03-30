@@ -227,7 +227,7 @@ public class UI {
     public void showCourses() {
         System.out.println("Showing your courses");
                 ArrayList<Course> myCourses = courseApp.getMyCourses();
-                ArrayList<Progress> progress = (ArrayList<Progress>)courseApp.regUser.courseProgress;
+                ArrayList<Progress> progress = courseApp.regUser.courseProgress;
                 for(int i = 0; i < myCourses.size(); i++) {
                     System.out.println(i+1 + ": " + myCourses.get(i).name + "\t" + progress.get(i).courseProgress);
                 }
@@ -431,7 +431,9 @@ public class UI {
                     editModule(editCourse);
                     break;
                 } else if (choice == 2) {
-                    makeModule();
+                    courseApp.findCourse(editCourse);
+                    courseApp.findCourse(editCourse).modules.addAll(makeModule());
+                    courseApp.saveAll();
                     break;
                 } else {
                     System.out.println("Invalid choice please try again!");
@@ -457,10 +459,10 @@ public class UI {
             editInstructive(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
             // edit instructive material method
         } else if( choice == 3) {
-            makeAssignment();
+            courseApp.findCourse(editCourse).findModule(editModule).test.addAll( makeAssignment());
             // edit instructive material method
         } else if( choice == 4) {
-            makeMaterial();
+            courseApp.findCourse(editCourse).findModule(editModule).material.addAll( makeMaterial());
             // edit instructive material method
         } else {
             System.out.println("Invalid input");
