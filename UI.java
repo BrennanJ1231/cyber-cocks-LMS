@@ -158,27 +158,13 @@ public class UI {
                 makeCourse();
             } else if ( choice  == 2 ) {
                 // List Courses
-                currentCourses();
-            } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
-<<<<<<< HEAD
-                Author currentAuthor = (Author) courseApp.getUser();
-                if (currentAuthor.listOfCourses.isEmpty()) {
-                    System.out.println("You currently have no classes");
-                } else {
-                    ArrayList<Course> courses = courseApp.getMyCourses();
-                    for(int i = 0; i < courses.size(); i++) {
-                        System.out.println(courses.get(i).name);
-                    }
-                    System.out.println("Please enter the name of the course you would like to edit");
-                    String editCourse = keyboard.nextLine();
-                    System.out.println("Enter [1] to edit a module or [2] to edit instructive");
-                    choice = keyboard.nextInt();
+                ArrayList<Course> courses = currentCourses();
+                for (int i = 0; i < courses.size();i++) {
+                    System.out.println(courses.get(i).name);
                 }
+            } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
+                getEditCourseScreen();
             } else if ( choice == 4 ) {
-=======
-                tweakCourse();
-            }else if ( choice == 4 ) {
->>>>>>> d9e70aef5aa04b110f61d28e3b16b7a21b5e507e
                 System.out.println("Logging you out");
                 courseApp.logout();
                 break;
@@ -187,7 +173,7 @@ public class UI {
             }      
         }// End of while loop
     } // End of Author Dialog
-    
+
     /*
      * Dialog for the Registered User usertype
      */
@@ -402,7 +388,6 @@ public class UI {
      * @return
      */
     public Course makeCourse() {
-        keyboard.nextLine();
         System.out.println("Time to create a Course");
         System.out.println("==========================================================================");
         System.out.println("Please enter the name of the Course");
@@ -451,6 +436,13 @@ public class UI {
         System.out.println("Please enter a description");
         String description = keyboard.nextLine();
         System.out.println("It is time to enter the Instructive Material");
+        System.out.println("==========================================================================");
+        ArrayList<InstructiveMaterial> material = makeMaterial();
+        modules.add(new Module(name, description, material, makeAssignment()));
+        return modules;
+    }
+
+    public ArrayList<InstructiveMaterial> makeMaterial() {
         ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
         while (true) {
             System.out.println("Please enter the materials name");
@@ -464,12 +456,12 @@ public class UI {
                 break;
             }
         }
-        modules.add(new Module(name, description, material, makeAssignment()));
-        return modules;
+        return material;
     }
 
     public ArrayList<Assignment> makeAssignment() {
         System.out.println("It is time to make an assignment."); 
+        System.out.println("==========================================================================");
         ArrayList<Assignment> assign =  new ArrayList<Assignment>();
         System.out.println("Please enter the name of the assignment");
         String name = keyboard.nextLine();
@@ -483,13 +475,11 @@ public class UI {
         System.out.println("Please enter the name of the question");
         String name = keyboard.nextLine();
         System.out.println("Please enter the number of answers you want to provide");
-
         int numAnswers = keyboard.nextInt();
         keyboard.nextLine();
         ArrayList<String> answers = new ArrayList<String>();
-        for (int i=0; i<numAnswers + 1; i++) {
-            System.out.println("Please enter answer"+ (i+1));
-            System.out.println("");
+        for (int i=1; i<numAnswers; i++) {
+            System.out.println("Please enter answer "+ (i));
             String answerChoice = keyboard.nextLine();
             answers.add(answerChoice);
         }
@@ -517,6 +507,22 @@ public class UI {
         } catch (ParseException e) {
             return false;
         }
+    }
+
+    public void getCourseScreen() {
+
+    }
+
+    public void getModuleScreen() {
+
+    }
+
+    public void getMaterialScreen() {
+
+    }
+
+    public void getAssignmentScreen() {
+        
     }
     
 }
