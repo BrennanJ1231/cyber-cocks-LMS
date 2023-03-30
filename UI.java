@@ -159,8 +159,14 @@ public class UI {
             } else if ( choice  == 2 ) {
                 // List Courses
                 ArrayList<Course> courses = currentCourses();
-                for (int i = 0; i < courses.size();i++) {
-                    System.out.println(courses.get(i).name);
+                if (courses != null) {
+                    System.out.println();
+                    for (int i = 0; i < courses.size();i++) {
+                        System.out.println(courses.get(i).name);
+                    }
+                    System.out.println();
+                } else {
+                    System.out.println("You have no courses!");
                 }
             } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
                 getEditCourseScreen();
@@ -375,6 +381,7 @@ public class UI {
             String editModule = keyboard.nextLine();
             System.out.println("Enter [1] to edit a assignment or [2] to edit instructive");
             int choice = keyboard.nextInt();
+            keyboard.nextLine();
             if(choice == 1) {
                 editAssignment(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
                 // edit module method
@@ -397,14 +404,17 @@ public class UI {
         while (true) {
             System.out.println("Enter [1] to edit the assignment name or enter [2] to edit questions");
             int choice = keyboard.nextInt();
+            keyboard.nextLine();
             if (choice == 1) {
                 System.out.println("Please enter the materials new name");
                 String newName = keyboard.nextLine();
                 //course.findModule(mod.title).findMaterial(materialName).setName(newName);
+                break;
             } else if (choice == 2) {
                 System.out.println("Please enter the materials new contents");
                 String newContent = keyboard.nextLine();
                 //course.findModule(mod.title).findMaterial(materialName).setContent(newContent);
+                break;
             } else {
                 System.out.println("Invalid option please try again!");
             }
@@ -421,7 +431,16 @@ public class UI {
         String name = keyboard.nextLine();
         System.out.println("Please enter a description of the Course");
         String description = keyboard.nextLine();
-        System.out.println("Please enter the Language you are coding the course in");
+        while (true) {
+            System.out.println("Language choices:\nJAVA\nC_PLUS_PLUS\nPYTHON\nC_SHARP\nPHP\nSWIFT\nGO\nJAVASCRIPT");
+            System.out.println("Please enter the Language you are coding the course in");
+            String language = keyboard.nextLine();
+            if (language.equalsIgnoreCase("java") || language.equalsIgnoreCase("c_plus_plus") || language.equalsIgnoreCase("python") || language.equalsIgnoreCase("c_sharp") || language.equalsIgnoreCase("php") || language.equalsIgnoreCase("swift") || language.equalsIgnoreCase("go") || language.equalsIgnoreCase("javascript")) {
+                break;
+            } else {
+                System.out.println("Invalid response try again!");
+            }
+        }
         Language lang = Language.valueOf(keyboard.nextLine().toUpperCase());
         UUID uuid = UUID. randomUUID();
         Course course = new Course(name, description,lang, uuid, makeModule(), null);
@@ -503,13 +522,13 @@ public class UI {
 
     public ArrayList<Question> makeQuestion() {
         ArrayList<Question> questions = new ArrayList<Question>();
-        System.out.println("Please enter the name of the question");
+        System.out.println("Please enter the question");
         String name = keyboard.nextLine();
         System.out.println("Please enter the number of answers you want to provide");
         int numAnswers = keyboard.nextInt();
         keyboard.nextLine();
         ArrayList<String> answers = new ArrayList<String>();
-        for (int i=1; i<numAnswers; i++) {
+        for (int i=1; i<numAnswers+1; i++) {
             System.out.println("Please enter answer "+ (i));
             String answerChoice = keyboard.nextLine();
             answers.add(answerChoice);
