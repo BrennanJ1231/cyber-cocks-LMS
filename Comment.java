@@ -19,6 +19,7 @@ public class Comment {
         this.author = author;
         this.content = content;
         this.date = date;
+        comments = new ArrayList<Comment>();
     }
 
     /**

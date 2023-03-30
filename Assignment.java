@@ -57,7 +57,7 @@ public class Assignment {
             if(questions.get(i).rightWrong) 
                 numRight++;
         }
-        return numRight/questions.size();
+        return (numRight/questions.size()) * 100;
     }
 
 
