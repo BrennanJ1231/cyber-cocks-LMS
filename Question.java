@@ -10,6 +10,7 @@ public class Question {
         this.question = question;
         this.choices = choices;
         this.correctAnswer = correctAnswer;
+        this.rightWrong = false;
     }
     public void addChoice(String choice) {
         choices.add(choice);

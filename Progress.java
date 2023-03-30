@@ -24,4 +24,14 @@ public class Progress {
         }
         return completed/numAssignment;
 }
+    public double calculateCourseProgress(Course course) {
+        double numModules = course.modules.size();
+        double completed = 0;
+        for(int i = 0; i< course.modules.size(); i ++) {
+            if(calculateModuleProgress(course.modules.get(i)) == 100) {
+                completed++;
+            }
+        }
+        return completed/numModules;
+    }
 }
