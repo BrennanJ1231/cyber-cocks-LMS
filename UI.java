@@ -219,6 +219,7 @@ public class UI {
         }
     }
     public void showCourses() {
+
         System.out.println("Showing your courses");
                 ArrayList<Course> myCourses = courseApp.getMyCourses();
                 for(int i = 0; i < myCourses.size(); i++) {
