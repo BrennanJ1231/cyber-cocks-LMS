@@ -224,19 +224,23 @@ public class UI {
                 showModules(myCourses.get(choice-1));
     }
     public void showModules(Course course) {
-                System.out.println("Showing modules for " + course);
-                courseApp.Currentcourse = course;
-                System.out.println(courseApp.Currentcourse.name + "\n" + courseApp.Currentcourse.description);
-                for(int i = 0; i < courseApp.Currentcourse.modules.size(); i++) {
-                    System.out.println(i+1 + ": " + courseApp.Currentcourse.modules.get(i).title);
-                }
-                System.out.println("Enter the number of which module to take, or enter 0 to go back");
-                int choice = keyboard.nextInt();
-                if(choice == 0) {
-                    showCourses();
-                } 
-                showMaterials(courseApp.Currentcourse.modules.get(choice - 1), course);
+        System.out.println("Showing modules for " + course);
+        courseApp.Currentcourse = course;
+        System.out.println(courseApp.Currentcourse.name + "\n" + courseApp.Currentcourse.description);
+        for(int i = 0; i < courseApp.Currentcourse.modules.size(); i++) {
+            System.out.println(i+1 + ": " + courseApp.Currentcourse.modules.get(i).title);
+        }
+        System.out.println("Enter the number of which module to take, or enter 0 to go back");
+        int choice = keyboard.nextInt();
+        if(choice == 0) {
+            showCourses();
+        } 
+        showMaterials(courseApp.Currentcourse.modules.get(choice - 1), course);
     }
+
+    /**
+     * takes a module and course and shows all the material associated with the code
+     */
     public void showMaterials(Module module, Course course) {
         System.out.println("Showing material for " + module.title);
         for(int i = 0; i < module.material.size(); i++) {
@@ -263,6 +267,11 @@ public class UI {
             showMaterials(module, course);
         }
     }
+    /**
+     * viewQuizes shows a list of possible quizzes and asks you to chose one
+     * @param module module you want to test in
+     * @param course what course the quiz is in
+     */
     public void viewQuizzes(Module module, Course course) {
         System.out.println("Showing quizzes");
         for(int i = 0; i < module.test.size(); i ++) {
@@ -276,6 +285,11 @@ public class UI {
         }
         takeQuiz(module.test.get(choice-1), module);
     }
+    /**
+     *  takeQuiz allows you to actually take a quiz
+     * @param test takes assignment test as the input for which test user takes
+     * @param module instance of module
+     */
     public void takeQuiz(Assignment test, Module module) {
         System.out.println("Taking quiz " + test.name);
         for(int i = 0; i < test.questions.size(); i ++ ) {
@@ -297,6 +311,11 @@ public class UI {
             viewQuizzes(module, courseApp.Currentcourse);
         }
     }
+
+    /**
+     * showComment displays the dialog and allows the user view all the comments
+     * @param module shows the module the comments are in
+     */
     public void showComment(Module module) {
         System.out.println("Viewing comments" + module.comments.get(0).content);
         if(module.comments == null) {
@@ -326,6 +345,10 @@ public class UI {
         }
         replyComment(module.comments.get(choice-1), module);
     }
+    /**
+     * newComment allows the user to create a new comment
+     * @param module the module that the user would like to comment on
+     */
     public void newComment(Module module) {
         System.out.println("Enter your comment: ");
         String content = keyboard.nextLine();
@@ -337,6 +360,11 @@ public class UI {
             showComment(module);
         }
     }
+    /**
+     * replyComment deals with the comment on comment issue. Call this to reply to a comment
+     * @param comment Comment you are replying to
+     * @param module module you are commenting in
+     */
     public void replyComment(Comment comment, Module module) {
         System.out.println("Enter your comment: ");
         String content = keyboard.nextLine();
@@ -350,8 +378,8 @@ public class UI {
     }
 
     /**
-     * returns an a
-     * @return
+     * returns an array list of surrent courses
+     * @return list of courses
      */
     public ArrayList<Course> currentCourses() {
         Author currentAuthor = (Author) courseApp.getUser();
@@ -363,6 +391,9 @@ public class UI {
                 }
     }
 
+    /**
+     *  getEditCourseScreen is called when you want to edit a course
+     */
     public void getEditCourseScreen() {
         Author currentAuthor = (Author) courseApp.getUser();
         if (currentAuthor.listOfCourses.isEmpty()) {
@@ -394,6 +425,11 @@ public class UI {
         }
     }
 
+    /**
+     * editAssignment takes an Assignment and changes it as needed
+     * @param course The course you would like to edit
+     * @param mod the module you would like to edit
+     */
     public void editAssignment(Course course, Module mod) {
         //Enter the module name and edit the different
         for (int i = 0; i < mod.test.size(); i++) {
@@ -422,7 +458,7 @@ public class UI {
     }
     /**
      * Dialog that pops up in the author dialog
-     * @return
+     * @return the course the author created
      */
     public Course makeCourse() {
         System.out.println("Time to create a Course");
@@ -450,6 +486,11 @@ public class UI {
         
     }
 
+    /**
+     * editInstructive allows the user to change the material of an existing module 
+     * @param course existing course
+     * @param mod module to check size
+     */
     public void editInstructive(Course course, Module mod) {
         //Enter the module name and edit the different
         for (int i = 0; i < mod.material.size(); i++) {
@@ -492,6 +533,9 @@ public class UI {
         return modules;
     }
 
+    /**
+     * makeMaterial gets user input and assigns the users input to the instructive materials list
+     */
     public ArrayList<InstructiveMaterial> makeMaterial() {
         ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
         while (true) {
@@ -509,6 +553,10 @@ public class UI {
         return material;
     }
 
+    /**
+     * makeAssignment creates assignments that will contain questions
+     * @return a list of assignments
+     */
     public ArrayList<Assignment> makeAssignment() {
         System.out.println("It is time to make an assignment."); 
         System.out.println("==========================================================================");
@@ -520,6 +568,9 @@ public class UI {
 
     }
 
+    /**
+     * makeQuestion creates a question that can be called upon in an assignment
+     */
     public ArrayList<Question> makeQuestion() {
         ArrayList<Question> questions = new ArrayList<Question>();
         System.out.println("Please enter the question");
@@ -540,6 +591,9 @@ public class UI {
     
     }
 
+    /**
+     * isValidDate uses formatter to check if the date the user input is valid
+     */
     public static boolean isValidDate(String dateStr) {
         formatter.setLenient(false);
         try {
