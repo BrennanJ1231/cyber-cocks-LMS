@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 // We need to reference People.java
 public class UserList {
     
@@ -41,6 +42,14 @@ public class UserList {
     public User findUser(String username) {
         for (int i=0; i<userList.size();i++) {
             if (userList.get(i).username.equalsIgnoreCase(username)) {
+                return userList.get(i);
+            }
+        }
+        return null;
+    }
+    public User findUser(UUID uuid) {
+        for (int i=0; i<userList.size();i++) {
+            if (userList.get(i).uuid.equals(uuid)) {
                 return userList.get(i);
             }
         }

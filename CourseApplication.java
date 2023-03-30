@@ -6,7 +6,7 @@ import java.util.*;
 public class CourseApplication{
     private CourseList courselist;
     private UserList userList;
-    private Course Currentcourse;
+    protected Course Currentcourse;
     private User user;
     private RegisteredUser regUser;
     private Admin admin;
@@ -21,11 +21,15 @@ public class CourseApplication{
     }
 
     public Course findCourse(String name) {
+        Currentcourse = courselist.findCourse(name);
         return courselist.findCourse(name);
     }
 
     public ArrayList<User>findUser(String keyword) {
         return this.findUser(keyword);
+    }
+    public User findUser(UUID uuid) {
+        return this.findUser(uuid);
     }
 
     public User createUserAccount(String type, String firstName, String lastName, String email, java.util.Date birthday, String username, String password)  {
