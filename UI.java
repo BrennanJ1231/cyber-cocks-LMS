@@ -264,10 +264,11 @@ public class UI {
         return course;
     }
     public Module editModule(Module mod) {
-        // You want to take a Course change the information, and save the module;
+        // You want to take a Modue change the information, and save the module;
         System.out.println("==========================================================================");
-        mod.setName
-        return tempCourse;
+        mod.setName;
+        courseApp.saveAll();
+        return mod;
     }
 
     public 
