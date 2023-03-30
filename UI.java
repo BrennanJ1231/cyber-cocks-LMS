@@ -531,8 +531,11 @@ public class UI {
         while (true) {
             System.out.println("Language choices:\nJAVA\nC_PLUS_PLUS\nPYTHON\nC_SHARP\nPHP\nSWIFT\nGO\nJAVASCRIPT");
             System.out.println("Please enter the Language you are coding the course in");
+            keyboard.nextLine();
             String language = keyboard.nextLine();
-            if (language.equalsIgnoreCase("java") || language.equalsIgnoreCase("c_plus_plus") || language.equalsIgnoreCase("python") || language.equalsIgnoreCase("c_sharp") || language.equalsIgnoreCase("php") || language.equalsIgnoreCase("swift") || language.equalsIgnoreCase("go") || language.equalsIgnoreCase("javascript")) {
+            if (language.equalsIgnoreCase("java") || language.equalsIgnoreCase("c_plus_plus") || language.equalsIgnoreCase("python") 
+            || language.equalsIgnoreCase("c_sharp") || language.equalsIgnoreCase("php") || language.equalsIgnoreCase("swift") 
+            || language.equalsIgnoreCase("go") || language.equalsIgnoreCase("javascript")) {
                 break;
             } else {
                 System.out.println("Invalid response try again!");
