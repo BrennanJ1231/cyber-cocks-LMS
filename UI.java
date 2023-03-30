@@ -494,7 +494,7 @@ public class UI {
                 editQuestion(course.findModule(mod.title).findAssignment(testName));
                 break;
             } else if( choice == 3) {
-                makeQuestion();
+                courseApp.Currentcourse.findModule(mod.title).findAssignment(testName).questions.addAll(makeQuestion());
             } else {
                 System.out.println("Invalid option please try again!");
             }
