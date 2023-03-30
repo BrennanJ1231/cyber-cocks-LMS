@@ -156,19 +156,8 @@ public class UI {
                 // List Courses
                 currentCourses();
             } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
-                Author currentAuthor = (Author) courseApp.getUser();
-                if (currentAuthor.listOfCourses.isEmpty()) {
-                    System.out.println("You currently have no classes");
-                } else {
-                    ArrayList<Course> courses = courseApp.getMyCourses();
-                    for(int i = 0; i < courses.size(); i++) {
-                        System.out.println(courses.get(i).name);
-                    }
-                    System.out.println("Please enter the name of the course you would like to edit");
-                    String editCourse = keyboard.nextLine();
-                    System.out.println("Enter [1] to edit a module or [2] to edit instructive");
-                }
-            } else if ( choice == 4 ) {
+                tweakCourse();
+            }else if ( choice == 4 ) {
                 System.out.println("Logging you out");
                 courseApp.logout();
                 break;
@@ -235,9 +224,21 @@ public class UI {
         for(int i = 0; i < courses.size(); i++) {
             System.out.println(courses.get(i).name);
         }
-                    System.out.println("Please enter the name of the course you would like to edit");
-                    String editCourse = keyboard.nextLine();
-                }
+        System.out.println("Please enter the name of the course you would like to edit");
+        String editCourse = keyboard.nextLine();
+        System.out.println("Enter [1] to edit a module or [2] to edit instructive");
+        int choice = keyboard.nextInt();
+        if(choice == 1) {
+            System.out.println("Editing a module");
+            editModule();
+            // edit module method
+        } else if( choice == 2) {
+            System.out.println("Editing instructive material");
+            // edit instructive material method
+        } else {
+            System.out.println("Invalid input");
+        }
+        }
     }
 
     /**
@@ -259,6 +260,9 @@ public class UI {
         courseApp.addCourse(course);
         courseApp.saveAll();
         return course;
+    }
+    public ArrayList<Module> editModule(Module module) {
+
     }
     /**
      * Make Module Dialog
