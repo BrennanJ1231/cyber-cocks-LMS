@@ -160,6 +160,7 @@ public class UI {
                 // List Courses
                 currentCourses();
             } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
+<<<<<<< HEAD
                 Author currentAuthor = (Author) courseApp.getUser();
                 if (currentAuthor.listOfCourses.isEmpty()) {
                     System.out.println("You currently have no classes");
@@ -174,6 +175,10 @@ public class UI {
                     choice = keyboard.nextInt();
                 }
             } else if ( choice == 4 ) {
+=======
+                tweakCourse();
+            }else if ( choice == 4 ) {
+>>>>>>> d9e70aef5aa04b110f61d28e3b16b7a21b5e507e
                 System.out.println("Logging you out");
                 courseApp.logout();
                 break;
@@ -353,6 +358,33 @@ public class UI {
                 }
     }
 
+    public Course tweakCourse() {
+        Author currentAuthor = (Author) courseApp.getUser();
+        if (currentAuthor.listOfCourses.isEmpty()) {
+            System.out.println("You currently have no classes");
+        } else {
+            ArrayList<Course> courses = courseApp.getMyCourses();
+        for(int i = 0; i < courses.size(); i++) {
+            System.out.println(courses.get(i).name);
+        }
+        System.out.println("Please enter the name of the course you would like to edit");
+        String editCourse = keyboard.nextLine();
+        System.out.println("Enter [1] to edit a module or [2] to edit instructive");
+        Course tempCourse = courseApp.findCourse(editCourse);
+        int choice = keyboard.nextInt();
+        if(choice == 1) {
+            System.out.println("Editing a module");
+            editModule(tempCourse);
+            // edit module method
+        } else if( choice == 2) {
+            System.out.println("Editing instructive material");
+            editInstructive();
+            // edit instructive material method
+        } else {
+            System.out.println("Invalid input");
+        }
+        }
+    }
 
     /**
      * Dialog that pops up in the author dialog
@@ -374,6 +406,26 @@ public class UI {
         courseApp.saveAll();
         return course;
         
+    }
+    public Module editModule(Module mod) {
+        // You want to take a Modue change the information, and save the module;
+        System.out.println("==========================================================================");
+        mod.setName;
+        courseApp.saveAll();
+        return mod;
+    }
+
+
+    public InstructiveMaterial editInstructive(Module mod) {
+        //Enter the module name and edit the different
+        ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
+        System.out.println("Please enter the materials name");
+        String materialName = keyboard.nextLine();
+        System.out.println("Please enter the materials contents");
+        String materialContent = keyboard.nextLine();
+        System.out.println("Would you like to add more material? (Enter 'y' for yes, or 'n' for no)");
+        material.add(new InstructiveMaterial(materialName, materialContent));
+        return 
     }
     /**
      * Make Module Dialog
