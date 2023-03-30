@@ -102,7 +102,7 @@ public class CourseApplication{
     public User getUser() {
         return this.user;
     }
-
+    
     public Course takeCourse(String name) {
         return courselist.findCourse(name);
     }
@@ -111,4 +111,6 @@ public class CourseApplication{
         userList.save();
         courselist.save();
     }
+
+
 }
