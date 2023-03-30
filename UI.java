@@ -405,23 +405,47 @@ public class UI {
             }
             System.out.println("Please enter the name of the course you would like to edit");
             String editCourse = keyboard.nextLine();
-            for(int i = 0; i < courseApp.courselist.findCourse(editCourse).modules.size(); i++) {
-                System.out.println(courseApp.courselist.findCourse(editCourse).modules.get(i).title);
+            while (true) {
+                System.out.println("Enter [1] to edit a module or enter [2] to add a module:");
+                int choice = keyboard.nextInt();
+                keyboard.nextLine();
+                if (choice == 1) {
+                    editModule(editCourse);
+                    break;
+                } else if (choice == 2) {
+                    makeModule();
+                    break;
+                } else {
+                    System.out.println("Invalid choice please try again!");
+                }
             }
-            System.out.println("Please enter the name of the module you would like to edit");
-            String editModule = keyboard.nextLine();
-            System.out.println("Enter [1] to edit a assignment or [2] to edit instructive");
-            int choice = keyboard.nextInt();
-            keyboard.nextLine();
-            if(choice == 1) {
-                editAssignment(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
-                // edit module method
-            } else if( choice == 2) {
-                editInstructive(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
-                // edit instructive material method
-            } else {
-                System.out.println("Invalid input");
-            }
+            
+        }
+    }
+
+    public void editModule(String editCourse) {
+        for(int i = 0; i < courseApp.courselist.findCourse(editCourse).modules.size(); i++) {
+            System.out.println(courseApp.courselist.findCourse(editCourse).modules.get(i).title);
+        }
+        System.out.println("Please enter the name of the module you would like to edit");
+        String editModule = keyboard.nextLine();
+        System.out.println("Enter [1] to edit a assignment, [2] to edit instructive material, [3] to add an assignment, or [4] to add instructive material:");
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        if(choice == 1) {
+            editAssignment(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
+            // edit module method
+        } else if( choice == 2) {
+            editInstructive(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
+            // edit instructive material method
+        } else if( choice == 3) {
+            makeAssignment();
+            // edit instructive material method
+        } else if( choice == 4) {
+            makeMaterial();
+            // edit instructive material method
+        } else {
+            System.out.println("Invalid input");
         }
     }
 
@@ -438,18 +462,55 @@ public class UI {
         System.out.println("Enter the name of the assignment you would like to edit");
         String testName = keyboard.nextLine();
         while (true) {
-            System.out.println("Enter [1] to edit the assignment name or enter [2] to edit questions");
+            System.out.println("Enter [1] to edit the assignment name, enter [2] to edit questions, enter [3] to add questions");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
             if (choice == 1) {
-                System.out.println("Please enter the materials new name");
+                System.out.println("Please enter the assignments new name");
                 String newName = keyboard.nextLine();
-                //course.findModule(mod.title).findMaterial(materialName).setName(newName);
+                course.findModule(mod.title).findAssignment(testName).setName(newName);
                 break;
             } else if (choice == 2) {
-                System.out.println("Please enter the materials new contents");
-                String newContent = keyboard.nextLine();
-                //course.findModule(mod.title).findMaterial(materialName).setContent(newContent);
+                editQuestion(course.findModule(mod.title).findAssignment(testName));
+                break;
+            } else if( choice == 3) {
+                makeQuestion();
+            } else {
+                System.out.println("Invalid option please try again!");
+            }
+        }
+    }
+
+    public void editQuestion(Assignment test) {
+        //Enter the module name and edit the different
+        for (int i = 0; i < test.questions.size(); i++) {
+            System.out.println(test.questions.get(i).question);
+        }
+        System.out.println("Enter the name of the question you would like to edit");
+        String questionName = keyboard.nextLine();
+        Question question = null;
+        for (int i = 0; i < test.questions.size(); i++) {
+            if(test.questions.get(i).question.equalsIgnoreCase(questionName)) {
+                question = test.questions.get(i);
+            }
+        }
+        while (true) {
+            System.out.println("Enter [1] to edit the question or enter [2] to edit question's answers");
+            int choice = keyboard.nextInt();
+            keyboard.nextLine();
+            if (choice == 1) {
+                System.out.println("Please enter the questions new question");
+                String newName = keyboard.nextLine();
+                question.setQuestion(newName);
+                break;
+            } else if (choice == 2) {
+                for (int i = 0; i < question.choices.size(); i++) {
+                    System.out.println(question.choices.get(i));
+                }
+                System.out.println("Please enter the answer choice you would like to edit");
+                String oldChoice = keyboard.nextLine();
+                System.out.println("Please enter the new answer choice you would like to provide");
+                String newChoice = keyboard.nextLine();
                 break;
             } else {
                 System.out.println("Invalid option please try again!");

@@ -18,6 +18,9 @@ public class Assignment {
         this.questions = questions;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     /**
     Adds a single question to the assignment.
     @param question the question to be added.
