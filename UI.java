@@ -345,34 +345,59 @@ public class UI {
                 }
     }
 
-    public Course tweakCourse() {
+    public void getEditCourseScreen() {
         Author currentAuthor = (Author) courseApp.getUser();
         if (currentAuthor.listOfCourses.isEmpty()) {
-            System.out.println("You currently have no classes");
+            System.out.println("You currently have no courses");
         } else {
             ArrayList<Course> courses = courseApp.getMyCourses();
-        for(int i = 0; i < courses.size(); i++) {
-            System.out.println(courses.get(i).name);
-        }
-        System.out.println("Please enter the name of the course you would like to edit");
-        String editCourse = keyboard.nextLine();
-        System.out.println("Enter [1] to edit a module or [2] to edit instructive");
-        Course tempCourse = courseApp.findCourse(editCourse);
-        int choice = keyboard.nextInt();
-        if(choice == 1) {
-            System.out.println("Editing a module");
-            editModule(tempCourse);
-            // edit module method
-        } else if( choice == 2) {
-            System.out.println("Editing instructive material");
-            editInstructive();
-            // edit instructive material method
-        } else {
-            System.out.println("Invalid input");
-        }
+            for(int i = 0; i < courses.size(); i++) {
+                System.out.println(courses.get(i).name);
+            }
+            System.out.println("Please enter the name of the course you would like to edit");
+            String editCourse = keyboard.nextLine();
+            for(int i = 0; i < courseApp.courselist.findCourse(editCourse).modules.size(); i++) {
+                System.out.println(courseApp.courselist.findCourse(editCourse).modules.get(i).title);
+            }
+            System.out.println("Please enter the name of the module you would like to edit");
+            String editModule = keyboard.nextLine();
+            System.out.println("Enter [1] to edit a assignment or [2] to edit instructive");
+            int choice = keyboard.nextInt();
+            if(choice == 1) {
+                editAssignment(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
+                // edit module method
+            } else if( choice == 2) {
+                editInstructive(courseApp.findCourse(editCourse),courseApp.findCourse(editCourse).findModule(editModule));
+                // edit instructive material method
+            } else {
+                System.out.println("Invalid input");
+            }
         }
     }
 
+    public void editAssignment(Course course, Module mod) {
+        //Enter the module name and edit the different
+        for (int i = 0; i < mod.test.size(); i++) {
+            System.out.println(mod.test.get(i).name);
+        }
+        System.out.println("Enter the name of the assignment you would like to edit");
+        String testName = keyboard.nextLine();
+        while (true) {
+            System.out.println("Enter [1] to edit the assignment name or enter [2] to edit questions");
+            int choice = keyboard.nextInt();
+            if (choice == 1) {
+                System.out.println("Please enter the materials new name");
+                String newName = keyboard.nextLine();
+                //course.findModule(mod.title).findMaterial(materialName).setName(newName);
+            } else if (choice == 2) {
+                System.out.println("Please enter the materials new contents");
+                String newContent = keyboard.nextLine();
+                //course.findModule(mod.title).findMaterial(materialName).setContent(newContent);
+            } else {
+                System.out.println("Invalid option please try again!");
+            }
+        }
+    }
     /**
      * Dialog that pops up in the author dialog
      * @return
@@ -393,25 +418,29 @@ public class UI {
         return course;
         
     }
-    public Module editModule(Module mod) {
-        // You want to take a Modue change the information, and save the module;
-        System.out.println("==========================================================================");
-        mod.setName;
-        courseApp.saveAll();
-        return mod;
-    }
 
-
-    public InstructiveMaterial editInstructive(Module mod) {
+    public void editInstructive(Course course, Module mod) {
         //Enter the module name and edit the different
-        ArrayList<InstructiveMaterial> material = new ArrayList<InstructiveMaterial>();
-        System.out.println("Please enter the materials name");
+        for (int i = 0; i < mod.material.size(); i++) {
+            System.out.println(mod.material.get(i).name);
+        }
+        System.out.println("Enter the name of the material you would like to edit");
         String materialName = keyboard.nextLine();
-        System.out.println("Please enter the materials contents");
-        String materialContent = keyboard.nextLine();
-        System.out.println("Would you like to add more material? (Enter 'y' for yes, or 'n' for no)");
-        material.add(new InstructiveMaterial(materialName, materialContent));
-        return 
+        while (true) {
+            System.out.println("Enter [1] to edit material name or enter [2] to edit material contents");
+            int choice = keyboard.nextInt();
+            if (choice == 1) {
+                System.out.println("Please enter the materials new name");
+                String newName = keyboard.nextLine();
+                course.findModule(mod.title).findMaterial(materialName).setName(newName);
+            } else if (choice == 2) {
+                System.out.println("Please enter the materials new contents");
+                String newContent = keyboard.nextLine();
+                course.findModule(mod.title).findMaterial(materialName).setContent(newContent);
+            } else {
+                System.out.println("Invalid option please try again!");
+            }
+        }
     }
     /**
      * Make Module Dialog
@@ -497,22 +526,6 @@ public class UI {
         } catch (ParseException e) {
             return false;
         }
-    }
-
-    public void getCourseScreen() {
-
-    }
-
-    public void getModuleScreen() {
-
-    }
-
-    public void getMaterialScreen() {
-
-    }
-
-    public void getAssignmentScreen() {
-        
     }
     
 }
