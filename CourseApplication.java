@@ -85,6 +85,7 @@ public class CourseApplication{
 
     public Course addCourse(Course newCourse) {
         courselist.addCourse(newCourse);
+        author.createCourse(newCourse);
         return newCourse;
     }
     public Course editCourse(Course course, String title) {
@@ -107,8 +108,6 @@ public class CourseApplication{
     }
 
     public void saveAll() {
-       ArrayList<User> list = userList.getAll();
-       System.out.println(list.get(4).username);
         userList.save();
         courselist.save();
     }

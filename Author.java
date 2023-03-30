@@ -11,7 +11,13 @@ public class Author extends User{
         this.listOfCourses = listOfCourses;
     }
     public void createCourse(Course course) {
-        listOfCourses.add(course);
+        if(listOfCourses != null){
+            listOfCourses.add(course);
+        }
+        else  {
+            listOfCourses = new ArrayList<Course>();
+            listOfCourses.add(course);
+        }
         this.coursesCreated++;
     }
 }
