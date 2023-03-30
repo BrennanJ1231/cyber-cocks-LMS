@@ -246,7 +246,6 @@ public class UI {
         courseApp.addCourse(course);
         courseApp.saveAll();
         return course;
-        
     }
     /**
      * Make Module Dialog
@@ -327,6 +326,22 @@ public class UI {
         } catch (ParseException e) {
             return false;
         }
+    }
+
+    public void getCourseScreen() {
+
+    }
+
+    public void getModuleScreen() {
+
+    }
+
+    public void getMaterialScreen() {
+
+    }
+
+    public void getAssignmentScreen() {
+        
     }
     
 }
