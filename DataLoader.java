@@ -29,18 +29,20 @@ public class DataLoader {
                     int coursesCreated = Integer.parseInt(user.get("createdCourses").toString());
                     ArrayList<Course> createdCourses = new ArrayList<Course>();
                     JSONArray courseArray = (JSONArray)user.get("coursesCreated");
-                    Iterator iterator2 = courseArray.iterator();
-                    int j = 0;
-                    while(iterator2.hasNext()) {
-                        JSONObject cUUID = (JSONObject)courseArray.get(j);
-                        UUID courseUUID = UUID.fromString(cUUID.get("UUID").toString());
-                        for(int k = 0; k< courseList.size();k++) {
-                            if(courseList.get(k).uuid.equals(courseUUID)) {
-                                createdCourses.add(courseList.get(k));
+                    if(courseArray != null) {
+                        Iterator iterator2 = courseArray.iterator();
+                        int j = 0;
+                        while(iterator2.hasNext()) {
+                            JSONObject cUUID = (JSONObject)courseArray.get(j);
+                            UUID courseUUID = UUID.fromString(cUUID.get("UUID").toString());
+                            for(int k = 0; k< courseList.size();k++) {
+                                if(courseList.get(k).uuid.equals(courseUUID)) {
+                                    createdCourses.add(courseList.get(k));
+                                }
                             }
+                            j++;
+                            iterator2.next();
                         }
-                        j++;
-                        iterator2.next();
                     }
                     userList.add(new Author(uuid,"Author", username, firstName, lastname, password, email, birthday, coursesCreated, createdCourses));
 
@@ -103,13 +105,15 @@ public class DataLoader {
                 }
                 k = 0;
                 JSONArray comments = (JSONArray)course.get("comments");
-                iterator = comments.iterator();
-                while(iterator.hasNext()) {
-                    JSONObject comment = (JSONObject) comments.get(k);
-                    commentList.add(getComments(comment));
-                    k++;
-                    iterator.next();
-                }
+                if(comments != null) {
+                    iterator = comments.iterator();
+                    while(iterator.hasNext()) {
+                        JSONObject comment = (JSONObject) comments.get(k);
+                        commentList.add(getComments(comment));
+                        k++;
+                        iterator.next();
+                    }
+                 }
                 courseList.add(new Course(name, description, lang, uuid, moduleList, commentList));
                 i++;
                 iterator2.next();
