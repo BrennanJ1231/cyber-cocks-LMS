@@ -67,6 +67,10 @@ public class UI {
     //Methods below for the run method
 
 
+    /**
+     * Gets the dialog for the registering user.
+     * ends up registering user
+     */
     public void getRegister() throws ParseException {
         System.out.println("Welcome to the school of coding! It is time to register a new Account!");
         System.out.println("=======================================================================");
@@ -113,6 +117,9 @@ public class UI {
         courseApp.login(username, password);
     }
 
+    /**
+     * returns the log in for the app
+     */
     public void getLogin() {
         System.out.println("It is time to log in");
         System.out.println("Please enter your username");
@@ -122,6 +129,9 @@ public class UI {
         courseApp.login(username, password); 
     }
 
+    /**
+     * shows the dialog that the admin recieves
+     */
     public void getAdminDialog() {
         System.out.println("You are an admin");
         while (true) {
@@ -210,19 +220,26 @@ public class UI {
             }
         }
     }
-    public void showCourses() {
 
+    /**
+     * Shows what courses the User is taking.
+     */
+    public void showCourses() {
         System.out.println("Showing your courses");
-                ArrayList<Course> myCourses = courseApp.getMyCourses();
-                for(int i = 0; i < myCourses.size(); i++) {
-                    System.out.println(i+1 + ": " + myCourses.get(i).name);
-                }
-                System.out.println("Type which course you would like to view, or enter 0 to go back");
-                int choice = keyboard.nextInt();
-                if(choice == 0) 
-                    getUserDialog();
-                showModules(myCourses.get(choice-1));
+        ArrayList<Course> myCourses = courseApp.getMyCourses();
+        for(int i = 0; i < myCourses.size(); i++) {
+            System.out.println(i+1 + ": " + myCourses.get(i).name);
+        }
+        System.out.println("Type which course you would like to view, or enter 0 to go back");
+        int choice = keyboard.nextInt();
+        if(choice == 0) 
+            getUserDialog();
+        showModules(myCourses.get(choice-1));
     }
+    /**
+     * Shows modules for which course is inputted
+     * @param course course that contains the modules
+     */
     public void showModules(Course course) {
         System.out.println("Showing modules for " + course);
         courseApp.Currentcourse = course;
@@ -531,7 +548,6 @@ public class UI {
         while (true) {
             System.out.println("Language choices:\nJAVA\nC_PLUS_PLUS\nPYTHON\nC_SHARP\nPHP\nSWIFT\nGO\nJAVASCRIPT");
             System.out.println("Please enter the Language you are coding the course in");
-            keyboard.nextLine();
             String language = keyboard.nextLine();
             if (language.equalsIgnoreCase("java") || language.equalsIgnoreCase("c_plus_plus") || language.equalsIgnoreCase("python") 
             || language.equalsIgnoreCase("c_sharp") || language.equalsIgnoreCase("php") || language.equalsIgnoreCase("swift") 
@@ -549,6 +565,8 @@ public class UI {
         return course;
         
     }
+
+
 
     /**
      * editInstructive allows the user to change the material of an existing module 
