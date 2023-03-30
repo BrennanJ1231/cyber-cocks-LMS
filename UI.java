@@ -281,7 +281,7 @@ public class UI {
         String materialContent = keyboard.nextLine();
         System.out.println("Would you like to add more material? (Enter 'y' for yes, or 'n' for no)");
         material.add(new InstructiveMaterial(materialName, materialContent));
-        return 
+        return mod;
     }
     /**
      * Make Module Dialog
