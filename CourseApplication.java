@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.*;
 
 public class CourseApplication{
-    private CourseList courselist;
+    CourseList courselist;
     private UserList userList;
     protected Course Currentcourse;
     private User user;

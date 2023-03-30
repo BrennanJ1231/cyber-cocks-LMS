@@ -21,5 +21,9 @@ public class Question {
     public boolean equals(Question question) {
         return this.question.equals(question.question) && this.choices.containsAll(question.choices) && this.correctAnswer.equals(question.correctAnswer);
     }
+
+    public void setQuestion(String questionName) {
+        this.question = questionName;
+    }
     
 }
