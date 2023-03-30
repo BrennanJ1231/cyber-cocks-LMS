@@ -227,10 +227,11 @@ public class UI {
         System.out.println("Please enter the name of the course you would like to edit");
         String editCourse = keyboard.nextLine();
         System.out.println("Enter [1] to edit a module or [2] to edit instructive");
+        Course tempCourse = courseApp.findCourse(editCourse);
         int choice = keyboard.nextInt();
         if(choice == 1) {
             System.out.println("Editing a module");
-            editModule();
+            editModule(tempCourse);
             // edit module method
         } else if( choice == 2) {
             System.out.println("Editing instructive material");
@@ -263,7 +264,10 @@ public class UI {
         return course;
     }
     public Module editModule(Module mod) {
-        Module module = new Module(null, null, null, null)
+        // You want to take a Course change the information, and save the module;
+        System.out.println("==========================================================================");
+        mod.setName
+        return tempCourse;
     }
 
     public 
