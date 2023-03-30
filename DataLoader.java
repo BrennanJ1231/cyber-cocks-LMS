@@ -49,7 +49,7 @@ public class DataLoader {
                 }
                 if(type.equalsIgnoreCase("registered user")) {
                     ArrayList<Course> currentCourses = new ArrayList<Course>();
-                    JSONArray courseArray = (JSONArray)user.get("currentCourse");
+                    JSONArray courseArray = (JSONArray)user.get("currentCourses");
                     if(courseArray != null){
                     Iterator iterator2 = courseArray.iterator();
                     int j = 0;
@@ -80,8 +80,6 @@ public class DataLoader {
     }
     public static ArrayList<Course> loadCourses() {
         courseList = new ArrayList<Course>();
-        ArrayList<Module> moduleList = new ArrayList<Module>();
-        ArrayList<Comment> commentList = new ArrayList<Comment>();
         try {
             FileReader reader = new FileReader("./json/courses.json");
             JSONParser parser = new JSONParser();
@@ -89,6 +87,8 @@ public class DataLoader {
             Iterator iterator2 = courses.iterator();
             int i = 0;
             while(iterator2.hasNext()) {
+                ArrayList<Module> moduleList = new ArrayList<Module>();
+                ArrayList<Comment> commentList = new ArrayList<Comment>();
                 JSONObject course = (JSONObject)courses.get(i);
                 UUID uuid = UUID.fromString(course.get("UUID").toString());
                 String name = (String)course.get("name");
