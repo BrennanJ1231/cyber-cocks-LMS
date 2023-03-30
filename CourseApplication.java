@@ -85,6 +85,7 @@ public class CourseApplication{
 
     public Course addCourse(Course newCourse) {
         courselist.addCourse(newCourse);
+        author.createCourse(newCourse);
         return newCourse;
     }
     public Course editCourse(Course course, String title) {

@@ -148,6 +148,7 @@ public class UI {
         while (true) {
             System.out.println("Please enter [1] to create course, enter [2] to see your courses, enter [3] to edit one of your courses, enter [4] to logout");
             int choice = keyboard.nextInt();
+            keyboard.nextLine();
             if (choice == 1 )  {
                 // Create Courses
                 makeCourse();
