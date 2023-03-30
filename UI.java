@@ -176,17 +176,7 @@ public class UI {
                 // List Courses
                 currentCourses();
             } else if ( choice  == 3 ) { //The code for if the user would like to edit a course
-                Author currentAuthor = (Author) courseApp.getUser();
-                if (currentAuthor.listOfCourses.isEmpty()) {
-                    System.out.println("You currently have no classes");
-                } else {
-                    ArrayList<Course> courses = courseApp.getMyCourses();
-                    for(int i = 0; i < courses.size(); i++) {
-                        System.out.println(courses.get(i).name);
-                    }
-                    System.out.println("Please enter the name of the course you would like to edit");
-                    String editCourse = keyboard.nextLine();
-                }
+                tweakCourse();
             } else if ( choice == 4 ) {
                 courseApp.logout();
                 break;
@@ -267,6 +257,19 @@ public class UI {
                 }
     }
 
+    public Course tweakCourse() {
+        Author currentAuthor = (Author) courseApp.getUser();
+        if (currentAuthor.listOfCourses.isEmpty()) {
+            System.out.println("You currently have no classes");
+        } else {
+            ArrayList<Course> courses = courseApp.getMyCourses();
+        for(int i = 0; i < courses.size(); i++) {
+            System.out.println(courses.get(i).name);
+        }
+                    System.out.println("Please enter the name of the course you would like to edit");
+                    String editCourse = keyboard.nextLine();
+                }
+    }
 
     /**
      * Dialog that pops up in the author dialog
