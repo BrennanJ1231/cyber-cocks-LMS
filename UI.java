@@ -234,6 +234,7 @@ public class UI {
             // edit module method
         } else if( choice == 2) {
             System.out.println("Editing instructive material");
+            editInstructive();
             // edit instructive material method
         } else {
             System.out.println("Invalid input");
@@ -261,9 +262,11 @@ public class UI {
         courseApp.saveAll();
         return course;
     }
-    public ArrayList<Module> editModule(Module module) {
-
+    public Module editModule(Module mod) {
+        Module module = new Module(null, null, null, null)
     }
+
+    public 
     /**
      * Make Module Dialog
      * @param course the course you want to create a course in
