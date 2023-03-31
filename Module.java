@@ -40,6 +40,11 @@ public class Module {
         test = assignments;
     }
 
+    /**
+    Finds an assignment with the specified name in the list of assignments in the module.
+    @param name The name of the assignment to find.
+    @return The Assignment object with the specified name, or null if not found.
+    */
     public Assignment findAssignment(String name) {
         for (int i=0; i<test.size();i++) {
             if (test.get(i).name.equalsIgnoreCase(name)) {
@@ -49,6 +54,11 @@ public class Module {
         return null;
     }
 
+    /**
+    Finds an instructive material with the specified name in the list of instructive materials in the module.
+    @param name The name of the instructive material to find.
+    @return The InstructiveMaterial object with the specified name, or null if not found.
+    */
     public InstructiveMaterial findMaterial(String name) {
         for (int i=0; i<material.size();i++) {
             if (material.get(i).name.equalsIgnoreCase(name)) {

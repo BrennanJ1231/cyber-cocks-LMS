@@ -10,16 +10,24 @@ Constructor for InstructiveMaterial class.
 @param name the name of the instructive material.
 @param content the content of the instructive material.
 */
-    public InstructiveMaterial(String name, String content) {
-        this.name = name;
-        this.content = content;
-    }
+public InstructiveMaterial(String name, String content) {
+    this.name = name;
+    this.content = content;
+}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+ /**
+ Sets the name of the instructive material.
+ @param name the name to be set.
+*/
+public void setName(String name) {
+    this.name = name;
+}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+ /**
+Sets the content of the instructive material.
+@param content the content to be set.
+*/
+public void setContent(String content) {
+     this.content = content;
+}
 }
