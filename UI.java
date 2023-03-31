@@ -352,14 +352,16 @@ public class UI {
     public void takeQuiz(Assignment test, Module module) {
         System.out.println("Taking quiz " + test.name);
         for(int i = 0; i < test.questions.size(); i ++ ) {
-            System.out.println("Question: " + i+1 + " " + test.questions.get(i).question);
+            System.out.println("Question: " + (i+1) + " " + test.questions.get(i).question);
             for(int j = 0; j < test.questions.get(i).choices.size(); j++) {
                 System.out.println(test.questions.get(i).choices.get(j));
             }
             System.out.println("Enter answer choice: ");
             String answer = keyboard.nextLine();
-            if(answer.equals(test.questions.get(i).correctAnswer)) {
+            if(answer.equalsIgnoreCase(test.questions.get(i).correctAnswer)) {
                 test.questions.get(i).rightWrong = true;
+            } else {
+                test.questions.get(i).rightWrong = false;
             }
         }
         System.out.println("Grade: "+ test.calculateGrade());
@@ -376,7 +378,6 @@ public class UI {
      * @param module shows the module the comments are in
      */
     public void showComment(Module module) {
-        System.out.println("Viewing comments" + module.comments.get(0).content);
         if(module.comments == null) {
             System.out.println("No comments");
             showMaterials(module, courseApp.Currentcourse);
