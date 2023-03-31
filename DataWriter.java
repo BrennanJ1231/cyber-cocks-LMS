@@ -4,13 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
+/**
+ * This class contains methods to write data to JSON files.
+ */
 public class DataWriter {
     public static final String USERS_FILE_NAME = "./json/users.json";
 	public static final String COURSES_FILE_NAME = "./json/courses.json";
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("mm/dd/yyyy");
 
-
+/**
+ * writes all the user data to the JSON file
+ * @param fileName
+ */
 	public static void saveUser(String fileName) {
         UserList userList = UserList.getInstance();
 		ArrayList<User> users = userList.getAll();
@@ -39,6 +44,11 @@ public class DataWriter {
         }
 	}
 	
+    /**
+     * Creates a JSON object for register user
+     * @param user
+     * @return JSONObject
+     */
 	public static JSONObject getRegisteredUserJSON(RegisteredUser user) {
 		JSONObject userDetails = new JSONObject();
             userDetails.put("UUID",user.uuid.toString());
@@ -71,6 +81,12 @@ public class DataWriter {
         progressDetails.put("courseProgress", progress.courseProgress);
         return progressDetails;
     }
+
+    /**
+     * Creates a JSON object for admin
+     * @param user
+     * @return JSONObject
+     */
     public static JSONObject getAdminUserJSON(Admin user) {
 		JSONObject userDetails = new JSONObject();
             userDetails.put("UUID",user.uuid.toString());
@@ -84,6 +100,12 @@ public class DataWriter {
             userDetails.put("students", user.Students);
         return userDetails;
 	}
+
+    /**
+     * Creates a JSON object for auther
+     * @param user
+     * @return JSONObject
+     */
     public static JSONObject getAuthorUserJSON(Author user) {
 		JSONObject userDetails = new JSONObject();
         userDetails.put("UUID",user.uuid.toString());
