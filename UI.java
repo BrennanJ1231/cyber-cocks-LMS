@@ -242,7 +242,7 @@ public class UI {
      * @param course course that contains the modules
      */
     public void showModules(Course course) {
-        System.out.println("Showing modules for " + course);
+        System.out.println("Showing modules for " + course.name);
         courseApp.Currentcourse = course;
         System.out.println(courseApp.Currentcourse.name + "\n" + courseApp.Currentcourse.description);
         for(int i = 0; i < courseApp.Currentcourse.modules.size(); i++) {
