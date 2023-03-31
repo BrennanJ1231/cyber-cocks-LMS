@@ -492,7 +492,7 @@ public class UI {
         }
         System.out.println("Please enter the name of the module you would like to edit");
         String editModule = keyboard.nextLine();
-        System.out.println("Enter [1] to edit a assignment, [2] to edit instructive material, [3] to add an assignment, [4] to add instructive material, or [0] to go back:");
+        System.out.println("Enter [1] to edit a assignment, [2] to edit instructive material, [3] to add an assignment, or [4] to add instructive material:");
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         if(choice == 1) {
