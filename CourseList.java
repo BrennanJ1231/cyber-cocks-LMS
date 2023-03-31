@@ -1,18 +1,25 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * The CourseList class represents a list of courses.
+ */
 public class CourseList {
 
-/*
- * instance var
- */
 private ArrayList<Course> courses;
 private static CourseList courseList;
 
+/**
+* Creates a new instance of the CourseList class and loads the courses from the data loader.
+ */
 public CourseList(){
     courses = DataLoader.loadCourses();
 }
 
+/**
+* Gets the instance of the CourseList class.   
+* @return The instance of the CourseList class.
+*/
 public static CourseList getInstance(){
     if(courseList == null){
         courseList = new CourseList();
@@ -36,6 +43,7 @@ public void addCourse(Course course){
 public ArrayList<Course> getAll(){
     return courses;
 }
+
 /*
  * deletes a course
  * @parm course of type Course

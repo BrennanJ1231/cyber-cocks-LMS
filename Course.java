@@ -34,6 +34,12 @@ public class Course {
         this.uuid = uuid;
         this.comments =  comments;
     }
+
+    /*
+     * Finds a Module
+     * @returns a Module
+     * @param title
+     */
     public Module findModule(String title) {
         for (int i=0; i<modules.size();i++) {
             if (modules.get(i).title.equalsIgnoreCase(title)) {

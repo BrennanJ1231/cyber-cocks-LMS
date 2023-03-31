@@ -9,6 +9,8 @@ public class DataWriter {
     public static final String USERS_FILE_NAME = "./json/users.json";
 	public static final String COURSES_FILE_NAME = "./json/courses.json";
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("mm/dd/yyyy");
+
+
 	public static void saveUser(String fileName) {
         UserList userList = UserList.getInstance();
 		ArrayList<User> users = userList.getAll();
@@ -107,11 +109,6 @@ public class DataWriter {
         courses.put("UUID", course.uuid.toString());
         return courses;
     }
-
-    //courses is a hashmap and the key is hardcoded to be "uuid" and that wont work because it wont accept duplicates  
-    // old code line 93     --  courses.put("UUID", course.uuid.toString()); --
-    // proposed new code on line 93 is    -- courses.put(course.uuid.toString(), course.uuid.toString()); --  
-    // 
 
 
     public static void saveCourse(String fileName) {

@@ -6,6 +6,7 @@ public class Question {
     protected String correctAnswer;
     protected String userAnswer;
     protected boolean rightWrong;
+    
     public Question(String question, ArrayList<String> choices, String correctAnswer) {
         this.question = question;
         this.choices = choices;

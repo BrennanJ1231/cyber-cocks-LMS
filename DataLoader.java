@@ -4,9 +4,10 @@ import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 public class DataLoader {
-    private  static ArrayList<Course> courseList;
+    private static ArrayList<Course> courseList;
     private static ArrayList<User> userList;
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+    
     public static ArrayList<User> loadUsers() {
         userList = new ArrayList<User>();
         JSONParser parser = new JSONParser();
