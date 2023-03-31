@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -233,6 +235,7 @@ public class UI {
                 }
                 System.out.println("Type which course you would like to view, or enter 0 to go back");
                 int choice = keyboard.nextInt();
+                keyboard.nextLine();
                 if(choice == 0) 
                     getUserDialog();
                 showModules(myCourses.get(choice-1));
@@ -242,11 +245,19 @@ public class UI {
      * @param course course that contains the modules
      */
     public void showModules(Course course) {
-        System.out.println("Showing modules for " + course);
+        System.out.println("Showing modules for " + course.name);
         courseApp.Currentcourse = course;
         System.out.println(courseApp.Currentcourse.name + "\n" + courseApp.Currentcourse.description);
         for(int i = 0; i < courseApp.Currentcourse.modules.size(); i++) {
             System.out.println(i+1 + ": " + courseApp.Currentcourse.modules.get(i).title);
+        }
+        int index = courseApp.getMyCourses().indexOf(course);
+        if(courseApp.regUser.courseProgress.get(index).courseProgress == 100) {
+            System.out.println("Your course is complete would you like to print certificate?");
+            String answer = keyboard.nextLine();
+            if(answer.equalsIgnoreCase("yes")) {
+                printCertificate();
+            }
         }
         System.out.println("Enter the number of which module to take, or enter 0 to go back");
         int choice = keyboard.nextInt();
@@ -254,6 +265,19 @@ public class UI {
             showCourses();
         } 
         showMaterials(courseApp.Currentcourse.modules.get(choice - 1), course);
+    }
+
+    public void printCertificate() {
+        try {
+            File newFile = new File("./certificate.txt");
+            FileWriter writer = new FileWriter(newFile);
+            writer.write("This is to certify that " + courseApp.getUser().firstName + " " +
+             courseApp.getUser().lastName + " has completed the " + courseApp.Currentcourse.name + " course");
+            writer.close();
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
