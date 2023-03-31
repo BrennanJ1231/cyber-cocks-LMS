@@ -3,11 +3,19 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+
+/**
+The DataLoader class loads user and course data from JSON files.
+*/
 public class DataLoader {
     private static ArrayList<Course> courseList;
     private static ArrayList<User> userList;
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
-    
+
+    /**
+    The loadUsers method loads user data from a JSON file and returns a list of User objects.
+    @return An ArrayList of User objects.
+    */
     public static ArrayList<User> loadUsers() {
         userList = new ArrayList<User>();
         JSONParser parser = new JSONParser();
@@ -96,6 +104,11 @@ public class DataLoader {
         }
         return userList;
     }
+
+    /**
+    The loadCourse method loads course data from a JSON file and returns a list of Course objects.
+    @return An ArrayList of Course objects.
+    */
     public static ArrayList<Course> loadCourses() {
         courseList = new ArrayList<Course>();
         try {
