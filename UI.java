@@ -302,6 +302,12 @@ public class UI {
         }
         System.out.println("Viewing " + module.material.get(choice-1).name);
         System.out.println(module.material.get(choice-1).content);
+        System.out.println("Enter 1 to print to text file");
+        int print = keyboard.nextInt();
+        keyboard.nextLine();
+        if(print == 1) {
+            printToTxt(module.material.get(choice-1));
+        }
         System.out.println("Enter 0 to go back");
         choice = keyboard.nextInt();
         keyboard.nextLine();
@@ -326,6 +332,17 @@ public class UI {
             showMaterials(module, course);
         }
         takeQuiz(module.test.get(choice-1), module);
+    }
+    public void printToTxt(InstructiveMaterial material) {
+        try {
+            File newFile = new File("./" + material.name + ".txt");
+            FileWriter writer = new FileWriter(newFile);
+            writer.write("Title: " + material.name + "\n" + material.content);
+            writer.close();
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     /**
      *  takeQuiz allows you to actually take a quiz
