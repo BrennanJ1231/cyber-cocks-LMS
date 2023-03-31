@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -233,6 +235,7 @@ public class UI {
                 }
                 System.out.println("Type which course you would like to view, or enter 0 to go back");
                 int choice = keyboard.nextInt();
+                keyboard.nextLine();
                 if(choice == 0) 
                     getUserDialog();
                 showModules(myCourses.get(choice-1));
@@ -242,11 +245,19 @@ public class UI {
      * @param course course that contains the modules
      */
     public void showModules(Course course) {
-        System.out.println("Showing modules for " + course);
+        System.out.println("Showing modules for " + course.name);
         courseApp.Currentcourse = course;
         System.out.println(courseApp.Currentcourse.name + "\n" + courseApp.Currentcourse.description);
         for(int i = 0; i < courseApp.Currentcourse.modules.size(); i++) {
             System.out.println(i+1 + ": " + courseApp.Currentcourse.modules.get(i).title);
+        }
+        int index = courseApp.getMyCourses().indexOf(course);
+        if(courseApp.regUser.courseProgress.get(index).courseProgress == 100) {
+            System.out.println("Your course is complete would you like to print certificate?");
+            String answer = keyboard.nextLine();
+            if(answer.equalsIgnoreCase("yes")) {
+                printCertificate();
+            }
         }
         System.out.println("Enter the number of which module to take, or enter 0 to go back");
         int choice = keyboard.nextInt();
@@ -254,6 +265,19 @@ public class UI {
             showCourses();
         } 
         showMaterials(courseApp.Currentcourse.modules.get(choice - 1), course);
+    }
+
+    public void printCertificate() {
+        try {
+            File newFile = new File("./certificate.txt");
+            FileWriter writer = new FileWriter(newFile);
+            writer.write("This is to certify that " + courseApp.getUser().firstName + " " +
+             courseApp.getUser().lastName + " has completed the " + courseApp.Currentcourse.name + " course");
+            writer.close();
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -278,6 +302,12 @@ public class UI {
         }
         System.out.println("Viewing " + module.material.get(choice-1).name);
         System.out.println(module.material.get(choice-1).content);
+        System.out.println("Enter 1 to print to text file");
+        int print = keyboard.nextInt();
+        keyboard.nextLine();
+        if(print == 1) {
+            printToTxt(module.material.get(choice-1));
+        }
         System.out.println("Enter 0 to go back");
         choice = keyboard.nextInt();
         keyboard.nextLine();
@@ -303,6 +333,17 @@ public class UI {
         }
         takeQuiz(module.test.get(choice-1), module);
     }
+    public void printToTxt(InstructiveMaterial material) {
+        try {
+            File newFile = new File("./" + material.name + ".txt");
+            FileWriter writer = new FileWriter(newFile);
+            writer.write("Title: " + material.name + "\n" + material.content);
+            writer.close();
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      *  takeQuiz allows you to actually take a quiz
      * @param test takes assignment test as the input for which test user takes
@@ -311,14 +352,16 @@ public class UI {
     public void takeQuiz(Assignment test, Module module) {
         System.out.println("Taking quiz " + test.name);
         for(int i = 0; i < test.questions.size(); i ++ ) {
-            System.out.println("Question: " + i+1 + " " + test.questions.get(i).question);
+            System.out.println("Question: " + (i+1) + " " + test.questions.get(i).question);
             for(int j = 0; j < test.questions.get(i).choices.size(); j++) {
                 System.out.println(test.questions.get(i).choices.get(j));
             }
             System.out.println("Enter answer choice: ");
             String answer = keyboard.nextLine();
-            if(answer.equals(test.questions.get(i).correctAnswer)) {
+            if(answer.equalsIgnoreCase(test.questions.get(i).correctAnswer)) {
                 test.questions.get(i).rightWrong = true;
+            } else {
+                test.questions.get(i).rightWrong = false;
             }
         }
         System.out.println("Grade: "+ test.calculateGrade());
@@ -335,7 +378,6 @@ public class UI {
      * @param module shows the module the comments are in
      */
     public void showComment(Module module) {
-        System.out.println("Viewing comments" + module.comments.get(0).content);
         if(module.comments == null) {
             System.out.println("No comments");
             showMaterials(module, courseApp.Currentcourse);
@@ -424,7 +466,7 @@ public class UI {
             System.out.println("Please enter the name of the course you would like to edit");
             String editCourse = keyboard.nextLine();
             while (true) {
-                System.out.println("Enter [1] to edit a module or enter [2] to add a module:");
+                System.out.println("Enter [1] to edit a module or enter [2] to add a module, or [0] to go back:");
                 int choice = keyboard.nextInt();
                 keyboard.nextLine();
                 if (choice == 1) {
@@ -435,7 +477,9 @@ public class UI {
                     courseApp.findCourse(editCourse).modules.addAll(makeModule());
                     courseApp.saveAll();
                     break;
-                } else {
+                } else if(choice == 0) {
+                    getAuthorDialog();
+                }else {
                     System.out.println("Invalid choice please try again!");
                 }
             }
@@ -464,9 +508,12 @@ public class UI {
         } else if( choice == 4) {
             courseApp.findCourse(editCourse).findModule(editModule).material.addAll( makeMaterial());
             // edit instructive material method
-        } else {
+        } else if(choice == 0){
+            getEditCourseScreen();
+        }else {
             System.out.println("Invalid input");
         }
+        courseApp.saveAll();
     }
 
     /**
@@ -482,22 +529,23 @@ public class UI {
         System.out.println("Enter the name of the assignment you would like to edit");
         String testName = keyboard.nextLine();
         while (true) {
-            System.out.println("Enter [1] to edit the assignment name, enter [2] to edit questions, enter [3] to add questions");
+            System.out.println("Enter [1] to edit the assignment name, enter [2] to edit questions, enter [3] to add questions, or enter [0] to go back");
             int choice = keyboard.nextInt();
             keyboard.nextLine();
             if (choice == 1) {
                 System.out.println("Please enter the assignments new name");
                 String newName = keyboard.nextLine();
                 course.findModule(mod.title).findAssignment(testName).setName(newName);
-                break;
             } else if (choice == 2) {
                 editQuestion(course.findModule(mod.title).findAssignment(testName));
-                break;
             } else if( choice == 3) {
                 courseApp.Currentcourse.findModule(mod.title).findAssignment(testName).questions.addAll(makeQuestion());
-            } else {
+            } else if(choice == 0) {
+                editModule(course.name);
+            }else {
                 System.out.println("Invalid option please try again!");
             }
+            courseApp.saveAll();
         }
     }
 
@@ -535,6 +583,7 @@ public class UI {
             } else {
                 System.out.println("Invalid option please try again!");
             }
+            courseApp.saveAll();
         }
     }
     /**
@@ -578,14 +627,17 @@ public class UI {
      */
     public void editInstructive(Course course, Module mod) {
         //Enter the module name and edit the different
+        while(true) {
         for (int i = 0; i < mod.material.size(); i++) {
             System.out.println(mod.material.get(i).name);
         }
+        
         System.out.println("Enter the name of the material you would like to edit");
         String materialName = keyboard.nextLine();
-        while (true) {
-            System.out.println("Enter [1] to edit material name or enter [2] to edit material contents");
+        
+            System.out.println("Enter [1] to edit material name, [2] to edit material contents, or enter [0] to go back");
             int choice = keyboard.nextInt();
+            keyboard.nextLine();
             if (choice == 1) {
                 System.out.println("Please enter the materials new name");
                 String newName = keyboard.nextLine();
@@ -594,9 +646,12 @@ public class UI {
                 System.out.println("Please enter the materials new contents");
                 String newContent = keyboard.nextLine();
                 course.findModule(mod.title).findMaterial(materialName).setContent(newContent);
-            } else {
+            } else if(choice == 0) {
+                editModule(course.name);
+            }else {
                 System.out.println("Invalid option please try again!");
             }
+            courseApp.saveAll();
         }
     }
     /**

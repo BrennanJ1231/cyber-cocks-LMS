@@ -55,12 +55,12 @@ public class Assignment {
     @return the grade for the assignment.
     */
     public double calculateGrade() {
-        int numRight = 0;
+        double numRight = 0;
         for(int i = 0; i< questions.size(); i++) {
             if(questions.get(i).rightWrong) 
                 numRight++;
         }
-        return (numRight/questions.size()) * 100;
+        return numRight/(double)(questions.size()) * 100.0;
     }
 
 
