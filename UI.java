@@ -137,14 +137,19 @@ public class UI {
         while (true) {
             System.out.println("Please enter [1] to assign courses, enter [2] to findCourses, and enter [3] to take a course, enter [4] to log out.");
             int choice = keyboard.nextInt();
-            if ( choice == 1 ) {
+            if ( choice == 1 ) { // assign course
                 System.out.println("Please enter the course details of the one you would like to assign");
-            } else if ( choice == 2 ) {
-                System.out.println("Please enter the course details so we can find your course");
-            } else if ( choice == 3 ) {
-                System.out.println("Please enter the course details of the one you would like to take");
+                // need to create an assign course stub in the Course Application
+                // could make it so that it takes the course and the users name they want to assign to
+            } else if ( choice == 2 ) { // find course
+                System.out.println("Please enter name of the course so we can find it");
+                keyboard.nextLine();
+                String name = keyboard.nextLine();
+                courseApp.findCourse(name);
+            } else if ( choice == 3 ) { // take a course
+                System.out.println("You have decided to take a course. Please enter the name of the course you want to take");
                 String courseChoice = keyboard.nextLine();
-                courseApp.findCourse(courseChoice);
+                courseApp.takeCourse(courseChoice);
             } else if (choice == 4) {
                 System.out.println("Logging you out");
                 courseApp.logout();
