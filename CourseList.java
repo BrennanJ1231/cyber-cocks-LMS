@@ -77,5 +77,11 @@ public Course findCourse(String name) {
     return null;
 
 }
+/*
+public Course assignCourse(String name, Course course) {
+    // This is the stub in Course list for the Course app and for the Admin Dialog in UI
+}
+*/
+
 }
 

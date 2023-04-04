@@ -139,8 +139,9 @@ public class UI {
             int choice = keyboard.nextInt();
             if ( choice == 1 ) { // assign course
                 System.out.println("Please enter the course details of the one you would like to assign");
-                // need to create an assign course stub in the Course Application
+                // need to create an assignCourse stub in the Course Application
                 // could make it so that it takes the course and the users name they want to assign to
+                courseApp.assignCourse();
             } else if ( choice == 2 ) { // find course
                 System.out.println("Please enter name of the course so we can find it");
                 keyboard.nextLine();

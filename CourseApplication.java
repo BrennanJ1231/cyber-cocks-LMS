@@ -191,6 +191,9 @@ public class CourseApplication{
     public Course takeCourse(String name) {
         return courselist.findCourse(name);
     }
+    public Course assignCourse(String name, Course course) {
+        // return courselist.assignCourse(name, course);
+    }
 
     public void saveAll() {
         userList.save();
