@@ -13,8 +13,6 @@ import java.util.UUID;
 import javax.management.modelmbean.ModelMBean;
 import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardUpLeftHandler;
 
-//To do: implement object oriented programming
-// Any time there is a choice use a method
 
 public class UI {
     private static SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
@@ -45,7 +43,7 @@ public class UI {
             //We need to make it check for errors when the user makes an account so it doesn't crash
             if (choice == 1) { // Register
                 getRegister();
-            }else if(choice == 2) {  
+            }else if(choice == 2) {  // login
                 getLogin();
             } else {
                 System.out.println("Invalid input");
@@ -59,7 +57,7 @@ public class UI {
             } else {
                 getUserDialog(); // User
             }
-        }catch(Exception e) {
+        }catch(Exception e) { // catch exception for try
             e.printStackTrace();
         }
     }
@@ -267,6 +265,9 @@ public class UI {
         showMaterials(courseApp.Currentcourse.modules.get(choice - 1), course);
     }
 
+    /**
+     * printCertificate creates a new txt file and that displays the certification
+     */
     public void printCertificate() {
         try {
             File newFile = new File("./certificate.txt");
@@ -333,6 +334,10 @@ public class UI {
         }
         takeQuiz(module.test.get(choice-1), module);
     }
+    /**
+     * creates a new txt file amd adds the name of the material into it
+     * @param material array list Instructive material prints to the new file
+     */
     public void printToTxt(InstructiveMaterial material) {
         try {
             File newFile = new File("./" + material.name + ".txt");
@@ -340,7 +345,7 @@ public class UI {
             writer.write("Title: " + material.name + "\n" + material.content);
             writer.close();
             
-        } catch(Exception e) {
+        } catch(Exception e) { // catch exception
             e.printStackTrace();
         }
     }
@@ -487,6 +492,9 @@ public class UI {
         }
     }
 
+    /**
+     * edit Module takes a string and finds a course by the keyword. It then allows the user to edit the module inside
+     */
     public void editModule(String editCourse) {
         for(int i = 0; i < courseApp.courselist.findCourse(editCourse).modules.size(); i++) {
             System.out.println(courseApp.courselist.findCourse(editCourse).modules.get(i).title);
@@ -549,6 +557,10 @@ public class UI {
         }
     }
 
+    /**
+     * edit question returns the question you want to edit and allows the user to change and save it
+     * @param test takes the assignment that the question belongs to
+     */
     public void editQuestion(Assignment test) {
         //Enter the module name and edit the different
         for (int i = 0; i < test.questions.size(); i++) {
