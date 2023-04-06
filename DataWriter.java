@@ -16,7 +16,7 @@ public class DataWriter {
  * writes all the user data to the JSON file
  * @param fileName
  */
-	public static void saveUser(String fileName) {
+	public static void saveUser() {
         UserList userList = UserList.getInstance();
 		ArrayList<User> users = userList.getAll();
 		JSONArray jsonUsers = new JSONArray();
@@ -133,7 +133,7 @@ public class DataWriter {
     }
 
 
-    public static void saveCourse(String fileName) {
+    public static void saveCourse() {
         CourseList courseList = CourseList.getInstance();
 		ArrayList<Course> courses = courseList.getAll();
 		JSONArray jsonCourses = new JSONArray();
