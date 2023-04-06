@@ -90,11 +90,67 @@ class DataWriterTest {
      */
 	@Test
 	void testWritingNullUser() {
-		userList.add(new User("","",null,"", "",new Date(),"",""));
+		userList.add(new User(null,null,null,"", null,null,null,null));
 		DataWriter.saveUser();
 		assertEquals(null, DataLoader.loadUsers().get(0).getFirstName());
 	}
 	// Course Writing Tests
     //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * tests the data loader to see if courseList is empty with nothing added
+     */
+    @Test
+    void testWritingZeroCourses() {
+        courseList = DataLoader.loadCourses();
+		assertEquals(0, courseList.size());
+    }
+
+    /**
+     * tests the data writer to see if it writes one Course when added to the userList
+     */
+	@Test
+	void testWritingOneCourse() {
+		courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
+		DataWriter.saveUser();
+		assertEquals("John", DataLoader.loadUsers().get(0).getFirstName());
+	}
+	
+    /**
+     * Tests if the correct user is going to be in the position desired when there are more than one user
+     */
+	@Test
+	void testWritingFiveCourses() {
+		courseList.add(new Course("Loops","Different Loops",Language.JAVASCRIPT, UUID.randomUUID(), null, null));
+		courseList.add(new Course("Hello World", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
+		courseList.add(new Course("Inheritance", "", Language.C_SHARP, UUID.randomUUID(), null, null));
+		courseList.add(new Course("C++ Basics", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
+		courseList.add(new Course("Classes", "", Language.PHP, UUID.randomUUID(), null, null));
+		DataWriter.saveCourse();
+		assertEquals("Hello World", DataLoader.loadCourses().get(2).getLanguage());
+	}
+	
+
+    /**
+     * tests how the program handles blanks as the input
+     */
+	@Test
+	void testWritingEmptyCourse() {
+		courseList.add(new Course("","",null, UUID.randomUUID(), null, null));
+		DataWriter.saveCourse();
+		assertEquals("", DataLoader.loadCourses().get(0).getCourseName());
+	}
+	
+    /**
+     * Tests how the program handles a null in the params of User and see if it returns null when that param is called
+     */
+	@Test
+	void testWritingNullCourse() {
+		courseList.add(new Course(null,null,null, null, null, null));
+		DataWriter.saveCourse();
+		assertEquals(null, DataLoader.loadCourses().get(0).getCourseName());
+	}
+
+    // Comment Testing
 
 }

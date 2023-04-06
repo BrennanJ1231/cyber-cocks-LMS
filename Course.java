@@ -35,6 +35,16 @@ public class Course {
         this.comments =  comments;
     }
 
+    /**
+     * Added a getter for course name as I was unable to test without
+     */
+    public String getCourseName() {
+        return this.name;
+    }
+    public Language getLanguage() {
+        return this.language;   
+    }
+
     /*
      * Finds a Module
      * @returns a Module
