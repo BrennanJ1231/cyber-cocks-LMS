@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,40 +31,40 @@ class DataWriterTest {
 	
 	@Test
 	void testWritingZeroUsers() {
-		userList = DataLoader.getAll();
+		userList = DataLoader.loadUsers();
 		assertEquals(0, userList.size());
 	}
 
 	@Test
 	void testWritingOneUser() {
-		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", newDate(), "him", "cactus"));
+		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", new Date(), "him", "cactus"));
 		DataWriter.saveUser();
-		assertEquals("asmith", DataLoader.getAll().get(0).getUserName());
+		assertEquals("John", DataLoader.loadUsers().get(0).getFirstName());
 	}
 	
 	@Test
 	void testWritingFiveUsers() {
-		userList.add(new User("asmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new User("bsmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new User("csmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new User("dsmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new User("esmith", "Amy", "Smith", 19, "803-454-3344"));
-		DataWriter.saveUsers();
-		assertEquals("esmith", DataLoader.getUsers().get(4).getUserName());
+		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", new Date("11/04/2001"), "him", "cactus"));
+		userList.add(new User(UUID.randomUUID(),"Author", "Steve", "Oreck","stevie@email.com", new Date(), "SteveO", "chrisanthimum"));
+		userList.add(new User(UUID.randomUUID(),"User", "Ryan", "Stanton","ryguy@email.com", new Date(), "him", "cactus"));
+		userList.add(new User(UUID.randomUUID(),"Admin", "French", "Montana","Drizzy@email.com", new Date(), "him", "cactus"));
+		userList.add(new User(UUID.randomUUID(),"Admin", "Frankie", "Blooms","bloomingonion@email.com", new Date(), "him", "cactus"));
+		DataWriter.saveUser();
+		assertEquals("Frankie", DataLoader.loadUsers().get(4).getFirstName());
 	}
 	
 	@Test
 	void testWritingEmptyUser() {
-		userList.add(new User("", "", "", 0, ""));
-		DataWriter.saveUsers();
-		assertEquals("", DataLoader.getUsers().get(0).getUserName());
+		userList.add(new User(UUID.randomUUID(), "", "", "", "",new Date(),"",""));
+		DataWriter.saveUser();
+		assertEquals("", DataLoader.loadUsers().get(0).getFirstName());
 	}
 	
 	@Test
 	void testWritingNullUser() {
-		userList.add(new User(null, "", "", 0, ""));
-		DataWriter.saveUsers();
-		assertEquals(null, DataLoader.getUsers().get(0).getUserName());
+		userList.add(new User("","",null,"", "",new Date(),"",""));
+		DataWriter.saveUser();
+		assertEquals(null, DataLoader.loadUsers().get(0).getFirstName());
 	}
 	
 }
