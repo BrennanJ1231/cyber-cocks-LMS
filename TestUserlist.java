@@ -38,4 +38,5 @@ public class TestUserlist {
         boolean hasMason = users.findUser("mLoeb").username.equalsIgnoreCase("mLoeb");
         assertTrue(hasMason);
     }
+
 }
