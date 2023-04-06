@@ -65,7 +65,7 @@ class DataWriterTest {
      */
 	@Test
 	void testWritingFiveUsers() {
-		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", new Date("11/04/2001"), "him", "cactus"));
+		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", null, "him", "cactus"));
 		userList.add(new User(UUID.randomUUID(),"Author", "Steve", "Oreck","stevie@email.com", new Date(), "SteveO", "chrisanthimum"));
 		userList.add(new User(UUID.randomUUID(),"User", "Ryan", "Stanton","ryguy@email.com", new Date(), "him", "cactus"));
 		userList.add(new User(UUID.randomUUID(),"Admin", "French", "Montana","Drizzy@email.com", new Date(), "him", "cactus"));
@@ -107,7 +107,7 @@ class DataWriterTest {
     }
 
     /**
-     * tests the data writer to see if it writes one Course when added to the userList
+     * tests the data writer to see if it writes one Course when added to the Course List
      */
 	@Test
 	void testWritingOneCourse() {
@@ -117,7 +117,7 @@ class DataWriterTest {
 	}
 	
     /**
-     * Tests if the correct user is going to be in the position desired when there are more than one user
+     * Tests if the correct Course is going to be in the position desired when there are more than one Course
      */
 	@Test
 	void testWritingFiveCourses() {
@@ -127,7 +127,7 @@ class DataWriterTest {
 		courseList.add(new Course("C++ Basics", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
 		courseList.add(new Course("Classes", "", Language.PHP, UUID.randomUUID(), null, null));
 		DataWriter.saveCourse();
-		assertEquals("Hello World", DataLoader.loadCourses().get(2).getLanguage());
+		assertEquals("Hello World", DataLoader.loadCourses().get(2).getCourseName());
 	}
 	
 
@@ -142,7 +142,7 @@ class DataWriterTest {
 	}
 	
     /**
-     * Tests how the program handles a null in the params of User and see if it returns null when that param is called
+     * Tests how the program handles a null in the params of Course and see if it returns null when that param is called
      */
 	@Test
 	void testWritingNullCourse() {
@@ -151,6 +151,35 @@ class DataWriterTest {
 		assertEquals(null, DataLoader.loadCourses().get(0).getCourseName());
 	}
 
-    // Comment Testing
+    // Comment Testing and Language Testing
+
+    @Test
+    void testCourseLanguage() {
+        courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
+        DataWriter.saveCourse();
+        assertEquals("JAVA", DataLoader.loadCourses().get(0).getLanguage());
+    }
+
+    @Test
+    void testNullLanguage() {
+        courseList.add(new Course("Hello World", "Creating your first code", null, UUID.randomUUID(),null, null ));
+        DataWriter.saveCourse();
+        assertEquals(null, DataLoader.loadCourses().get(0).getLanguage());
+    }
+
+    @Test
+    void testComments() {
+
+    }
+
+    @Test
+    void testNullComments(){
+        
+    }
+
+    @Test
+    void testCommentComments() {
+
+    }
 
 }
