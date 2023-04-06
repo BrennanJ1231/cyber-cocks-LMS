@@ -24,19 +24,75 @@ public class TestUserlist {
     }
 
     @Test
-    void testHaveValidFirstItem() {
+    public void testHaveValidFirstItem() {
         boolean hasBrennan = users.findUser("bJohnson").username.equalsIgnoreCase("bJohnson");
         assertTrue(hasBrennan);
     }
-
-    void testHaveValidMiddleItem() {
+    @Test
+    public void testHaveValidMiddleItem() {
         boolean hasRyan = users.findUser("rAycock").username.equalsIgnoreCase("rAycock");
         assertTrue(hasRyan);
     }
-
-    void testHaveValidLastItem() {
+    @Test
+    public void testHaveValidLastItem() {
         boolean hasMason = users.findUser("mLoeb").username.equalsIgnoreCase("mLoeb");
         assertTrue(hasMason);
     }
+    @Test
+    public void testHaveInvalidItem() {
+        boolean hasInvalid = users.findUser("no one") == null;
+        assertTrue(hasInvalid);
+    }
+
+    @Test
+
+    public void testFindNull() {
+        String name = null;
+        boolean hasNull = users.findUser(name) == null;
+        assertTrue(hasNull);
+
+    }
+
+    @Test 
+    public void testDeleteUser() {
+        users.deleteUser(userList.get(0));
+        boolean hasUser = users.findUser("bJohnson") == null;
+        assertTrue(hasUser);
+    }
+    @Test 
+    public void testFindByUUID() {
+        boolean hasUser = users.findUser(userList.get(1).uuid).username.equalsIgnoreCase("rAycock");
+        assertTrue(hasUser);
+    }
+    @Test
+    public void testFindInvalidUUID() {
+        boolean hasUser = users.findUser(UUID.randomUUID()) == null;
+        assertTrue(hasUser);
+    }
+    @Test
+    public void testFindNullUUId() {
+        UUID uuid = null;
+        boolean hasUser = users.findUser(uuid) == null;
+        assertTrue(hasUser);
+    }
+    @Test
+    public void testAddNullUser() {
+        users.addUser((new User(null, null, null, null, null, null, null, null));
+        boolean hasNull = userList.get(userList.size()-1) == null;
+        assertTrue(hasNull);
+    }
+    @Test
+    public void addInvalidUserType() {
+        users.addUser(new User(UUID.randomUUID(),"Type","Brennan", "Johnson", "brennan@email.com", new Date(), "b", "1231"));
+        boolean hasUser = users.findUser("b") == null;
+        assertTrue(hasUser);
+    }
+    @Test
+    public void addDuplicate() {
+        users.addUser(new RegisteredUser(UUID.randomUUID(), "Registered User", "bJohnson", "Brennan", "Johnson", "1231", "email", new Date(), null));
+        boolean hasUser = userList.get(userList.size()-1) == null;
+        assertTrue(hasUser);
+    }
+
 
 }
