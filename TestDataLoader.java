@@ -17,13 +17,13 @@ class TestDataLoader {
 		userList.add(new User(UUID.randomUUID(),"Author", "Walter", "White", "heisenberg@gmail.com", new Date("11\09\1958"), "Waltuh", "1231"));
         userList.add(new User(UUID.randomUUID(),"RegisteredUser", "Jesse", "Pinkman", "YeahScience@gmail.com", new Date("11\03\1978"), "YeahBitch", "1231"));
         userList.add(new User(UUID.randomUUID(),"Admin", "Mike", "Ermantrout", "PimentoCheese@gmail.com", new Date("01\05\1949"), "Mike", "1231"));
-		DataWriter.saveUser("./json/users.json");
+		DataWriter.saveUser();
 	}
 	
 	@AfterEach
 	public void tearDown() {
 		users.getInstance().getAll().clear();
-		DataWriter.saveUser("./json/users.json");
+		DataWriter.saveUser();
 	}
 	
 	
@@ -36,7 +36,7 @@ class TestDataLoader {
 	@Test
 	void testGetUsersSizeZero() {
 		users.getInstance().getAll().clear();
-		DataWriter.saveUser("./json/users.json");
+		DataWriter.saveUser();
 		assertEquals(0, userList.size());
 	}
 	
