@@ -60,7 +60,7 @@ public void deleteCourse(Course course){
  * Saves a course
  */
 public void save(){
-    DataWriter.saveCourse(DataWriter.COURSES_FILE_NAME);
+    DataWriter.saveCourse(); //DataWriter.COURSES_FILE_NAME
 }
 
 /*
