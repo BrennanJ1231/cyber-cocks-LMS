@@ -8,6 +8,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 
 public class TestCourselist {
  
@@ -26,6 +30,40 @@ public void addCourse(){
     CL.addCourse(new Course(null, null, null, null, null, null));
     assertEquals(1,CL.getAll().size());
 }
+
+
+
+@Test
+public void testDeleteCourse() {
+    CourseList CL = new CourseList();
+    Course course = new Course("Test Course", "123", null, null, null, null);
+    CL.addCourse(course);
+    CL.deleteCourse(course);
+    ArrayList<Course> allCourses = CL.getAll();
+    Assertions.assertTrue(allCourses.isEmpty());
+}
+
+@Test
+public void testGetAll(){
+
+}
+
+@Test 
+public void testDeletingCourse(){
+
+}
+
+@Test
+public void testSave(){
+    
+}
+
+@Test
+public Course testFindCourse(String name) {
+
+}
+
+
 
 
 }
