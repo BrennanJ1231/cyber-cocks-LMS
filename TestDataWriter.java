@@ -13,7 +13,6 @@ class DataWriterTest {
 	private ArrayList<User> userList = users.getAll();
     private CourseList courses = CourseList.getInstance();
     private ArrayList<Course> courseList = courses.getAll();
-	
     /**
      * Set up for each test clears user list and saves it
      */
@@ -169,7 +168,9 @@ class DataWriterTest {
 
     @Test
     void testComments() {
-
+		courseList.add(new Course(null, null, null, null, null,));
+        DataWriter.saveCourse();
+        assertEquals(null, DataLoader.loadCourses().get(0).getComments());
     }
 
     @Test
