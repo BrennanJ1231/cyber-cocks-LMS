@@ -14,9 +14,12 @@ class TestDataLoader {
 	@BeforeEach
 	public void setup() {
 		userList.clear();
-		userList.add(new User(UUID.randomUUID(),"Author", "Walter", "White", "heisenberg@gmail.com", new Date(), "Waltuh", "1231"));
-        userList.add(new User(UUID.randomUUID(),"RegisteredUser", "Jesse", "Pinkman", "YeahScience@gmail.com", new Date(), "YeahBitch", "1231"));
-        userList.add(new User(UUID.randomUUID(),"Admin", "Mike", "Ermantrout", "PimentoCheese@gmail.com", new Date(), "Mike", "1231"));
+		User author = new Author(UUID.randomUUID(), "Author", "Waltuh", "Walter", "White", "1231", "heisenberg@gmail.com", new Date(), 0, null);
+		User registeredUser = new RegisteredUser(UUID.randomUUID(), "RegisteredUser", "jPinkman", "Jesse", "Pinkman","1231", "YeahScience@gmail.com", new Date(), null );
+		User admin = new Admin(UUID.randomUUID(), "admin", "mikeE", "Mike", "Ermantrout", "PimentoCheese@gmail.com", new Date(), "1231");
+		userList.add(author);
+        userList.add(registeredUser);
+        userList.add(admin);
 		DataWriter.saveUser();
 	}
 	

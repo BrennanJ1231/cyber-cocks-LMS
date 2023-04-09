@@ -55,7 +55,7 @@ public class UserList {
     Saves the userList to data file using DataWriter.
     */
     public void save(){
-        DataWriter.saveUser(DataWriter.USERS_FILE_NAME);
+        DataWriter.saveUser();
     }
 
     /**
