@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DataWriterTest {
+public class DataWriterTest {
 	private UserList users = UserList.getInstance();
 	private ArrayList<User> userList = users.getAll();
     private CourseList courses = CourseList.getInstance();
@@ -44,7 +44,7 @@ class DataWriterTest {
      * checks the size of the UserList when no User is added
      */
 	@Test
-	void testWritingZeroUsers() {
+	public void testWritingZeroUsers() {
 		userList = DataLoader.loadUsers();
 		assertEquals(0, userList.size());
 	}
@@ -53,7 +53,7 @@ class DataWriterTest {
      * tests the data writer to see if it writes one user when added to the userList
      */
 	@Test
-	void testWritingOneUser() {
+	public void testWritingOneUser() {
 		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", new Date(), "him", "cactus"));
 		DataWriter.saveUser();
 		assertEquals("John", DataLoader.loadUsers().get(0).getFirstName());
@@ -63,7 +63,7 @@ class DataWriterTest {
      * Tests if the correct user is going to be in the position desired when there are more than one user
      */
 	@Test
-	void testWritingFiveUsers() {
+	public void testWritingFiveUsers() {
 		userList.add(new User(UUID.randomUUID(),"Author", "John", "Wick","jwick@email.com", null, "him", "cactus"));
 		userList.add(new User(UUID.randomUUID(),"Author", "Steve", "Oreck","stevie@email.com", new Date(), "SteveO", "chrisanthimum"));
 		userList.add(new User(UUID.randomUUID(),"User", "Ryan", "Stanton","ryguy@email.com", new Date(), "him", "cactus"));
@@ -78,7 +78,7 @@ class DataWriterTest {
      * tests how the program handles blanks as the input
      */
 	@Test
-	void testWritingEmptyUser() {
+	public void testWritingEmptyUser() {
 		userList.add(new User(UUID.randomUUID(), "", "", "", "",new Date(),"",""));
 		DataWriter.saveUser();
 		assertEquals("", DataLoader.loadUsers().get(0).getFirstName());
@@ -88,7 +88,7 @@ class DataWriterTest {
      * Tests how the program handles a null in the params of User and see if it returns null when that param is called
      */
 	@Test
-	void testWritingNullUser() {
+	public void testWritingNullUser() {
 		userList.add(new User(null,null,null,"", null,null,null,null));
 		DataWriter.saveUser();
 		assertEquals(null, DataLoader.loadUsers().get(0).getFirstName());
@@ -100,7 +100,7 @@ class DataWriterTest {
      * tests the data loader to see if courseList is empty with nothing added
      */
     @Test
-    void testWritingZeroCourses() {
+   	public void testWritingZeroCourses() {
         courseList = DataLoader.loadCourses();
 		assertEquals(0, courseList.size());
     }
@@ -109,7 +109,7 @@ class DataWriterTest {
      * tests the data writer to see if it writes one Course when added to the Course List
      */
 	@Test
-	void testWritingOneCourse() {
+	public void testWritingOneCourse() {
 		courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
 		DataWriter.saveUser();
 		assertEquals("John", DataLoader.loadUsers().get(0).getFirstName());
@@ -119,7 +119,7 @@ class DataWriterTest {
      * Tests if the correct Course is going to be in the position desired when there are more than one Course
      */
 	@Test
-	void testWritingFiveCourses() {
+	public void testWritingFiveCourses() {
 		courseList.add(new Course("Loops","Different Loops",Language.JAVASCRIPT, UUID.randomUUID(), null, null));
 		courseList.add(new Course("Hello World", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
 		courseList.add(new Course("Inheritance", "", Language.C_SHARP, UUID.randomUUID(), null, null));
@@ -134,7 +134,7 @@ class DataWriterTest {
      * tests how the program handles blanks as the input
      */
 	@Test
-	void testWritingEmptyCourse() {
+	public void testWritingEmptyCourse() {
 		courseList.add(new Course("","",null, UUID.randomUUID(), null, null));
 		DataWriter.saveCourse();
 		assertEquals("", DataLoader.loadCourses().get(0).getCourseName());
@@ -144,7 +144,7 @@ class DataWriterTest {
      * Tests how the program handles a null in the params of Course and see if it returns null when that param is called
      */
 	@Test
-	void testWritingNullCourse() {
+	public void testWritingNullCourse() {
 		courseList.add(new Course(null,null,null, null, null, null));
 		DataWriter.saveCourse();
 		assertEquals(null, DataLoader.loadCourses().get(0).getCourseName());
@@ -153,33 +153,33 @@ class DataWriterTest {
     // Comment Testing and Language Testing
 
     @Test
-    void testCourseLanguage() {
+    public void testCourseLanguage() {
         courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
         DataWriter.saveCourse();
         assertEquals("JAVA", DataLoader.loadCourses().get(0).getLanguage());
     }
 
     @Test
-    void testNullLanguage() {
+    public void testNullLanguage() {
         courseList.add(new Course("Hello World", "Creating your first code", null, UUID.randomUUID(),null, null ));
         DataWriter.saveCourse();
         assertEquals(null, DataLoader.loadCourses().get(0).getLanguage());
     }
 
     @Test
-    void testComments() {
-		courseList.add(new Course(null, null, null, null, null,));
+    public void testComments() {
+		courseList.add(new Course(null, null, null, null, null,null));
         DataWriter.saveCourse();
-        assertEquals(null, DataLoader.loadCourses().get(0).getComments());
+        assertEquals(null, DataLoader.loadCourses().get(0).comments);
     }
 
     @Test
-    void testNullComments(){
+    public void testNullComments(){
         
     }
 
     @Test
-    void testCommentComments() {
+    public void testCommentComments() {
 
     }
 
