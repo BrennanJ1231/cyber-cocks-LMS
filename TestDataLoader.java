@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// Ryan Aycock
 class TestDataLoader {
 	private UserList users = UserList.getInstance();
 	private ArrayList<User> userList = users.getAll();
@@ -68,7 +69,7 @@ class TestDataLoader {
 	
 	@Test
 	public void testGetUsersSize() {
-		userList = users.getInstance().getAll();
+		DataLoader.loadUsers();
 		assertEquals(3, userList.size());
 	}
 
@@ -81,49 +82,49 @@ class TestDataLoader {
 	
 	@Test
 	public void testGetUserFirstName() {
-		userList = users.getInstance().getAll();
+		DataLoader.loadUsers();
 		assertEquals("Walter", userList.get(0).getFirstName());
 	}
 
     @Test
 	public void testGetUserPassword() {
-		userList = users.getInstance().getAll();
+		DataLoader.loadUsers();
 		assertEquals("1231", userList.get(0).getPassword());
 	}
     
     @Test
 	public void testGetUserType() {
-		userList = users.getInstance().getAll();
+		DataLoader.loadUsers();
 		assertEquals("Author", userList.get(0).getType());
 	}
 
 	@Test
 	public void testGetCourseName() {
-		courseList = courses.getInstance().getAll();
+		DataLoader.loadCourses();
 		assertEquals("Java 1", courseList.get(0).name);
 	}
 
 	@Test
 	public void testGetLanguage() {
-		courseList = courses.getInstance().getAll();
+		DataLoader.loadCourses();
 		assertEquals(Language.JAVA, courseList.get(0).getLanguage());
 	}
 
 	@Test
 	public void testGetCourseAuthor() {
-		courseList = courses.getInstance().getAll();
+		DataLoader.loadCourses();
 		assertEquals("Waltuh", courseList.get(0).author);
 	}
 
 	@Test
 	public void testGetCourseComments() {
-		courseList = courses.getInstance().getAll();
+		DataLoader.loadCourses();
 		assertEquals(comments, courseList.get(0).comments);
 	}
 
 	@Test
 	public void testGetCourseModules() {
-		courseList = courses.getInstance().getAll();
+		DataLoader.loadCourses();
 		assertEquals(modules, courseList.get(0).modules);
 	}
 }

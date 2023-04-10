@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+// Brennan Johnson
 public class TestUserlist {
     private UserList users = UserList.getInstance();
     private ArrayList<User> userList = users.getAll();

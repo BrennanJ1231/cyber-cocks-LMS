@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// Mason Loeb
 class TestDataWriter{
 	private UserList users = UserList.getInstance();
 	private ArrayList<User> userList = users.getAll();
