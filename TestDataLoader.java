@@ -25,6 +25,7 @@ class TestDataLoader {
 		userList.add(author);
         userList.add(registeredUser);
         userList.add(admin);
+		DataWriter.saveUser();
 
 		ArrayList<Comment> commentsJava = new ArrayList<>();
 		Comment comment1 = new Comment(registeredUser.uuid, "What a great Course!", new Date());
@@ -54,7 +55,6 @@ class TestDataLoader {
 		Course java = new Course("Java 1", "This is an introduction to java", Language.JAVA, author.uuid, modulesJava, commentsJava);
 		courseList.add(java);
 
-		DataWriter.saveUser();
 		DataWriter.saveCourse();
 	}
 	
@@ -66,10 +66,9 @@ class TestDataLoader {
 		DataWriter.saveCourse();
 	}
 	
-	
 	@Test
 	public void testGetUsersSize() {
-		DataLoader.loadUsers();
+		userList.addAll(DataLoader.loadUsers());
 		assertEquals(3, userList.size());
 	}
 
@@ -81,51 +80,50 @@ class TestDataLoader {
 	}
 	
 	@Test
-	public void testGetUserFirstUserName() {
-		DataLoader.loadUsers();
+	public void testGetUserFirstName() {
+		userList.addAll(DataLoader.loadUsers());
 		assertEquals("Walter", userList.get(0).getFirstName());
 	}
 
     @Test
 	public void testGetUserPassword() {
-		DataLoader.loadUsers();
+		userList.addAll(DataLoader.loadUsers());
 		assertEquals("1231", userList.get(0).getPassword());
 	}
     
     @Test
 	public void testGetUserType() {
-		DataLoader.loadUsers();
+		userList.addAll(DataLoader.loadUsers());
 		assertEquals("Author", userList.get(0).getType());
 	}
 
 	@Test
 	public void testGetCourseName() {
-		DataLoader.loadCourses();
-		assertEquals("Java 1", courseList.get(0).getCourseName());
+		courseList.addAll(DataLoader.loadCourses());
+		assertEquals("Java 1", courseList.get(0).name);
 	}
 
 	@Test
 	public void testGetLanguage() {
-		DataLoader.loadCourses();
+		courseList.addAll(DataLoader.loadCourses());
 		assertEquals(Language.JAVA, courseList.get(0).getLanguage());
 	}
 
 	@Test
 	public void testGetCourseAuthor() {
-		DataLoader.loadCourses();
+		courseList.addAll(DataLoader.loadCourses());
 		assertEquals("Waltuh", courseList.get(0).author);
 	}
 
 	@Test
 	public void testGetCourseComments() {
-		DataLoader.loadCourses();
+		courseList.addAll(DataLoader.loadCourses());
 		assertEquals(comments, courseList.get(0).comments);
 	}
 
 	@Test
 	public void testGetCourseModules() {
-		DataLoader.loadCourses();
+		courseList.addAll(DataLoader.loadCourses());
 		assertEquals(modules, courseList.get(0).modules);
-
 	}
 }
