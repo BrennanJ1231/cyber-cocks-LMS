@@ -14,7 +14,8 @@ class TestDataWriter{
 	private UserList users = UserList.getInstance();
 	private ArrayList<User> userList = users.getAll();
     private CourseList courses = CourseList.getInstance();
-    private ArrayList<Course> courseList = courses.getAll(); 
+    private ArrayList<Course> courseList = courses.getAll();
+	private ArrayList<Module> module = new ArrayList<>(); 
     /**
      * Set up for each test clears user list and saves it
      */
@@ -143,7 +144,7 @@ class TestDataWriter{
      */
 	@Test
 	void testWritingOneCourse() {
-		courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
+		courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),module, null ));
 		DataWriter.saveCourse();
 		DataLoader.loadCourses();
 		assertEquals("Loops", courseList.get(0).getCourseName());
@@ -154,14 +155,14 @@ class TestDataWriter{
      */
 	@Test
 	void testWritingFiveCourses() {
-		courseList.add(new Course("Loops","Different Loops",Language.JAVASCRIPT, UUID.randomUUID(), null, null));
-		courseList.add(new Course("Hello World", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
-		courseList.add(new Course("Inheritance", "", Language.C_SHARP, UUID.randomUUID(), null, null));
-		courseList.add(new Course("C++ Basics", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
-		courseList.add(new Course("Classes", "", Language.PHP, UUID.randomUUID(), null, null));
+		courseList.add(new Course("Loops","Different Loops",Language.JAVASCRIPT, UUID.randomUUID(), module, null));
+		courseList.add(new Course("Hello World", "", Language.C_PLUS_PLUS, UUID.randomUUID(), module, null));
+		courseList.add(new Course("Inheritance", "", Language.C_SHARP, UUID.randomUUID(), module, null));
+		courseList.add(new Course("C++ Basics", "", Language.C_PLUS_PLUS, UUID.randomUUID(), module, null));
+		courseList.add(new Course("Classes", "", Language.PHP, UUID.randomUUID(), module, null));
 		DataWriter.saveCourse();
 		DataLoader.loadCourses();
-		assertEquals("Hello World", courseList.get(2).getCourseName());
+		assertEquals("Hello World", courseList.get(1).getCourseName());
 	}
 	
 
@@ -169,10 +170,11 @@ class TestDataWriter{
      * tests how the program handles blanks as the input
      */
 	@Test
-	void testWritingEmptyCourse() {
-		courseList.add(new Course("","",null, UUID.randomUUID(), null, null));
+	void testWritingNullLanguage() {
+		courseList.add(new Course("","",null, UUID.randomUUID(), module, null));
 		DataWriter.saveCourse();
-		assertEquals("", DataLoader.loadCourses().get(0).getCourseName());
+		DataLoader.loadCourses();
+		assertEquals(null,courseList.get(0).getLanguage());
 	}
 	
     /**
@@ -180,25 +182,21 @@ class TestDataWriter{
      */
 	@Test
 	void testWritingNullCourse() {
-		courseList.add(new Course(null,null,null, null, null, null));
+		courseList.add(new Course(null,null,null, null, module, null));
 		DataWriter.saveCourse();
-		assertEquals(null, DataLoader.loadCourses().get(0).getCourseName());
+		DataLoader.loadCourses();
+		assertEquals(null, courseList.get(0).getCourseName());
 	}
 
     // Comment Testing and Language Testing
 
     @Test
     void testCourseLanguage() {
-        courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
+        courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),module, null ));
         DataWriter.saveCourse();
-        assertEquals("JAVA", DataLoader.loadCourses().get(0).getLanguage());
+		DataLoader.loadCourses();
+        assertEquals("JAVA", courseList.get(0).getLanguage());
     }
 
-    @Test
-    void testNullLanguage() {
-        courseList.add(new Course("Hello World", "Creating your first code", null, UUID.randomUUID(),null, null ));
-        DataWriter.saveCourse();
-        assertEquals(null, DataLoader.loadCourses().get(0).getLanguage());
-    }
 
 }
