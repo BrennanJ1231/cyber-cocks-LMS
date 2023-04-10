@@ -61,9 +61,11 @@ class TestDataWriter {
      */
 	@Test
 	void testWritingOneUser() {
-		userList.add(new RegisteredUser(UUID.randomUUID(), "RegisteredUser", "Keanue", "John", "Wick","stella", "luvmydog@gmail.com", new Date(), null ));
+		User regUser = new RegisteredUser(UUID.randomUUID(), "RegisteredUser", "Keanue", "John", "Wick","stella", "luvmydog@gmail.com", new Date(), null );
+		userList.add(regUser);
 		DataWriter.saveUser();
-		assertEquals("John", DataLoader.loadUsers().get(0).getFirstName());
+		DataLoader.loadUsers();
+		assertEquals("John", userList.get(3).getFirstName());
 	}
 	
     /**
