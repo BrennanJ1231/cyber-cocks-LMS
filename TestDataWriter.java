@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Date;
 
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TestDataWriter {
+class TestDataWriter{
 	private UserList users = UserList.getInstance();
 	private ArrayList<User> userList = users.getAll();
     private CourseList courses = CourseList.getInstance();
-    private ArrayList<Course> courseList = courses.getAll();
+    private ArrayList<Course> courseList = courses.getAll(); 
     /**
      * Set up for each test clears user list and saves it
      */
@@ -78,7 +79,8 @@ class TestDataWriter {
 		userList.add(new RegisteredUser(UUID.randomUUID(),"RegisteredUser", "bigman", "Ryan", "Stanton", "basball" ,"ryguy@email.com", new Date(), null));
 		userList.add(new Admin(UUID.randomUUID(),"Admin", "DrakesUncle","French", "Montana","Drizzy@email.com", new Date(),"cactus"));
 		DataWriter.saveUser();
-		assertEquals("French", DataLoader.loadUsers().get(7).getFirstName());
+		DataLoader.loadUsers();
+		assertEquals("French", userList.get(6).getFirstName());
 	}
 	
 
@@ -89,22 +91,45 @@ class TestDataWriter {
 	void testEmptyType() {
 		userList.add(new RegisteredUser(UUID.randomUUID(), "", "", "", "","", "", new Date(), null));
 		DataWriter.saveUser();
-		assertEquals("RegisteredUser", DataLoader.loadUsers().get(0).getType());
+		DataLoader.loadUsers();
+		assertEquals("RegisteredUser", userList.get(3).getType());
+	}
+
+	/**
+     * tests how the program handles null as the input for the type
+     */
+	 @Test
+	void testNullType() {
+		userList.add(new RegisteredUser(UUID.randomUUID(), null, "", "", "","", "", new Date(), null));
+		DataWriter.saveUser();
+		DataLoader.loadUsers();
+		assertEquals("RegisteredUser", userList.get(3).getType());
 	}
 	
+	/**
+	 * 
+	 */
+	@Test
+	void testblankAge(){
+		userList.add(new Admin(UUID.randomUUID(),"Admin", "DrakesUncle","French", "Montana","Drizzy@email.com", new Date(),"cactus"));
+		DataWriter.saveUser();
+		DataLoader.loadUsers();
+		assertEquals(false, userList.get(3).getAge());
+	}
+
     /**
      * Tests how the program handles a null in the params of User and see if it returns null when that param is called
      */
 	@Test
-	void testWritingNullUser() {
+	void testWritingNullName() {
 		userList.add(new Author(UUID.randomUUID(),"Author",null,null,null,null, null, new Date(),0,null));
 		DataWriter.saveUser();
-		assertEquals(null, DataLoader.loadUsers().get(0).getFirstName());
+		DataLoader.loadUsers();
+		assertEquals(null, userList.get(3).getFirstName());
 	}
 	// Course Writing Tests
     //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
+     /**
      * tests the data loader to see if courseList is empty with nothing added
      */
     @Test
@@ -120,7 +145,8 @@ class TestDataWriter {
 	void testWritingOneCourse() {
 		courseList.add(new Course("Loops", "Creating loops with code", Language.JAVA, UUID.randomUUID(),null, null ));
 		DataWriter.saveCourse();
-		assertEquals("Loops", DataLoader.loadCourses().get(0).getCourseName());
+		DataLoader.loadCourses();
+		assertEquals("Loops", courseList.get(0).getCourseName());
 	}
 	
     /**
@@ -134,7 +160,8 @@ class TestDataWriter {
 		courseList.add(new Course("C++ Basics", "", Language.C_PLUS_PLUS, UUID.randomUUID(), null, null));
 		courseList.add(new Course("Classes", "", Language.PHP, UUID.randomUUID(), null, null));
 		DataWriter.saveCourse();
-		assertEquals("Hello World", DataLoader.loadCourses().get(2).getCourseName());
+		DataLoader.loadCourses();
+		assertEquals("Hello World", courseList.get(2).getCourseName());
 	}
 	
 
