@@ -53,13 +53,17 @@ class TestDataLoader {
 
 		Course java = new Course("Java 1", "This is an introduction to java", Language.JAVA, author.uuid, modulesJava, commentsJava);
 		courseList.add(java);
+
+		DataWriter.saveUser();
 		DataWriter.saveCourse();
 	}
 	
 	@AfterEach
 	public void tearDown() {
 		users.getInstance().getAll().clear();
+		courses.getInstance().getAll().clear();
 		DataWriter.saveUser();
+		DataWriter.saveCourse();
 	}
 	
 	
