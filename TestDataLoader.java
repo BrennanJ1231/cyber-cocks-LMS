@@ -68,7 +68,7 @@ class TestDataLoader {
 	
 	@Test
 	public void testGetUsersSize() {
-		userList.addAll(DataLoader.loadUsers());
+		userList = users.getInstance().getAll();
 		assertEquals(3, userList.size());
 	}
 
@@ -81,49 +81,49 @@ class TestDataLoader {
 	
 	@Test
 	public void testGetUserFirstName() {
-		userList.addAll(DataLoader.loadUsers());
+		userList = users.getInstance().getAll();
 		assertEquals("Walter", userList.get(0).getFirstName());
 	}
 
     @Test
 	public void testGetUserPassword() {
-		userList.addAll(DataLoader.loadUsers());
+		userList = users.getInstance().getAll();
 		assertEquals("1231", userList.get(0).getPassword());
 	}
     
     @Test
 	public void testGetUserType() {
-		userList.addAll(DataLoader.loadUsers());
+		userList = users.getInstance().getAll();
 		assertEquals("Author", userList.get(0).getType());
 	}
 
 	@Test
 	public void testGetCourseName() {
-		courseList.addAll(DataLoader.loadCourses());
+		courseList = courses.getInstance().getAll();
 		assertEquals("Java 1", courseList.get(0).name);
 	}
 
 	@Test
 	public void testGetLanguage() {
-		courseList.addAll(DataLoader.loadCourses());
+		courseList = courses.getInstance().getAll();
 		assertEquals(Language.JAVA, courseList.get(0).getLanguage());
 	}
 
 	@Test
 	public void testGetCourseAuthor() {
-		courseList.addAll(DataLoader.loadCourses());
+		courseList = courses.getInstance().getAll();
 		assertEquals("Waltuh", courseList.get(0).author);
 	}
 
 	@Test
 	public void testGetCourseComments() {
-		courseList.addAll(DataLoader.loadCourses());
+		courseList = courses.getInstance().getAll();
 		assertEquals(comments, courseList.get(0).comments);
 	}
 
 	@Test
 	public void testGetCourseModules() {
-		courseList.addAll(DataLoader.loadCourses());
+		courseList = courses.getInstance().getAll();
 		assertEquals(modules, courseList.get(0).modules);
 	}
 }
